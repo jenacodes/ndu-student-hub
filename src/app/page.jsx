@@ -2,12 +2,14 @@ import HeroSection from "@/components/HeroSection";
 import NewsSection from "@/components/NewsSection";
 import EventsSection from "@/components/EventsSection";
 import Image from "next/image";
+import StudentsUnionSection from "@/components/StudentsUnionSection";
+import ImportantAnnouncementsSection from "@/components/ImportantAnnouncementsSection.jsx";
 
 const HomePageContent = () => {
   return (
     <>
       <HeroSection />
-      {/* You can add other sections of your homepage below */}
+
       <section className="py-12 px-4 md:px-8">
         <Image
           src="/rome.jpg"
@@ -17,9 +19,12 @@ const HomePageContent = () => {
           className="mx-auto mb-8"
         />
       </section>
+      <ImportantAnnouncementsSection />
 
       <NewsSection />
+
       <EventsSection />
+      <StudentsUnionSection />
       {/* <section className="py-12 px-4 md:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
       </section> */}

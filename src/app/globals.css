@@ -30,3 +30,8 @@
     font-family: monospace;
   }
 }
+
+.section {
+  padding-block: 64px;
+  padding-inline: 16px;
+}
