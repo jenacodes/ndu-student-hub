@@ -21,15 +21,14 @@ const NewsSection = () => {
       imageUrl: "/images/news-image2.png", // Replace with your actual image path in /public/images/
       link: "/clubs/navigating-clubs-article",
     },
-    // Add more update objects here
   ];
 
   return (
-    <section className="py-12 px-4 md:px-8 bg-gray-100">
+    <section className="py-12 px-4 md:px-8 ">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-blue-500 tracking-tight">
               Latest Updates
             </h2>
 

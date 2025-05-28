@@ -19,10 +19,10 @@ const UpdatesCard = ({ imageUrl, category, link, snippet, title }) => {
           <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
             {category}
           </p>
-          <h3 className="mt-2 text-xl font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+          <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-gray-50 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
             <Link href={link}>{title}</Link>
           </h3>
-          <p className="mt-3 text-sm tracking-wide text-gray-600 leading-relaxed">
+          <p className="mt-3 text-sm tracking-wide text-gray-600 dark:text-gray-900 leading-relaxed">
             {snippet}
           </p>
         </div>

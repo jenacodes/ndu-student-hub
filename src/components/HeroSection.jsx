@@ -1,22 +1,6 @@
 const HeroSection = () => {
-  // const handleSubmit = (event) => {
-  //   // Removed: : React.FormEvent<HTMLFormElement>
-  //   event.preventDefault();
-  //   // Handle form submission logic (e.g., send email to a backend or service)
-  //   const emailInput = event.currentTarget.elements.namedItem("email"); // Removed: as HTMLInputElement
-  //   if (emailInput) {
-  //     console.log("Email submitted:", emailInput.value);
-  //     // Add your email submission logic here
-  //     alert(
-  //       `Thank you for signing up with ${emailInput.value}! (This is a demo)`
-  //     );
-  //     event.currentTarget.reset();
-  //   }
-  // };
-
   return (
-    <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-[calc(80vh-80px)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
-      {/* The 80px in min-h is an example for navbar height, adjust if needed */}
+    <section className=" min-h-[calc(80vh-80px)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">
           Your <span className="text-blue-600">Student Life</span> Starts Here!

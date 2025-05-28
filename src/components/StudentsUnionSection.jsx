@@ -1,4 +1,4 @@
-import StudentUnionCard from "./StudentsUnionCard";
+import StudentUnionCard from "@/components/StudentsUnionCard";
 import Link from "next/link";
 
 const StudentsUnionSection = () => {
@@ -8,7 +8,7 @@ const StudentsUnionSection = () => {
       name: "Adebayo Chinedu",
       post: "SUG President",
       imageUrl: "https://randomuser.me/api/portraits/men/7.jpg",
-    }, // Replace with actual images
+    },
     {
       id: 2,
       name: "Fatima Bello",
@@ -27,10 +27,9 @@ const StudentsUnionSection = () => {
       post: "Financial Secretary",
       imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
     },
-    // Add more leaders as needed
   ];
   return (
-    <section className="section sm:px-6 lg:px-8 bg-white">
+    <section className="section sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-950">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -63,7 +62,7 @@ const StudentsUnionSection = () => {
             href="/student-union"
             className="text-blue-600 hover:text-blue-800 font-semibold transition-colors text-lg"
           >
-            Learn More About SUG &rarr;
+            Learn More About The SUG &rarr;
           </Link>
         </div>
       </div>

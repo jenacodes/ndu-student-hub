@@ -89,7 +89,7 @@ const ImportantAnnouncementsSection = () => {
   };
 
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8 bg-yellow-50 border-t-4 border-yellow-400">
+    <section className="py-12 px-4 sm:px-6 lg:px-8  border-t-4 ">
       <div className="container mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl  font-extrabold text-yellow-700 tracking-tight">

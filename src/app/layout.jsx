@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 // Load Montserrat font with specific weights and a custom CSS variable
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "600", "700"], // You can add more weights as needed
+  weight: ["400", "600", "700"],
   variable: "--font-montserrat",
 });
 

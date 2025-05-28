@@ -4,12 +4,14 @@ import EventsSection from "@/components/EventsSection";
 import Image from "next/image";
 import StudentsUnionSection from "@/components/StudentsUnionSection";
 import ImportantAnnouncementsSection from "@/components/ImportantAnnouncementsSection.jsx";
+import AboutNduStudentHubSection from "@/components/AboutNduStudentHubSection";
+import SportsNewsSection from "@/components/SportsNewsSection";
+import Footer from "@/components/Footer";
 
 const HomePageContent = () => {
   return (
     <>
       <HeroSection />
-
       <section className="py-12 px-4 md:px-8">
         <Image
           src="/rome.jpg"
@@ -20,11 +22,12 @@ const HomePageContent = () => {
         />
       </section>
       <ImportantAnnouncementsSection />
-
       <NewsSection />
-
       <EventsSection />
+      <SportsNewsSection />
       <StudentsUnionSection />
+      <AboutNduStudentHubSection />
+      <Footer />
       {/* <section className="py-12 px-4 md:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
       </section> */}
