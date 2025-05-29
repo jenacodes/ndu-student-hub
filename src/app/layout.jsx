@@ -1,8 +1,8 @@
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-// Load Montserrat font with specific weights and a custom CSS variable
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
@@ -17,10 +17,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={montserrat.variable}>
+    <html lang="en" className={montserrat.variable} suppressHydrationWarning>
       <body className={` font-sans antialiased`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

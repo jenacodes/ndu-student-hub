@@ -1,6 +1,6 @@
 const HeroSection = () => {
   return (
-    <section className=" min-h-[calc(80vh-80px)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+    <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-[calc(80vh-80px)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto text-center">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">
           Your <span className="text-blue-600">Student Life</span> Starts Here!
@@ -10,10 +10,7 @@ const HeroSection = () => {
           events, and happenings at Niger Delta University. Stay connected and
           informed!
         </p>
-        <form
-          // onSubmit={handleSubmit}
-          className="mt-10 max-w-xl mx-auto sm:flex sm:justify-center"
-        >
+        <form className="mt-10 max-w-xl mx-auto sm:flex sm:justify-center">
           <label htmlFor="email-address" className="sr-only">
             Email address
           </label>

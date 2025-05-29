@@ -1,42 +1,114 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const UpdatesCard = ({ imageUrl, category, link, snippet, title }) => {
+const getColorClasses = (pathname) => {
+  switch (pathname) {
+    case "/news":
+      return {
+        text: "text-green-600",
+        hover: "group-hover:text-green-600",
+        linkHover: "hover:text-green-800",
+      };
+    case "/events":
+      return {
+        text: "text-blue-600",
+        hover: "group-hover:text-blue-600",
+        linkHover: "hover:text-blue-800",
+      };
+    case "/sports":
+      return {
+        text: "text-cyan-600",
+        hover: "group-hover:text-cyan-600",
+        linkHover: "hover:text-cyan-800",
+      };
+    default:
+      return {
+        text: "text-blue-600",
+        hover: "group-hover:text-blue-600",
+        linkHover: "hover:text-blue-800",
+      };
+  }
+};
+
+const UpdatesCard = ({
+  category,
+  title,
+  snippet,
+  imageUrl,
+  link,
+  date,
+  time,
+  venue,
+  author,
+  details,
+}) => {
+  const pathname = usePathname();
+  const current = getColorClasses(pathname);
+
   return (
-    <div className="bg-blue-50 shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row group transform hover:scale-105 transition-transform duration-300 ease-in-out border border-black">
-      <div className="md:w-2/5 w-full h-48 md:h-auto relative">
-        <Image
-          src={imageUrl}
-          alt={title}
-          layout="fill"
-          objectFit="cover"
-          className="transition-opacity duration-300 group-hover:opacity-90"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
-      <div className="p-6 flex flex-col justify-between md:w-3/5">
+    <div className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col group transform hover:scale-105 transition-transform duration-300 ease-in-out">
+      {imageUrl && (
+        <div className="w-full h-48 relative">
+          <Image
+            src={imageUrl}
+            alt={title}
+            layout="fill"
+            objectFit="cover"
+            className="transition-opacity duration-300 group-hover:opacity-90"
+          />
+        </div>
+      )}
+      <div className="p-6 flex flex-col justify-between flex-grow">
         <div>
-          <p className="text-sm font-semibold text-blue-600 uppercase tracking-wide">
+          <p
+            className={`text-sm font-semibold ${current.text} uppercase tracking-wide`}
+          >
             {category}
           </p>
-          <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-gray-50 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
+          <h3
+            className={`mt-2 text-xl font-bold text-gray-900 ${current.hover} transition-colors`}
+          >
             <Link href={link}>{title}</Link>
           </h3>
-          <p className="mt-3 text-sm tracking-wide text-gray-600 dark:text-gray-900 leading-relaxed">
+
+          {date && (
+            <p className="mt-1 text-xs text-gray-500">
+              <strong>Date:</strong> {date}
+            </p>
+          )}
+          {time && (
+            <p className="text-xs text-gray-500">
+              <strong>Time:</strong> {time}
+            </p>
+          )}
+          {venue && (
+            <p className="text-xs text-gray-500">
+              <strong>Venue:</strong> {venue}
+            </p>
+          )}
+          {author && (
+            <p className="text-xs text-gray-500">
+              <strong>By:</strong> {author}
+            </p>
+          )}
+          {details && <p className="text-xs text-gray-500">{details}</p>}
+          <p className="mt-3 text-base text-gray-600 leading-relaxed">
             {snippet}
           </p>
         </div>
         <div className="mt-6">
           <Link
-            className="text-base font-semibold text-blue-600 hover:text-blue-700 transition-colors"
             href={link}
+            className={`text-base font-semibold ${current.text} ${current.linkHover} transition-colors`}
           >
-            Read More &rarr;
+            View Details &rarr;
           </Link>
         </div>
       </div>
     </div>
   );
 };
-
 export default UpdatesCard;

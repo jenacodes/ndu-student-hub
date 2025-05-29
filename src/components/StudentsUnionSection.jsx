@@ -29,7 +29,7 @@ const StudentsUnionSection = () => {
     },
   ];
   return (
-    <section className="section sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-950">
+    <section className="section sm:px-6 lg:px-8  dark:bg-gray-950">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">

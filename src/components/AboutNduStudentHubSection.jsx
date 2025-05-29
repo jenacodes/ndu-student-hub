@@ -8,7 +8,7 @@ const AboutNduStudentHubSection = () => {
     { id: 3, label: "Years Connecting Students", value: "3" }, // Example value
   ];
   return (
-    <section className="section sm:px-6 lg:px-8 ">
+    <section className="section sm:px-6 lg:px-8 bg-gray-100 ">
       <div className="container max-w-6xl mx-auto">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center ">
           {/* image coloumn */}
@@ -64,7 +64,6 @@ const AboutNduStudentHubSection = () => {
 
 export default AboutNduStudentHubSection;
 
-//   const stats = [
 //     { id: 1, label: "Dedicated Team Members", value: "10+" }, // Example value
 //     { id: 2, label: "School Events Covered Annually", value: "50+" }, // Example value
 //     { id: 3, label: "Years Connecting Students", value: "3" }, // Example value

@@ -24,7 +24,7 @@ const NewsSection = () => {
   ];
 
   return (
-    <section className="py-12 px-4 md:px-8 ">
+    <section className="py-12 px-4 md:px-8 bg-gray-100 ">
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
