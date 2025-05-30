@@ -1,4 +1,5 @@
 import UpdatesCard from "@/components/UpdatesCard";
+import PagesHeaderSection from "@/components/PagesHeaderSection";
 import Image from "next/image";
 
 export default function EventsPage() {
@@ -33,7 +34,7 @@ export default function EventsPage() {
       title: "Inter-Departmental Football Championship Finals",
       snippet:
         "Witness the thrilling finale of the inter-departmental football tournament. Come support your favorite teams!",
-      imageUrl: "/images/sports-football-victory.jpg", // Reusing an image, replace if needed
+      imageUrl: "/images/sports-football-victory.jpg",
       link: "/events/football-championship-finals-2025",
       date: "September 28, 2025",
       time: "3:00 PM",
@@ -63,7 +64,6 @@ export default function EventsPage() {
       time: "2:00 PM - 4:00 PM",
       venue: "Lecture Theatre 1",
     },
-    // Add more events here
   ];
 
   // TODO: Add filtering logic here in the future (e.g., by date, category)
@@ -71,18 +71,13 @@ export default function EventsPage() {
 
   return (
     <div className=" min-h-screen">
-      {/* Page Header */}
-      <section className="bg-blue-600 text-white py-12 sm:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
-            School Events
-          </h1>
-          <p className="text-blue-100 mt-4 text-lg sm:text-xl  max-w-3xl ">
-            Discover all upcoming academic, cultural, sports, and community
-            events happening at <span className="font-bold">NDU</span>
-          </p>
-        </div>
-      </section>
+      <PagesHeaderSection
+        bgColor="bg-blue-600"
+        title="School Events"
+        subtitle="Discover all upcoming academic, cultural, sports, and community
+            events happening at "
+        paragrpahColor="text-blue-100"
+      />
 
       {/* Events Grid Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">

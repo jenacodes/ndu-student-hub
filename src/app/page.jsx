@@ -27,7 +27,6 @@ const HomePageContent = () => {
       <SportsNewsSection />
       <StudentsUnionSection />
       <AboutNduStudentHubSection />
-      <Footer />
       {/* <section className="py-12 px-4 md:px-8">
         <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
       </section> */}

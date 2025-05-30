@@ -1,6 +1,7 @@
 import Image from "next/image";
 import UpdatesCard from "@/components/UpdatesCard";
 export default function NewsPage() {
+  //Mock data for styling
   const allNewsData = [
     {
       id: 1,

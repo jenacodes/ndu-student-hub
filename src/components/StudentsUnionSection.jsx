@@ -49,6 +49,7 @@ const StudentsUnionSection = () => {
                 name={leaders.name}
                 key={leaders.id}
                 post={leaders.post}
+                hoverColor={"group-hover:text-blue-600"}
               />
             ))}
           </div>
