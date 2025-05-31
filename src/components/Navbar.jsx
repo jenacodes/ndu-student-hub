@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
@@ -47,7 +48,7 @@ const Navbar = () => {
         {/* Call to Action Button - Desktop */}
         <div className="hidden md:block">
           <Link
-            href="/auth/signup" // Assuming this leads to a signup page
+            href="/auth/signup"
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors shadow-sm"
           >
             Get Started
@@ -57,24 +58,15 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
-            aria-label="Open menu"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             className="text-gray-600 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
-            onClick={() => setIsMobileMenuOpen((prev) => !prev)} // Example toggle
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
+            {isMobileMenuOpen ? (
+              <FiX className="w-6 h-6" />
+            ) : (
+              <FiMenu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </nav>

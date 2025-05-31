@@ -10,7 +10,7 @@ export default function SportsPage() {
       snippet:
         "A thrilling final match saw the Lions defeat the Eagles 2-1 with a last-minute goal. Celebrations erupted across campus.",
       imageUrl: "/images/sports-football-victory.jpg", // Placeholder
-      link: "/sports/news/lions-win-interfaculty-2025",
+      link: "/sports/lions-win-interfaculty-2025",
       date: "May 27, 2025",
       details: "Final Score: Lions 2 - 1 Eagles",
     },
@@ -32,7 +32,7 @@ export default function SportsPage() {
       snippet:
         "Several students shattered previous records in track and field events. Full results and photo gallery now available.",
       imageUrl: "/images/sports-athletics-meet.jpg", // Placeholder
-      link: "/sports/results/annual-athletics-meet-2025",
+      link: "/sports/annual-athletics-meet-2025",
       date: "May 15, 2025",
       details: "Highlights: 100m, Long Jump, Javelin",
     },
@@ -43,7 +43,7 @@ export default function SportsPage() {
       snippet:
         "Consistent performance and teamwork lead our women's volleyball team to a decisive victory in the quarter-finals.",
       imageUrl: "/images/sports-volleyball-women.jpg", // Placeholder
-      link: "/sports/news/womens-volleyball-semifinals-2025",
+      link: "/sports/womens-volleyball-semifinals-2025",
       date: "May 22, 2025",
       details: "Next Match: June 2nd vs. Challengers",
     },
