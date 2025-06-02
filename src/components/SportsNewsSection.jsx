@@ -45,7 +45,7 @@ const SportsNewsSection = () => {
             </p>
           </div>
           <Link
-            href="/sports/news"
+            href="/sports"
             className="text-blue-600 hover:text-blue-800 font-semibold whitespace-nowrap transition-colors"
           >
             All Sports News &rarr;

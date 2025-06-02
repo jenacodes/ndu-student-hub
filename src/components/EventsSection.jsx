@@ -10,7 +10,7 @@ const EventsSection = () => {
       snippet:
         "Join us for a day of insightful talks and workshops. Date: Oct 15, 2025. Time: 9 AM - 5 PM. Venue: Main Auditorium.",
       imageUrl: "/images/tech-symposium-2025.jpg",
-      link: "/events/tech-symposium-2025",
+      link: "/events/faculty-of-engineering-cup",
     },
     {
       id: 2,
@@ -24,12 +24,12 @@ const EventsSection = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white ">
       {" "}
       <div className="container max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-blue-500 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900  tracking-tight">
               Upcoming Events
             </h2>
             <p className="mt-2 text-lg text-gray-600">

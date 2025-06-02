@@ -1,36 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@layer utilities {
-  @keyframes typewriter {
-    from {
-      width: 0;
-    }
-    to {
-      width: var(--width-end);
-    }
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
   }
 
-  @keyframes blink {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: currentColor;
-    }
-  }
-
-  .animate-typewriter {
-    animation: typewriter 3s steps(var(--steps)) forwards,
-      blink 750ms step-end infinite;
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    position: relative;
-    font-family: monospace;
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 }
 

@@ -11,7 +11,7 @@ export default function EventsPage() {
       snippet:
         "Join us for a day of insightful talks, hands-on workshops, and networking opportunities with industry leaders in technology and innovation.",
       imageUrl: "/images/event-tech-symposium.jpg",
-      link: "/events/tech-symposium-2025",
+      link: "/events/faculty-of-engineering-cup",
       date: "October 15, 2025",
       time: "9:00 AM - 5:00 PM",
       venue: "Main Auditorium & CS Building",

@@ -146,9 +146,9 @@ const StudentUnionPage = () => {
                 </li>
               </ul>
             </div>
-            <div className="aspect-w-16 aspect-h-9 lg:aspect-w-4 lg:aspect-h-3 rounded-xl overflow-hidden shadow-xl">
+            <div className="w-full h-72 sm:h-96 md:h-[500px] relative rounded-xl overflow-hidden shadow-xl">
               <Image
-                src="/images/sug-group-action.jpg"
+                src="/images/students-collaborating.jpg"
                 alt="Student Union Government in action"
                 layout="fill"
                 objectFit="cover"
@@ -193,7 +193,7 @@ const StudentUnionPage = () => {
         </div>
       </section>
 
-      {/* Get Involved / SUG News Section (Example) */}
+      {/* Get Involved / SUG News Section */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -219,7 +219,7 @@ const StudentUnionPage = () => {
                   sug.info@ndustudenthub.com
                 </a>
               </p>
-              {/* You can add a link to a suggestion box form here */}
+              {/* might add a link to a suggestion box form here */}
             </div>
             <div className="bg-white p-6 rounded-lg shadow-md text-left">
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
@@ -230,7 +230,7 @@ const StudentUnionPage = () => {
                 reports from your SUG.
               </p>
               <Link
-                href="/news?category=sug" // Example link to filter news by SUG category
+                href="/news?category=sug" // Example link to filter news by SUG category maybe later
                 className="inline-block px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors"
               >
                 View SUG News

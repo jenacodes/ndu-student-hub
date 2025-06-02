@@ -28,7 +28,7 @@ const NewsSection = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-blue-500 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900  tracking-tight">
               Latest Updates
             </h2>
 

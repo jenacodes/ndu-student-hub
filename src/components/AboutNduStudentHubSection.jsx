@@ -24,7 +24,7 @@ const AboutNduStudentHubSection = () => {
           </div>
           {/* Text Coloumn */}
           <div className="relative">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-blue-500">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
               The Heart of Your Campus Connection
             </h2>
             <p className="mt-4 text-lg text-gray-600">

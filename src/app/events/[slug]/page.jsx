@@ -1,50 +1,69 @@
 import Link from "next/link";
 import Image from "next/image";
 import NotFoundMessage from "@/components/NotFoundMessage";
-
+import { client } from "@/sanity/client";
+import { groq } from "next-sanity";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
 import { HiOutlineUserGroup } from "react-icons/hi";
+import imageUrlBuilder from "@sanity/image-url";
+
+export async function generateStaticParams() {
+  const slugs = await client.fetch(
+    `*[_type == "event"]{ "slug": slug.current }`
+  );
+  return slugs.map((slug) => ({ slug: slug.slug }));
+}
+
+const builder = imageUrlBuilder(client);
+function urlFor(source) {
+  return builder.image(source);
+}
 
 const EventDetailPage = async ({ params }) => {
-  const allEventsData = [
-    {
-      id: "tech-symposium-2025", // This would match the [eventId] from the URL Very important cos .find returns the first value. it does not modift the array
-      category: "Academic",
-      title: "Annual Tech Symposium 2025",
-      fullDescription:
-        "Dive deep into the world of technology at our Annual Tech Symposium! This year's theme is 'Innovate, Integrate, Inspire.' The day will be packed with keynote speeches from industry pioneers, interactive workshops on AI, Cybersecurity, and Web3, a student project showcase, and ample networking opportunities. Whether you're a tech enthusiast or just curious about the future, there's something for everyone. Lunch and refreshments will be provided. Don't forget to register early as spots are limited!",
-      imageUrl: "/images/tech-symposium-2025.jpg",
-      date: "October 15, 2025",
-      time: "9:00 AM - 5:00 PM",
-      venue: "Main Auditorium & Computer Science Building Complex",
-      organizer: "Faculty of Engineering & Tech Innovators Club",
-      registrationLink: "#", // Placeholder for actual registration link
-    },
-    {
-      id: "spring-fest-2025",
-      category: "Cultural Fest",
-      title: "Spring Fest '25: A Celebration of Talents",
-      fullDescription:
-        "Join us for Spring Fest '25, our university's grandest cultural extravaganza! Experience a vibrant tapestry of music, dance, drama, fine arts, and literary events. Featuring performances by renowned artists and our very own talented students. Enjoy delicious food from various stalls, exciting games, and a festive atmosphere. A perfect way to celebrate creativity and campus spirit.",
-      imageUrl: "/images/event-cultural-fest.jpg",
-      date: "November 5-7, 2025",
-      time: "11:00 AM onwards daily",
-      venue:
-        "University Grounds, Open Air Theatre, and Student Activity Centre",
-      organizer: "Student Cultural Committee & Various Clubs",
-      registrationLink: null, // Or link to ticket sales
-    },
-  ];
+  // const allEventsData = [
+  //   {
+  //     id: "tech-symposium-2025", // This would match the [eventId] from the URL Very important cos .find returns the first value. it does not modift the array
+  //     category: "Academic",
+  //     title: "Annual Tech Symposium 2025",
+  //     fullDescription:
+  //       "Dive deep into the world of technology at our Annual Tech Symposium! This year's theme is 'Innovate, Integrate, Inspire.' The day will be packed with keynote speeches from industry pioneers, interactive workshops on AI, Cybersecurity, and Web3, a student project showcase, and ample networking opportunities. Whether you're a tech enthusiast or just curious about the future, there's something for everyone. Lunch and refreshments will be provided. Don't forget to register early as spots are limited!",
+  //     imageUrl: "/images/tech-symposium-2025.jpg",
+  //     date: "October 15, 2025",
+  //     time: "9:00 AM - 5:00 PM",
+  //     venue: "Main Auditorium & Computer Science Building Complex",
+  //     organizer: "Faculty of Engineering & Tech Innovators Club",
+  //     registrationLink: "#", // Placeholder for actual registration link
+  //   },
+  //   {
+  //     id: "spring-fest-2025",
+  //     category: "Cultural Fest",
+  //     title: "Spring Fest '25: A Celebration of Talents",
+  //     fullDescription:
+  //       "Join us for Spring Fest '25, our university's grandest cultural extravaganza! Experience a vibrant tapestry of music, dance, drama, fine arts, and literary events. Featuring performances by renowned artists and our very own talented students. Enjoy delicious food from various stalls, exciting games, and a festive atmosphere. A perfect way to celebrate creativity and campus spirit.",
+  //     imageUrl: "/images/event-cultural-fest.jpg",
+  //     date: "November 5-7, 2025",
+  //     time: "11:00 AM onwards daily",
+  //     venue:
+  //       "University Grounds, Open Air Theatre, and Student Activity Centre",
+  //     organizer: "Student Cultural Committee & Various Clubs",
+  //     registrationLink: null, // Or link to ticket sales
+  //   },
+  // ];
 
-  // Helper function to find event data (simulates data fetching)
-  const getEventData = (eventId) => {
-    return allEventsData.find((event) => event.id === eventId);
-  };
+  // // Helper function to find event data (simulates data fetching)
+  // const getEventData = (eventId) => {
+  //   return allEventsData.find((event) => event.id === eventId);
+  // };
 
-  //   const eventId = params.eventId || "tech-symposium-2025"; // Fallback for this example if params is not available
-  const event = getEventData(params.eventId);
+  // //   const eventId = params.eventId || "tech-symposium-2025"; // Fallback for this example if params is not available
+  // const event = getEventData(params.eventId);
+
+  const { slug } = await params;
+
+  const query = groq`*[_type == "event" && slug.current == $slug][0]`;
+  const event = await client.fetch(query, { slug });
 
   //404 error component
   if (!event) {
@@ -63,14 +82,13 @@ const EventDetailPage = async ({ params }) => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Event Header Image */}
-      {event.imageUrl && (
+      {urlFor(event.image).url() && (
         <div className="relative w-full h-64 sm:h-80 md:h-[28rem] lg:h-[32rem] overflow-hidden rounded-b-3xl shadow-xl">
           <Image
-            src={event.imageUrl}
+            src={urlFor(event.image).url()}
             alt={`Image for ${event.title}`}
-            layout="fill"
-            objectFit="cover"
-            className="brightness-75"
+            fill
+            className="brightness-75 object-cover"
             priority
           />
 
