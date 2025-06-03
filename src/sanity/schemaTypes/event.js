@@ -30,6 +30,12 @@ const events = {
       type: "text",
     },
     {
+      name: "shortDescription",
+      title: "Short Description", //For the cards
+      type: "text",
+    },
+
+    {
       name: "image",
       title: "Image",
       type: "image",

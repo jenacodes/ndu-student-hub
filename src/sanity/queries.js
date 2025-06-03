@@ -3,6 +3,7 @@ export const eventBySlugQuery = `
     title,
     category,
     fullDescription,
+     shortDescription,
     date,
     time,
     venue,
