@@ -30,7 +30,9 @@ export default async function EventsPage({ searchParams }) {
   ];
 
   // Get active category from URL params
-  const activeCategory = searchParams?.category || "all";
+  const SearchParams = await searchParams; // await for the search params
+
+  const activeCategory = SearchParams?.category || "all";
 
   // Filter events based on selected category
   const filteredEvents =
