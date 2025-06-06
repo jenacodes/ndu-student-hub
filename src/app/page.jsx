@@ -6,8 +6,7 @@ import StudentsUnionSection from "@/components/StudentsUnionSection";
 import ImportantAnnouncementsSection from "@/components/ImportantAnnouncementsSection.jsx";
 import AboutNduStudentHubSection from "@/components/AboutNduStudentHubSection";
 import SportsNewsSection from "@/components/SportsNewsSection";
-import Footer from "@/components/Footer";
-
+import WeeklySpotlightSection from "@/components/WeeklySpotlightSection";
 const HomePageContent = () => {
   return (
     <>
@@ -22,6 +21,7 @@ const HomePageContent = () => {
         />
       </section>
       <ImportantAnnouncementsSection />
+      <WeeklySpotlightSection />
       <NewsSection />
       <EventsSection />
       <SportsNewsSection />

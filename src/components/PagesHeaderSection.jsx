@@ -7,11 +7,13 @@ const PagesHeaderSection = ({
 }) => {
   return (
     <section className={`${bgColor} text-white py-12 sm:py-16`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
           {title}
         </h1>
-        <p className={`${paragrpahColor} mt-4 text-lg sm:text-xl max-w-3xl`}>
+        <p
+          className={`${paragrpahColor} mt-4 text-lg sm:text-xl max-w-3xl mx-auto`}
+        >
           {subtitle}
           <span className="font-bold">{accentText}</span>
         </p>

@@ -8,14 +8,14 @@ import NotFoundMessage from "@/components/NotFoundMessage";
 const SportsItemDetailPage = ({ params }) => {
   const allSportsItems = [
     {
-      id: "lions-win-interfaculty-2025", // Matches link from SportsPage
-      itemType: "News", // Differentiates content type
+      id: "lions-win-interfaculty-2025",
+      itemType: "News",
       category: "Football News",
       title: "University Lions Clinch Inter-Faculty Trophy!",
       imageUrl: "/images/sports-football-victory.jpg",
       date: "May 27, 2025",
       details: "Final Score: Lions 2 - 1 Eagles",
-      // Full content for the sports news item
+
       body: [
         "In an electrifying final match that kept spectators on the edge of their seats, the University Lions football team emerged victorious in the Inter-Faculty Championship, defeating the formidable Eagles with a score of 2-1.",
         "The game was a hard-fought battle from the first whistle. The Eagles took an early lead in the first half, but the Lions showed incredible resilience, equalizing just before halftime with a brilliant strike from star forward, [Player's Name].",
@@ -70,7 +70,7 @@ const SportsItemDetailPage = ({ params }) => {
           for."
         backLink="/sports"
         backText="Back to All Sports"
-        buttonColor="bg-red-600 hover:bg-red-700"
+        buttonColor="bg-cyan-600 hover:bg-cyan-700"
       />
     );
   }
@@ -111,10 +111,7 @@ const SportsItemDetailPage = ({ params }) => {
               {item.date && (
                 <div className="flex items-center">
                   <FaRegCalendarAlt />
-                  <span>
-                    {item.itemType === "Fixture" ? "Fixture Date" : "Date"}:{" "}
-                    {item.date}
-                  </span>
+                  <span>{item.date}</span>
                 </div>
               )}
               {item.details && (
@@ -127,7 +124,6 @@ const SportsItemDetailPage = ({ params }) => {
 
             {/* Body Content */}
             <div className="prose prose-lg prose-red max-w-none text-gray-700 leading-relaxed">
-              {/* Using Tailwind Typography 'prose' classes for rich text styling */}
               {item.body.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}

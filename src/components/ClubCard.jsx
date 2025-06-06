@@ -34,7 +34,7 @@ const ClubCard = ({ name, description, imageUrl, link, meetingInfo }) => {
       )}
       <div className="p-5 flex flex-col justify-between flex-grow">
         <div>
-          <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors mb-2">
+          <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-700 transition-colors mb-2">
             {name}
           </h3>
           <p className="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-3">
@@ -53,7 +53,7 @@ const ClubCard = ({ name, description, imageUrl, link, meetingInfo }) => {
           {/* Pushes link to the bottom */}
           <Link
             href={link || `/clubs/${name.toLowerCase().replace(/\s+/g, "-")}`}
-            className="text-sm font-semibold text-purple-600 hover:text-purple-800 transition-colors"
+            className="text-sm font-semibold text-yellow-600 hover:text-yellow-800 transition-colors"
           >
             Learn More &rarr;
           </Link>

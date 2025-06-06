@@ -14,11 +14,17 @@ export const metadata = {
   title: "ndustudenthub - Your School Info Hub",
   description:
     "Your go-to source for all the latest news, events, and happenings at your school.",
+  keywords:
+    "school news, student events, university updates, campus life, student hub, school announcements, academic news, extracurricular activities, ndu, Niger Delta University, student portal, student resources, school community, student life",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={poppins.variable} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={poppins.variable}
+      suppressHydrationWarning={true}
+    >
       <body className="font-sans antialiased">
         <Navbar />
         {children}

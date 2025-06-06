@@ -93,7 +93,7 @@ const AboutUsPage = () => {
             entire student body. We are constantly evolving, driven by student
             feedback and a commitment to innovation.
           </p>
-          {/* You could add a simple timeline or key milestones here if applicable */}
+          {/* Might add a simple timeline or key milestones here  */}
         </div>
       </section>
 
@@ -174,7 +174,7 @@ const AboutUsPage = () => {
           </p>
           <div className="mt-10">
             <Link
-              href="/contact" // Link to your contact page
+              href="/contact" // Link to contact page
               className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
             >
               Contact Our Team

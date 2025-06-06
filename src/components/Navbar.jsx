@@ -43,6 +43,12 @@ const Navbar = () => {
           >
             Clubs
           </Link>
+          <Link
+            href="/spotlights"
+            className=" hover:text-blue-600 transition-colors tracking-wide"
+          >
+            Weekly Spotlights
+          </Link>
         </div>
 
         {/* Call to Action Button - Desktop */}
@@ -97,6 +103,13 @@ const Navbar = () => {
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
             >
               Clubs
+            </Link>
+
+            <Link
+              href="/spotlights"
+              className=" hover:text-blue-600 transition-colors tracking-wide"
+            >
+              Weekly Spotlights
             </Link>
 
             {/* <Link

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ClubCard from "@/components/ClubCard";
+import PagesHeaderSection from "@/components/PagesHeaderSection";
 
 export default function ClubsPage() {
   const allClubsData = [
@@ -65,17 +66,13 @@ export default function ClubsPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Page Header */}
-      <section className="bg-purple-600 text-white py-12 sm:py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
-            Student Clubs & Organizations
-          </h1>
-          <p className="mt-4 text-lg sm:text-xl text-purple-100 max-w-3xl mx-auto">
-            Find your community! Explore the diverse range of student-led clubs
-            and organizations at Niger Delta University.
-          </p>
-        </div>
-      </section>
+      <PagesHeaderSection
+        title="Student Clubs & Organizations"
+        subtitle="Find your community! Explore the diverse range of student-led clubs
+            and organizations at Niger Delta University."
+        bgColor="bg-yellow-600"
+        accentText=""
+      />
 
       {/* Clubs Grid Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
