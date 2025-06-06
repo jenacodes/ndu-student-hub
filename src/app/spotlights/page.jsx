@@ -1,50 +1,64 @@
 import SpotlightListCard from "@/components/SpotlightListCard";
 import Image from "next/image";
+import { client } from "@/sanity/client";
+import { groq } from "next-sanity";
 
-export default function SpotlightsPage() {
+export default async function SpotlightsPage({ searchParams }) {
   // Using a subset of data from the detail page example for the listing
-  const allSpotlightSummaries = [
-    {
-      id: "adaeze-nwosu-interview",
-      type: "Student Spotlight",
-      title: "Meet Adaeze Nwosu: Inspiring Future Engineers",
-      shortIntro:
-        "A final year Civil Engineering student who recently won the National Young Innovators Award for her project on sustainable building materials.",
-      imageUrl: "/images/student-spotlight-adaeze.jpg", // Profile image can serve as card image
-      link: "/spotlights/adaeze-nwosu-interview",
-      date: "June 3, 2025",
-    },
-    {
-      id: "tech-innovators-feature",
-      type: "Club Spotlight",
-      title: "Tech Innovators Club: Coding the Future",
-      shortIntro:
-        "One of the most dynamic student organizations, at the forefront of technological exploration on campus.",
-      imageUrl: "/images/club-tech-logo.png", // Club logo can serve as card image
-      link: "/spotlights/tech-innovators-feature",
-      date: "May 27, 2025",
-    },
-    {
-      id: "weekly-campus-tip-library",
-      type: "Campus Tip",
-      title: "Tip of the Week: Maximize Your Library Time",
-      shortIntro:
-        "Discover hidden study spots, utilize online databases effectively, and make the most of library resources this semester.",
-      imageUrl: "/images/library-tip-icon.jpg", // Placeholder generic icon or image
-      link: "/spotlights/tip-library-utilization",
-      date: "June 10, 2025",
-    },
-    {
-      id: "featured-event-art-exhibition",
-      type: "Featured Event",
-      title: "Don't Miss: Annual Student Art Exhibition",
-      shortIntro:
-        "Showcasing incredible talent from across all faculties. Opening night this Friday in the Grand Hall.",
-      imageUrl: "/images/art-exhibition-promo.jpg", // Placeholder promo image
-      link: "/events/annual-art-exhibition-2025", // Link to the actual event detail page
-      date: "June 14, 2025",
-    },
-  ];
+  // const allSpotlightSummaries = [
+  //   {
+  //     id: "adaeze-nwosu-interview",
+  //     type: "Student Spotlight",
+  //     title: "Meet Adaeze Nwosu: Inspiring Future Engineers",
+  //     shortIntro:
+  //       "A final year Civil Engineering student who recently won the National Young Innovators Award for her project on sustainable building materials.",
+  //     imageUrl: "/images/student-spotlight-adaeze.jpg", // Profile image can serve as card image
+  //     link: "/spotlights/adaeze-nwosu-interview",
+  //     date: "June 3, 2025",
+  //   },
+  //   {
+  //     id: "tech-innovators-feature",
+  //     type: "Club Spotlight",
+  //     title: "Tech Innovators Club: Coding the Future",
+  //     shortIntro:
+  //       "One of the most dynamic student organizations, at the forefront of technological exploration on campus.",
+  //     imageUrl: "/images/club-tech-logo.png", // Club logo can serve as card image
+  //     link: "/spotlights/tech-innovators-feature",
+  //     date: "May 27, 2025",
+  //   },
+  //   {
+  //     id: "weekly-campus-tip-library",
+  //     type: "Campus Tip",
+  //     title: "Tip of the Week: Maximize Your Library Time",
+  //     shortIntro:
+  //       "Discover hidden study spots, utilize online databases effectively, and make the most of library resources this semester.",
+  //     imageUrl: "/images/library-tip-icon.jpg", // Placeholder generic icon or image
+  //     link: "/spotlights/tip-library-utilization",
+  //     date: "June 10, 2025",
+  //   },
+  //   {
+  //     id: "featured-event-art-exhibition",
+  //     type: "Featured Event",
+  //     title: "Don't Miss: Annual Student Art Exhibition",
+  //     shortIntro:
+  //       "Showcasing incredible talent from across all faculties. Opening night this Friday in the Grand Hall.",
+  //     imageUrl: "/images/art-exhibition-promo.jpg", // Placeholder promo image
+  //     link: "/events/annual-art-exhibition-2025", // Link to the actual event detail page
+  //     date: "June 14, 2025",
+  //   },
+  // ];
+
+  const query = groq`*[_type == "spotlight"] |   order(date desc){
+    _id,
+    title,
+    type,
+    "slug": slug.current,
+    "imageUrl": imageUrl.asset->url,
+    shortIntro,
+    date,
+  }`;
+
+  const allSpotlightSummaries = await client.fetch(query);
 
   // TODO: Add filtering/sorting logic here in the future (e.g., by date, type)
 
@@ -78,12 +92,12 @@ export default function SpotlightsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {allSpotlightSummaries.map((item) => (
                 <SpotlightListCard
-                  key={item.id}
+                  key={item.type}
                   type={item.type}
                   title={item.title}
                   shortIntro={item.shortIntro}
                   imageUrl={item.imageUrl}
-                  link={item.link}
+                  link={`/spotlights/${item.slug}`}
                 />
               ))}
             </div>

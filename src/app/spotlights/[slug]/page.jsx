@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiCalendar, CiUser } from "react-icons/ci";
 import { FaTags } from "react-icons/fa6";
-import { groq } from "next-sanity";
+import { groq, PortableText } from "next-sanity";
 import { client } from "@/sanity/client";
 import NotFoundMessage from "@/components/NotFoundMessage";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
@@ -79,17 +79,18 @@ import PortableTextRenderer from "@/components/PortableTextRenderer";
 // ];
 
 // GROQ query to fetch spotlight data
+
 const spotlightQuery = groq`
   *[_type == "spotlight" && slug.current == $slug][0] {
     _id,
     title,
     "type": type,
     "slug": slug.current,
-    "imageUrl": mainImage.asset->url,
-    "profileImageUrl": profileImage.asset->url,
-    publishedAt,
-    author,
-    body,
+    "imageUrl": imageUrl.asset->url,
+    "profileImageUrl": profileImageUrl.asset->url,
+    date,
+    interviewer,
+    content,
     "tags": tags,
     "relatedClubLink": relatedClub->slug.current
   }
@@ -99,6 +100,8 @@ const spotlightQuery = groq`
 export default async function SpotlightDetailPage({ params }) {
   const { slug } = await params;
   const item = await client.fetch(spotlightQuery, { slug });
+
+  console.log("Profile Image URL:", item.profileImageUrl);
 
   if (!item) {
     return (
@@ -184,7 +187,7 @@ export default async function SpotlightDetailPage({ params }) {
             {/* Content Section */}
             <div className="prose prose-lg prose-purple max-w-none text-gray-700 leading-relaxed">
               {/* {item.content.map(renderContentItem)} */}
-              <PortableTextRenderer content={item.body} />
+              <PortableTextRenderer content={item.content} />
             </div>
 
             {/* Club Link */}

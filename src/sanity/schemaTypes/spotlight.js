@@ -1,30 +1,27 @@
-// schemas/spotlight.js
 export default {
   name: "spotlight",
-  title: "Spotlight",
   type: "document",
+  title: "Spotlight",
+  description:
+    "Create a student spotlight article to showcase inspiring students.",
+
   fields: [
     {
       name: "title",
-      title: "Title",
       type: "string",
-      validation: (Rule) => Rule.required(),
+      title: "Article Title",
+      description:
+        "Headline of the article (e.g., 'Meet Adaeze Nwosu: Inspiring Future Engineers').",
+      validation: (Rule) => Rule.required().min(10),
     },
     {
       name: "slug",
-      title: "Slug",
       type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
+      title: "Slug (URL)",
+      description:
+        "Auto-generates from the title. Used in the article URL (e.g., spotlight/adaeze-nwosu-interview).",
+      options: { source: "title", maxLength: 96 },
       validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "shortDescription",
-      title:
-        "Short Description about the spotlight e.g who you're writing about, a little snippet on what happened", //For the cards
-      type: "text",
     },
     {
       name: "type",
@@ -40,77 +37,131 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "mainImage",
-      title: "Main Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
+      name: "shortIntro",
+      type: "text",
+      title: "Short Intro (for Spotlight Page)",
+      description:
+        "Appears on the spotlight list/grid page below the title. Keep it concise.",
+      rows: 3,
+      validation: (Rule) => Rule.required().min(20),
     },
     {
-      name: "profileImage",
+      name: "imageUrl",
+      type: "image",
+      title: "Banner Image",
+      description:
+        "Used for the spotlight overview page card and homepage feature. Recommended: 1200x675.",
+      options: { hotspot: true },
+    },
+    {
+      name: "profileImageUrl",
+      type: "image",
       title: "Profile Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
+      description:
+        "Used on the spotlight detail page alongside the student’s story.",
+      options: { hotspot: true },
     },
     {
-      name: "publishedAt",
-      title: "Published At",
-      type: "datetime",
+      name: "date",
+      type: "date",
+      title: "Publication Date",
+      description: "Date the article was published or should appear live.",
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "author",
-      title: "Author/Interviewer",
+      name: "interviewer",
       type: "string",
+      title: "Interviewer",
+      description: "Name of the person or team who created this spotlight.",
+      validation: (Rule) => Rule.required(),
+    },
+
+    // ✅ HOMEPAGE-FEATURED FIELDS
+    {
+      name: "featuredThisWeek",
+      type: "boolean",
+      title: "Feature This Week?",
+      description:
+        "Check this box to display this spotlight on the homepage weekly spotlight section.",
+      initialValue: false,
     },
     {
-      name: "body",
-      title: "Body Content",
+      name: "homepageDescription",
+      type: "text",
+      title: "Homepage Description",
+      description:
+        "This will be shown on the homepage's weekly spotlight section under the title.",
+      rows: 4,
+      hidden: ({ parent }) => !parent?.featuredThisWeek,
+    },
+    {
+      name: "homepageLinkText",
+      type: "string",
+      title: "Homepage Link Text",
+      description:
+        "Custom link button text (e.g., 'Read Adaeze’s Story') for the homepage.",
+      hidden: ({ parent }) => !parent?.featuredThisWeek,
+    },
+
+    // ✅ MAIN CONTENT
+    {
+      name: "content",
       type: "array",
+      title: "Main Content",
+      description: "The full article. Add paragraphs, headings, and quotes.",
       of: [
         {
-          type: "block",
-          styles: [
-            { title: "Brief description", value: "normal" },
-            { title: "Heading 2", value: "h2" },
-            { title: "Paragraph for Heading 2", value: "normal" },
-            { title: "Heading 3", value: "h3" },
-            { title: "Paragraph for Heading 3", value: "normal" },
-            { title: "Quote", value: "blockquote" },
-          ],
-          marks: {
-            decorators: [
-              { title: "Strong", value: "strong" },
-              { title: "Emphasis", value: "em" },
-            ],
-          },
+          type: "object",
+          name: "paragraph",
+          title: "Paragraph",
+          fields: [{ name: "text", type: "text", title: "Text", rows: 4 }],
         },
-        { type: "quoteBlock" },
+        {
+          type: "object",
+          name: "heading",
+          title: "Heading",
+          fields: [
+            {
+              name: "level",
+              type: "number",
+              title: "Heading Level",
+              options: {
+                list: [
+                  { title: "Heading 2", value: 2 },
+                  { title: "Heading 3", value: 3 },
+                ],
+              },
+            },
+            { name: "text", type: "string", title: "Heading Text" },
+          ],
+        },
+        {
+          type: "object",
+          name: "quote",
+          title: "Quote",
+          fields: [
+            {
+              name: "text",
+              type: "text",
+              title: "Quote Text",
+              description: "The quote text, if any.",
+            },
+            {
+              name: "attribution",
+              type: "string",
+              title: "Attribution",
+              description: "Who said the quote?",
+            },
+          ],
+        },
       ],
     },
     {
-      name: "relatedClub",
-      title: "Related Club",
-      type: "reference",
-      to: [{ type: "slug" }],
-    },
-    {
       name: "tags",
-      title: "Tags",
       type: "array",
+      title: "Tags",
+      description: "Add keywords like 'innovation', 'engineering', etc.",
       of: [{ type: "string" }],
-      options: {
-        layout: "tags",
-      },
     },
   ],
-  preview: {
-    select: {
-      title: "title",
-      media: "mainImage",
-    },
-  },
 };
