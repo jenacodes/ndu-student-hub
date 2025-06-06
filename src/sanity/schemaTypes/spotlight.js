@@ -21,6 +21,12 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "shortDescription",
+      title:
+        "Short Description about the spotlight e.g who you're writing about, a little snippet on what happened", //For the cards
+      type: "text",
+    },
+    {
       name: "type",
       title: "Type",
       type: "string",

@@ -6,7 +6,6 @@ import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
 import NotFoundMessage from "@/components/NotFoundMessage";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
-import { PortableText } from "next-sanity";
 
 // const allSpotlightItems = [
 //   {
@@ -78,45 +77,6 @@ import { PortableText } from "next-sanity";
 //     ],
 //   },
 // ];
-
-// Content renderer helper
-const renderContentItem = (item, index) => {
-  switch (item.type) {
-    case "heading":
-      const HeadingTag = `h${item.level || 3}`; // Default to h3 if no level specified
-      return (
-        <HeadingTag
-          key={index}
-          className="text-2xl font-semibold text-gray-800 my-6"
-        >
-          {item.text}
-        </HeadingTag>
-      );
-
-    case "quote":
-      return (
-        <blockquote
-          key={index}
-          className="my-6 p-4 border-l-4 border-purple-500 bg-purple-50 italic"
-        >
-          <p className="text-lg text-gray-700">&ldquo;{item.text}&rdquo;</p>
-          {item.attribution && (
-            <footer className="mt-2 text-sm text-purple-600">
-              - {item.attribution}
-            </footer>
-          )}
-        </blockquote>
-      );
-
-    case "paragraph":
-    default:
-      return (
-        <p key={index} className="mb-4">
-          {item.text}
-        </p>
-      );
-  }
-};
 
 // GROQ query to fetch spotlight data
 const spotlightQuery = groq`
