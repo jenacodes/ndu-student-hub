@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import NotFoundMessage from "@/components/NotFoundMessage";
 import { client } from "@/sanity/client";
-import { groq } from "next-sanity";
+import { groq, PortableText } from "next-sanity";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { FaRegClock } from "react-icons/fa";
@@ -148,7 +148,7 @@ const EventDetailPage = async ({ params }) => {
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               About this Event
             </h2>
-            <p>{event.fullDescription}</p>
+            <PortableText value={event.fullDescription} />
           </div>
 
           {/* Registration/Action Button */}

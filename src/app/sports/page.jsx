@@ -134,7 +134,7 @@ export default async function SportsPage({ searchParams }) {
               {uniqueCategories.map((category) => (
                 <a
                   key={category}
-                  href={`/events?category=${encodeURIComponent(category)}`}
+                  href={`/sports?category=${encodeURIComponent(category)}`}
                   className={`px-4 py-2 rounded-full text-sm capitalize font-medium transition-all duration-200 ${
                     activeCategory === category
                       ? "bg-cyan-600 text-white shadow-md"

@@ -45,7 +45,7 @@ export default function PortableTextRenderer({ content }) {
             return (
               <blockquote
                 key={index}
-                className="border-l-4 border-purple-400 pl-4  text-gray-700 bg-purple-50 italic"
+                className="border-l-4 border-purple-400 pl-4  text-gray-500 bg-purple-50 italic"
               >
                 <p>{block.text}</p>
                 {block.attribution && (

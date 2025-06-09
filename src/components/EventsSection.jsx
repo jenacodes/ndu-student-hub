@@ -1,27 +1,40 @@
 import TransparentButton from "@/components/TransparentButton";
 import UpdatesCard from "@/components/UpdatesCard";
+import { groq } from "next-sanity";
+import { client } from "@/sanity/client";
 
-const EventsSection = () => {
-  const eventsData = [
-    {
-      id: 1,
-      category: "Upcoming Event",
-      title: "Annual Tech Symposium 2025",
-      snippet:
-        "Join us for a day of insightful talks and workshops. Date: Oct 15, 2025. Time: 9 AM - 5 PM. Venue: Main Auditorium.",
-      imageUrl: "/images/tech-symposium-2025.jpg",
-      link: "/events/faculty-of-engineering-cup",
-    },
-    {
-      id: 2,
-      category: "Cultural Fest",
-      title: "Spring Fest '25: Nursing Dinner Night",
-      snippet:
-        "Experience a vibrant showcase of music, dance, and art. Date: Nov 7, 2025. Venue: CHS auditorium",
-      imageUrl: "/images/nursing-dinner-night.jpg",
-      link: "/events/spring-fest-2025",
-    },
-  ];
+const EventsSection = async () => {
+  // const eventsData = [
+  //   {
+  //     id: 1,
+  //     category: "Upcoming Event",
+  //     title: "Annual Tech Symposium 2025",
+  //     snippet:
+  //       "Join us for a day of insightful talks and workshops. Date: Oct 15, 2025. Time: 9 AM - 5 PM. Venue: Main Auditorium.",
+  //     imageUrl: "/images/tech-symposium-2025.jpg",
+  //     link: "/events/faculty-of-engineering-cup",
+  //   },
+  //   {
+  //     id: 2,
+  //     category: "Cultural Fest",
+  //     title: "Spring Fest '25: Nursing Dinner Night",
+  //     snippet:
+  //       "Experience a vibrant showcase of music, dance, and art. Date: Nov 7, 2025. Venue: CHS auditorium",
+  //     imageUrl: "/images/nursing-dinner-night.jpg",
+  //     link: "/events/spring-fest-2025",
+  //   },
+  // ];
+
+  const query = groq`*[_type == "event"] | order(_createdAt desc)[0...2] {
+  _id,
+  category,
+  title,
+  shortDescription,
+  "imageUrl": image.asset->url,
+  "link": "/events/" + slug.current
+}`;
+
+  const eventsData = await client.fetch(query);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white ">
@@ -43,12 +56,12 @@ const EventsSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {eventsData.map((event) => (
               <UpdatesCard
-                key={event.id}
+                key={event.category}
                 category={event.category}
                 title={event.title}
-                snippet={event.snippet}
+                snippet={event.shortDescription}
                 imageUrl={event.imageUrl}
-                link={event.link}
+                link={`/events/${event.slug}`}
               />
             ))}
           </div>

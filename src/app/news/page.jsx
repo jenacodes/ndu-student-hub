@@ -179,7 +179,7 @@ export default async function NewsPage({ searchParams }) {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
                 {filteredNews.map((newsItem) => (
                   <UpdatesCard // Reusing the UpdateCard component
-                    key={newsItem.category}
+                    key={newsItem.slug}
                     category={newsItem.category}
                     title={newsItem.title}
                     snippet={newsItem.snippet}

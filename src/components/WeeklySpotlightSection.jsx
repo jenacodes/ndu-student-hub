@@ -5,18 +5,18 @@ import { groq } from "next-sanity";
 
 const WeeklySpotlightSection = async ({}) => {
   // const spotlightItem = [
-  //   //   {
-  //   //   id: 1,
-  //   //   type: "Student Spotlight",
-  //   //   title: "Meet Adaeze Nwosu: Inspiring Future Engineers",
-  //   //   description: ` "This week, we shine a spotlight on Adaeze Nwosu,
-  //   //     a final year Civil Engineering student who recently won the National Young Innovators Award
-  //   //      for her project on sustainable building materials.
-  //   //     Learn more about her journey, challenges, and advice for aspiring engineers."`,
-  //   //   imageUrl: "/images/student-spotlight-adaeze.jpg",
-  //   //   link: "/spotlights/adaeze-nwosu-interview",
-  //   //   linkText: "Read Adaeze's Story",
-  //   // }
+  //     {
+  //     id: 1,
+  //     type: "Student Spotlight",
+  //     title: "Meet Adaeze Nwosu: Inspiring Future Engineers",
+  //     description: ` "This week, we shine a spotlight on Adaeze Nwosu,
+  //       a final year Civil Engineering student who recently won the National Young Innovators Award
+  //        for her project on sustainable building materials.
+  //       Learn more about her journey, challenges, and advice for aspiring engineers."`,
+  //     imageUrl: "/images/student-spotlight-adaeze.jpg",
+  //     link: "/spotlights/adaeze-nwosu-interview",
+  //     linkText: "Read Adaeze's Story",
+  //   }
   // ];
   const query = groq`*[_type == "spotlight"] |   order(date desc){
     _id,

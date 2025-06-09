@@ -19,6 +19,10 @@
   padding-inline: 16px;
 }
 
+@utility text-gradient {
+  @apply bg-linear-to-r from-[#4e21ca] to-[#7053b8] bg-clip-text text-transparent;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

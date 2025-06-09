@@ -1,26 +1,38 @@
-const ImportantAnnouncementsSection = () => {
-  const announcementsData = [
-    {
-      id: 1,
-      text: "Exam registration deadline: June 15th, 2025",
-      type: "deadline",
-    },
-    {
-      id: 2,
-      text: "First semester exams begin: July 1st, 2025",
-      type: "event",
-    },
-    {
-      id: 3,
-      text: "New semester (2nd Semester) starts: August 5th, 2025",
-      type: "event",
-    },
-    {
-      id: 4,
-      text: "Hostel allocation portal opens: May 30th, 2025",
-      type: "info",
-    },
-  ];
+import { groq } from "next-sanity";
+import { client } from "@/sanity/client";
+
+const ImportantAnnouncementsSection = async () => {
+  // const announcementsData = [
+  //   {
+  //     id: 1,
+  //     text: "Exam registration deadline: June 15th, 2025",
+  //     type: "deadline",
+  //   },
+  //   {
+  //     id: 2,
+  //     text: "First semester exams begin: July 1st, 2025",
+  //     type: "event",
+  //   },
+  //   {
+  //     id: 3,
+  //     text: "New semester (2nd Semester) starts: August 5th, 2025",
+  //     type: "event",
+  //   },
+  //   {
+  //     id: 4,
+  //     text: "Hostel allocation portal opens: May 30th, 2025",
+  //     type: "info",
+  //   },
+  // ];
+
+  const query = groq`*[_type == "announcement"] | order(date desc) {
+  _id,
+  text,
+  type,
+  date
+}`;
+
+  const announcementsData = await client.fetch(query);
 
   const getIconForType = (type) => {
     switch (type) {
@@ -116,7 +128,7 @@ const ImportantAnnouncementsSection = () => {
           <div className="space-y-4 max-w-2xl mx-auto">
             {announcementsData.map((announcement) => (
               <div
-                key={announcement.id}
+                key={announcement.type}
                 className="bg-white p-4 rounded-lg shadow-md flex items-center border-l-4 border-yellow-500"
               >
                 {getIconForType(announcement.type)}
