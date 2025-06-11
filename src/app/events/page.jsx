@@ -20,6 +20,8 @@ export default async function EventsPage({ searchParams }) {
     venue
   }`;
 
+  // Example output: "Tuesday, June 10, 2025"
+
   const allEventsData = await client.fetch(query);
   if (!allEventsData) return notFound();
 
@@ -109,19 +111,31 @@ export default async function EventsPage({ searchParams }) {
           {filteredEvents.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                {filteredEvents.map((event) => (
-                  <UpdatesCard
-                    key={event._id}
-                    category={event.category}
-                    title={event.title}
-                    snippet={event.shortDescription}
-                    imageUrl={event.imageUrl}
-                    link={`/events/${event.slug}`}
-                    date={event.date}
-                    time={event.time}
-                    venue={event.venue}
-                  />
-                ))}
+                {filteredEvents.map((event) => {
+                  const formattedDate = new Date(event.date).toLocaleDateString(
+                    "en-US",
+                    {
+                      weekday: "long",
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    }
+                  );
+
+                  return (
+                    <UpdatesCard
+                      key={event._id}
+                      category={event.category}
+                      title={event.title}
+                      snippet={event.shortDescription}
+                      imageUrl={event.imageUrl}
+                      link={`/events/${event.slug}`}
+                      date={formattedDate}
+                      time={event.time}
+                      venue={event.venue}
+                    />
+                  );
+                })}
               </div>
 
               {/* Results count */}

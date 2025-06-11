@@ -50,6 +50,18 @@ const EventDetailPage = async ({ params }) => {
   //     organizer: "Student Cultural Committee & Various Clubs",
   //     registrationLink: null, // Or link to ticket sales
   //   },
+  //  {
+  //   id: "debate-rebuttal-workshop-2025", // The event ID from your URL
+  //   category: "Workshop",
+  //   title: "Workshop: Mastering Rebuttals in Debates",
+  //   fullDescription: "Elevate your debating skills by mastering the art of effective rebuttals. This interactive workshop, hosted by the Debate Society, will cover key strategies, common pitfalls, and provide hands-on practice. Learn how to deconstruct arguments, identify logical fallacies, and deliver persuasive counter-arguments. Open to all students interested in improving their debating and public speaking abilities. No prior experience required, but an interest in debate is encouraged! Refreshments will be served.",
+  //   imageUrl: "/images/event-debate-workshop.jpg", // You'll need to add this image
+  //   date: "November 5, 2025",
+  //   time: "2:00 PM - 4:00 PM",
+  //   venue: "Seminar Hall B, Student Activities Building",
+  //   organizer: "Debate Society",
+  //   registrationLink: "#reg-debate-workshop" // Placeholder registration link
+  // }
   // ];
 
   // // Helper function to find event data (simulates data fetching)

@@ -25,7 +25,7 @@ const EventsSection = async () => {
   //   },
   // ];
 
-  const query = groq`*[_type == "event"] | order(_createdAt desc)[0...2] {
+  const query = groq`*[_type == "event"] | order(date desc)[0...2] {
   _id,
   category,
   title,
@@ -61,7 +61,7 @@ const EventsSection = async () => {
                 title={event.title}
                 snippet={event.shortDescription}
                 imageUrl={event.imageUrl}
-                link={`/events/${event.slug}`}
+                link={event.link}
               />
             ))}
           </div>

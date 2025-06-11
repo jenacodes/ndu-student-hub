@@ -4,8 +4,8 @@ const announcement = {
   type: "document",
   fields: [
     {
-      name: "text",
-      title: "Announcement Text",
+      name: "title",
+      title: "Announcement Title",
       type: "string",
       description:
         "Write the announcement message here. Example: 'Exam registration deadline: June 15th, 2025'",

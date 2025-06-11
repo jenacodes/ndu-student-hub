@@ -104,7 +104,7 @@ export default async function SpotlightsPage({ searchParams }) {
           ) : (
             <div className="text-center py-12">
               <Image
-                src="/images/no-spotlights-placeholder.svg"
+                src="/images/no-spotlights-image.jpg"
                 alt="No spotlights yet"
                 width={200}
                 height={200}

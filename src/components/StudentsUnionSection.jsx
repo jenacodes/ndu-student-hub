@@ -1,35 +1,39 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import StudentUnionCard from "@/components/StudentsUnionCard";
 import Link from "next/link";
+import { client } from "@/sanity/client";
+import { groq } from "next-sanity";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
 
 const StudentsUnionSection = () => {
-  const leadersData = [
-    {
-      id: 1,
-      name: "Adebayo Chinedu",
-      post: "SUG President",
-      imageUrl: "https://randomuser.me/api/portraits/men/7.jpg",
-    },
-    {
-      id: 2,
-      name: "Fatima Bello",
-      post: "Vice President",
-      imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
-    },
-    {
-      id: 3,
-      name: "Emeka Okafor",
-      post: "General Secretary",
-      imageUrl: "https://randomuser.me/api/portraits/women/2.jpg",
-    },
-    {
-      id: 4,
-      name: "Ngozi Eze",
-      post: "Financial Secretary",
-      imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-    },
-  ];
+  const [leadersData, setLeadersData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const query = groq`*[_type == "sugExecutive"] | order(_createdAt asc){
+        _id,
+        title,
+        name,
+        post,
+        "image": image.asset->url
+      }`;
+      const data = await client.fetch(query);
+      setLeadersData(data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <section className="section sm:px-6 lg:px-8  ">
+    <section className="section sm:px-6 lg:px-8">
       <div className="container max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -42,22 +46,37 @@ const StudentsUnionSection = () => {
         </div>
 
         {leadersData.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {leadersData.map((leaders) => (
-              <StudentUnionCard
-                imageUrl={leaders.imageUrl}
-                name={leaders.name}
-                key={leaders.id}
-                post={leaders.post}
-                hoverColor={"group-hover:text-blue-600"}
-              />
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            spaceBetween={20}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            pagination={{ clickable: true }}
+            className="!pb-12"
+          >
+            {leadersData.map((leader) => (
+              <SwiperSlide key={leader._id}>
+                <StudentUnionCard
+                  imageUrl={leader.image}
+                  name={leader.name}
+                  post={leader.post}
+                  hoverColor="group-hover:text-blue-600"
+                />
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
         ) : (
           <p className="text-center text-gray-500 text-2xl">
             Student union information coming soon.
           </p>
         )}
+
         <div className="mt-12 text-center">
           <Link
             href="/student-union"

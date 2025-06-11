@@ -1,14 +1,17 @@
 import { createClient } from "next-sanity";
 import { NextResponse } from "next/server";
 
+// Initialize Sanity client
 const client = createClient({
-  projectId: "v32nzca8", // replace with your own
+  projectId: "v32nzca8",
   dataset: "production",
   apiVersion: "2023-01-01",
   token: process.env.SANITY_WRITE_TOKEN,
   useCdn: false,
 });
 
+// POST /api/newsletter
+// This route handles newsletter subscriptions
 export async function POST(req) {
   try {
     const body = await req.json();

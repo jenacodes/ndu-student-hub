@@ -1,36 +1,49 @@
 import Link from "next/link";
 import UpdatesCard from "@/components/UpdatesCard";
+import { groq } from "next-sanity";
+import { client } from "@/sanity/client";
 
-const SportsNewsSection = () => {
-  const sportsNewsData = [
-    // {
-    //   id: 1,
-    //   category: "Football",
-    //   title: "University Lions Roar to Victory in Regional Finals!",
-    //   snippet:
-    //     "A stunning last-minute goal secures the championship trophy for our beloved Lions. Read the full match report and player interviews.",
-    //   imageUrl: "/images/sports-football-victory.jpg", // Replace with your actual image path
-    //   link: "/sports/news/lions-regional-champions",
-    // },
-    // {
-    //   id: 2,
-    //   category: "Athletics",
-    //   title: "New Sprint Record Set at Annual Inter-Faculty Games",
-    //   snippet:
-    //     "Record-breaking speed on the tracks as [Student's Name] clocks an impressive 10.5s in the 100m dash. See all results.",
-    //   imageUrl: "/images/sports-athletics-record.jpg", // Replace with your actual image path
-    //   link: "/sports/news/inter-faculty-games-sprint-record",
-    // },
-    // {
-    //   id: 3,
-    //   category: "Basketball",
-    //   title: "Warriors Secure Playoff Spot with Thrilling Overtime Win",
-    //   snippet:
-    //     "The university basketball team, the Warriors, fought hard in an intense match, clinching their playoff berth in the final seconds.",
-    //   imageUrl: "/images/sports-basketball-win.jpg", // Replace with your actual image path
-    //   link: "/sports/news/warriors-secure-playoff",
-    // },
-  ];
+const SportsNewsSection = async () => {
+  // const sportsNewsData = [
+  //   {
+  //     id: 1,
+  //     category: "Football",
+  //     title: "University Lions Roar to Victory in Regional Finals!",
+  //     snippet:
+  //       "A stunning last-minute goal secures the championship trophy for our beloved Lions. Read the full match report and player interviews.",
+  //     imageUrl: "/images/sports-football-victory.jpg", // Replace with your actual image path
+  //     link: "/sports/news/lions-regional-champions",
+  //   },
+  //   {
+  //     id: 2,
+  //     category: "Athletics",
+  //     title: "New Sprint Record Set at Annual Inter-Faculty Games",
+  //     snippet:
+  //       "Record-breaking speed on the tracks as [Student's Name] clocks an impressive 10.5s in the 100m dash. See all results.",
+  //     imageUrl: "/images/sports-athletics-record.jpg", // Replace with your actual image path
+  //     link: "/sports/news/inter-faculty-games-sprint-record",
+  //   },
+  //   {
+  //     id: 3,
+  //     category: "Basketball",
+  //     title: "Warriors Secure Playoff Spot with Thrilling Overtime Win",
+  //     snippet:
+  //       "The university basketball team, the Warriors, fought hard in an intense match, clinching their playoff berth in the final seconds.",
+  //     imageUrl: "/images/sports-basketball-win.jpg", // Replace with your actual image path
+  //     link: "/sports/news/warriors-secure-playoff",
+  //   },
+  // ];
+
+  const query = groq`*[_type == "sports"] | order(date desc)[0...2] {
+  _id,
+  category,
+  title,
+  shortDescription,
+  "imageUrl": image.asset->url,
+  "link": "/events/" + slug.current
+}`;
+
+  const sportsNewsData = await client.fetch(query);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
@@ -57,10 +70,10 @@ const SportsNewsSection = () => {
             {/* Using 3 columns for sports news */}
             {sportsNewsData.map((newsItem) => (
               <UpdatesCard // Reusing the UpdateCard component
-                key={newsItem.id}
+                key={newsItem._id}
                 category={newsItem.category}
                 title={newsItem.title}
-                snippet={newsItem.snippet}
+                snippet={newsItem.shortDescription}
                 imageUrl={newsItem.imageUrl}
                 link={newsItem.link}
               />

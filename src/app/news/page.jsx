@@ -96,8 +96,6 @@ export default async function NewsPage({ searchParams }) {
       ? allNewsData
       : allNewsData.filter((newsItem) => newsItem.category === activeCategory);
 
-  // TODO: Add filtering logic here in the future (e.g., by date, category)
-
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Page Header */}
@@ -166,14 +164,6 @@ export default async function NewsPage({ searchParams }) {
       {/* News Grid Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          {/* filter controls here in the future */}
-          {/* <div className="mb-8 flex justify-center space-x-4">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">All</button>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Campus News</button>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Academics</button>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Achievements</button>
-          </div> */}
-
           {filteredNews.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">

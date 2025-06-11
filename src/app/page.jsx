@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
-import NewsSection from "@/components/NewsSection";
+import TodayOnCampusSection from "@/components/TodayOnCampusSection";
+import UpdatesSection from "@/components/UpdatesSection";
 import EventsSection from "@/components/EventsSection";
 import Image from "next/image";
 import StudentsUnionSection from "@/components/StudentsUnionSection";
@@ -22,7 +23,8 @@ const HomePageContent = () => {
       </section>
       <ImportantAnnouncementsSection />
       <WeeklySpotlightSection />
-      <NewsSection />
+      <UpdatesSection />
+      <TodayOnCampusSection />
       <EventsSection />
       <SportsNewsSection />
       <StudentsUnionSection />

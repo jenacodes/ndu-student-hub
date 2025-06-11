@@ -57,9 +57,10 @@ const events = {
     {
       name: "date",
       title: "Date",
-      type: "string",
-      description: "Enter the event date. Example: 'June 15, 2025'.",
+      type: "datetime",
+      description: "Pick the date of the event.",
     },
+
     {
       name: "time",
       title: "Time",

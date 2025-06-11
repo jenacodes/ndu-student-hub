@@ -2,60 +2,73 @@ import PagesHeaderSection from "@/components/PagesHeaderSection";
 import StudentUnionCard from "@/components/StudentsUnionCard";
 import Image from "next/image";
 import Link from "next/link";
+import { client } from "@/sanity/client";
+import { groq } from "next-sanity";
 
-const StudentUnionPage = () => {
-  const sugExecutives = [
-    {
-      id: 1,
-      name: "Adebayo Chinedu",
-      post: "SUG President",
-      imageUrl: "/images/student-president.jpg",
-      bio: "Leading the student body with a vision for enhanced welfare, academic support, and vibrant campus life. Committed to transparent governance.",
-      email: "president.sug@ndustudenthub.com",
-    },
-    {
-      id: 2,
-      name: "Fatima Bello",
-      post: "Vice President",
-      imageUrl: "/images/student-vice-president.jpg",
-      bio: "Assisting the President and focusing on student engagement initiatives, inter-departmental collaborations, and community outreach programs.",
-      email: "vp.sug@ndustudenthub.com",
-    },
-    {
-      id: 3,
-      name: "Emeka Okafor",
-      post: "General Secretary",
-      imageUrl: "/images/student-secretary.jpg",
-      bio: "Responsible for official communications, record-keeping, and ensuring the smooth administrative functioning of the SUG.",
-      email: "gensec.sug@ndustudenthub.com",
-    },
-    {
-      id: 4,
-      name: "Ngozi Eze",
-      post: "Financial Secretary",
-      imageUrl: "/images/student-financial-sec.jpg",
-      bio: "Managing the SUG's finances with accountability and transparency, overseeing budgets for student projects and events.",
-      email: "finsec.sug@ndustudenthub.com",
-    },
-    {
-      id: 5,
-      name: "Tari James",
-      post: "Public Relations Officer (PRO)",
-      imageUrl: "/images/student-pro.jpg", // Placeholder image
-      bio: "The voice of the SUG, managing public image, social media presence, and disseminating important information to the student body.",
-      email: "pro.sug@ndustudenthub.com",
-    },
-    {
-      id: 6,
-      name: "Amina Sadiq",
-      post: "Director of Socials",
-      imageUrl: "/images/student-socials.jpg", // Placeholder image
-      bio: "Organizing engaging social events, cultural programs, and recreational activities to foster a lively and inclusive campus environment.",
-      email: "socials.sug@ndustudenthub.com",
-    },
-    // Add more executives as needed
-  ];
+const StudentUnionPage = async () => {
+  // const sugExecutives = [
+  //   {
+  //     id: 1,
+  //     name: "Adebayo Chinedu",
+  //     post: "SUG President",
+  //     imageUrl: "/images/student-president.jpg",
+  //     bio: "Leading the student body with a vision for enhanced welfare, academic support, and vibrant campus life. Committed to transparent governance.",
+  //     email: "president.sug@ndustudenthub.com",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Fatima Bello",
+  //     post: "Vice President",
+  //     imageUrl: "/images/student-vice-president.jpg",
+  //     bio: "Assisting the President and focusing on student engagement initiatives, inter-departmental collaborations, and community outreach programs.",
+  //     email: "vp.sug@ndustudenthub.com",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Emeka Okafor",
+  //     post: "General Secretary",
+  //     imageUrl: "/images/student-secretary.jpg",
+  //     bio: "Responsible for official communications, record-keeping, and ensuring the smooth administrative functioning of the SUG.",
+  //     email: "gensec.sug@ndustudenthub.com",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Ngozi Eze",
+  //     post: "Financial Secretary",
+  //     imageUrl: "/images/student-financial-sec.jpg",
+  //     bio: "Managing the SUG's finances with accountability and transparency, overseeing budgets for student projects and events.",
+  //     email: "finsec.sug@ndustudenthub.com",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Tari James",
+  //     post: "Public Relations Officer (PRO)",
+  //     imageUrl: "/images/student-pro.jpg", // Placeholder image
+  //     bio: "The voice of the SUG, managing public image, social media presence, and disseminating important information to the student body.",
+  //     email: "pro.sug@ndustudenthub.com",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Amina Sadiq",
+  //     post: "Director of Socials",
+  //     imageUrl: "/images/student-socials.jpg", // Placeholder image
+  //     bio: "Organizing engaging social events, cultural programs, and recreational activities to foster a lively and inclusive campus environment.",
+  //     email: "socials.sug@ndustudenthub.com",
+  //   },
+  //   // Add more executives as needed
+  // ];
 
+  const query = groq`*[_type == "sugExecutive"] | order(_createdAt asc){
+    _id,
+    title,
+    name,
+    post,
+    bio,
+    email,
+    "image": image.asset->url,
+  }`;
+
+  const sugExecutives = await client.fetch(query);
   return (
     <div className="bg-white min-h-screen">
       <PagesHeaderSection
@@ -174,10 +187,10 @@ const StudentUnionPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {sugExecutives.map((executive) => (
                 <StudentUnionCard
-                  key={executive.id}
+                  key={executive.name}
                   name={executive.name}
                   post={executive.post}
-                  imageUrl={executive.imageUrl}
+                  imageUrl={executive.image}
                   bio={executive.bio}
                   email={executive.email}
                   postTextColor={"text-teal-600"}

@@ -1,7 +1,7 @@
 import TransparentButton from "@/components/TransparentButton";
 import UpdatesCard from "@/components/UpdatesCard";
 
-const NewsSection = () => {
+const UpdatesSection = () => {
   const updatesData = [
     {
       id: 1,
@@ -61,4 +61,4 @@ const NewsSection = () => {
   );
 };
 
-export default NewsSection;
+export default UpdatesSection;

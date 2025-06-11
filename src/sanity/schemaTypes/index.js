@@ -5,6 +5,7 @@ import sports from "./sports";
 import spotlight from "./spotlight";
 import newsletter from "./newsletter";
 import announcement from "./announcementsdata";
+import sugExecutives from "./sug";
 
 export const schema = {
   types: [
@@ -15,5 +16,6 @@ export const schema = {
     quoteblock,
     newsletter,
     announcement,
+    sugExecutives,
   ],
 };
