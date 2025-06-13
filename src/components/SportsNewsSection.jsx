@@ -40,7 +40,7 @@ const SportsNewsSection = async () => {
   title,
   shortDescription,
   "imageUrl": image.asset->url,
-  "link": "/events/" + slug.current
+  "link": "/sports/" + slug.current
 }`;
 
   const sportsNewsData = await client.fetch(query);

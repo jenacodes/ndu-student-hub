@@ -23,6 +23,30 @@
   padding-inline: 16px;
 }
 
+@keyframes glitter {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.glitter-wrapper {
+  background: linear-gradient(
+    135deg,
+    #ffd700,
+    #ffffff,
+    #ffd700,
+    #ffffff,
+    #ffd700
+  );
+  background-size: 300% 300%;
+  animation: glitter 3s linear infinite;
+  padding: 2px;
+  border-radius: 1rem;
+}
+
 @utility text-gradient {
   @apply bg-linear-to-r from-[#4e21ca] to-[#7053b8] bg-clip-text text-transparent;
 }

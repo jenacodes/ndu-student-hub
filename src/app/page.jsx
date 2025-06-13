@@ -14,7 +14,7 @@ const HomePageContent = () => {
       <HeroSection />
       <section className="py-12 px-4 md:px-8">
         <Image
-          src="/rome.jpg"
+          src="/images/ndu-part-time-admission-list.jpg"
           alt="An overview of NDU university"
           width={1290}
           height={946}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const ClubCard = ({ name, description, imageUrl, link, meetingInfo }) => {
+const ClubCard = ({ name, shortDescription, imageUrl, link, meetingInfo }) => {
   return (
     <div className="bg-white shadow-lg rounded-xl overflow-hidden flex flex-col group transform hover:scale-105 transition-transform duration-300 ease-in-out">
       {imageUrl ? (
@@ -15,6 +15,7 @@ const ClubCard = ({ name, description, imageUrl, link, meetingInfo }) => {
           />
         </div>
       ) : (
+        //icon svg
         <div className="w-full h-40 sm:h-48 bg-gray-200 flex items-center justify-center">
           <svg
             className="w-16 h-16 text-gray-400"
@@ -40,7 +41,7 @@ const ClubCard = ({ name, description, imageUrl, link, meetingInfo }) => {
           <p className="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-3">
             {" "}
             {/* line-clamp-3 will truncate description */}
-            {description}
+            {shortDescription}
           </p>
           {meetingInfo && (
             <p className="text-xs text-gray-500 mb-3">

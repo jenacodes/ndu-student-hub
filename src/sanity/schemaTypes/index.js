@@ -6,12 +6,14 @@ import spotlight from "./spotlight";
 import newsletter from "./newsletter";
 import announcement from "./announcementsdata";
 import sugExecutives from "./sug";
+import clubs from "./clubs";
 
 export const schema = {
   types: [
     events,
     news,
     sports,
+    clubs,
     spotlight,
     quoteblock,
     newsletter,

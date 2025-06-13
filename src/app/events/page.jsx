@@ -20,8 +20,6 @@ export default async function EventsPage({ searchParams }) {
     venue
   }`;
 
-  // Example output: "Tuesday, June 10, 2025"
-
   const allEventsData = await client.fetch(query);
   if (!allEventsData) return notFound();
 

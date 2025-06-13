@@ -27,7 +27,7 @@ export async function POST(req) {
     // To avoid case-sensitive duplicates
     email = email.toLowerCase();
 
-    // ✅ Check if the email already exists
+    //  Check if the email already exists
     const existing = await client.fetch(
       `*[_type == "newsletter" && email == $email][0]`,
       { email }
@@ -36,7 +36,7 @@ export async function POST(req) {
     if (existing) {
       return NextResponse.json(
         { message: "You are already subscribed!" },
-        { status: 409 } // Conflict
+        { status: 409 }
       );
     }
 

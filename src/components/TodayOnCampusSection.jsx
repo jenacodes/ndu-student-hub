@@ -2,12 +2,6 @@ import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
 
 const TodayOnCampusSection = async () => {
-  // In a real app, you'd fetch data for the current date from Sanity.
-  // const todayDate = new Date("2025-06-10T12:00:00Z").toLocaleDateString(
-  //   "en-US",
-  //   { weekday: "long", year: "numeric", month: "long", day: "numeric" }
-  // );
-
   const today_start = new Date();
   today_start.setHours(0, 0, 0, 0);
 
