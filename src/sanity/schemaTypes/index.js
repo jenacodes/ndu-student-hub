@@ -7,6 +7,7 @@ import newsletter from "./newsletter";
 import announcement from "./announcementsdata";
 import sugExecutives from "./sug";
 import clubs from "./clubs";
+import teamMembers from "./teamMembers";
 
 export const schema = {
   types: [
@@ -19,5 +20,6 @@ export const schema = {
     newsletter,
     announcement,
     sugExecutives,
+    teamMembers,
   ],
 };

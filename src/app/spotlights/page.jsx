@@ -80,7 +80,7 @@ export default async function SpotlightsPage({ searchParams }) {
       {/* Spotlights Grid Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          {/* Optional: Add filter controls here in the future */}
+          {/*  Add filter controls here in the future */}
           {/* <div className="mb-8 flex flex-wrap justify-center gap-2 sm:gap-4">
             <button className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">All</button>
             <button className="px-4 py-2 bg-white border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Student Spotlights</button>

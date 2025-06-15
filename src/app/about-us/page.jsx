@@ -1,38 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
+import { groq } from "next-sanity";
+import { client } from "@/sanity/client";
 
 import PagesHeaderSection from "@/components/PagesHeaderSection";
-const AboutUsPage = () => {
-  const teamMembers = [
-    {
-      id: 1,
-      name: "Jenakumo Emmanuel",
-      role: "Lead Developer & Visionary",
-      bio: "Jenakumo is passionate about leveraging technology to solve student problems and foster a connected campus community.",
-      imageUrl: "/images/jenakumo-emmanuel.png",
-      linkedinUrl: "https://linkdln.com",
-      twitterUrl: "https://x.com/",
-    },
-    {
-      id: 2,
-      name: "David Okon",
-      role: "Content & Community Manager",
-      bio: "David ensures all information is up-to-date and engaging, working closely with student groups to highlight their activities.",
-      imageUrl: "/images/team-member-2.jpg",
-      linkedinUrl: "#",
-      twitterUrl: "#",
-    },
-    // {
-    //   id: 3,
-    //   name: "Aisha Ibrahim",
-    //   role: "UI/UX & Design Lead",
-    //   bio: "Aisha is the creative mind behind ndustudenthub's look and feel, focusing on creating an intuitive and accessible experience.",
-    //   imageUrl: "/images/team-member-3.jpg",
-    //   linkedinUrl: "#",
-    //   twitterUrl: "#",
-    // },
-  ];
+const AboutUsPage = async () => {
+  // const teamMembers = [
+  //   {
+  //     id: 1,
+  //     name: "Jenakumo Emmanuel",
+  //     role: "Lead Developer & Visionary",
+  //     bio: "Jenakumo is passionate about leveraging technology to solve student problems and foster a connected campus community.",
+  //     imageUrl: "/images/jenakumo-emmanuel.png",
+  //     linkedinUrl: "https://linkdln.com",
+  //     twitterUrl: "https://x.com/",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "David Okon",
+  //     role: "Content & Community Manager",
+  //     bio: "David ensures all information is up-to-date and engaging, working closely with student groups to highlight their activities.",
+  //     imageUrl: "/images/team-member-2.jpg",
+  //     linkedinUrl: "#",
+  //     twitterUrl: "#",
+  //   },
+  //   // {
+  //   //   id: 3,
+  //   //   name: "Aisha Ibrahim",
+  //   //   role: "UI/UX & Design Lead",
+  //   //   bio: "Aisha is the creative mind behind ndustudenthub's look and feel, focusing on creating an intuitive and accessible experience.",
+  //   //   imageUrl: "/images/team-member-3.jpg",
+  //   //   linkedinUrl: "#",
+  //   //   twitterUrl: "#",
+  //   // },
+  // ];
+
+  const query = groq`*[_type == "teamMember"] | order(name asc) {
+    _id,
+    name,
+    role,
+    bio,
+    "imageUrl": imageUrl.asset->url,
+    linkedinUrl,
+    twitterUrl
+  }`;
+
+  const teamMembers = await client.fetch(query);
 
   return (
     <div className="bg-white min-h-screen">
@@ -113,17 +127,20 @@ const AboutUsPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {teamMembers.map((member) => (
                 <div
-                  key={member.id}
+                  key={member._id}
                   className="bg-white shadow-lg rounded-xl p-6 text-center transform hover:scale-105 transition-transform duration-300"
                 >
                   <div className="w-32 h-32 rounded-full mx-auto overflow-hidden mb-4 relative border-4 border-indigo-200">
-                    <Image
-                      src={member.imageUrl || "/images/default-avatar.png"} // Fallback avatar
+                    <img
+                      src={member.imageUrl || "/images/default-avatar.png"}
                       alt={`Photo of ${member.name}`}
-                      fill
-                      objectFit="cover"
+                      fill="true"
+                      loading="lazy"
+                      className="object-cover"
+                      sizes="64px"
                     />
                   </div>
+
                   <h3 className="text-xl font-semibold text-gray-900">
                     {member.name}
                   </h3>
