@@ -1,6 +1,7 @@
 import NewsletterForm from "./NewsletterForm";
 
 const HeroSection = () => {
+  // TODO: a page where users can learn more about their respective departments and courses offered
   return (
     <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-[calc(80vh-80px)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto text-center">

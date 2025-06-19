@@ -116,7 +116,18 @@ const NewsArticlePage = async ({ params }) => {
             <div className="flex flex-wrap items-center text-sm text-gray-500 mb-6 space-x-4">
               <div className="flex items-center">
                 <FaRegCalendarAlt />
-                <span>Published: {article.date}</span>
+                <span>
+                  Published:{" "}
+                  {new Date(article.publicationDate).toLocaleDateString(
+                    "en-US",
+                    {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                </span>
               </div>
               {article.author && (
                 <div className="flex items-center">

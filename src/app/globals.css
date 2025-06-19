@@ -47,6 +47,32 @@
   border-radius: 1rem;
 }
 
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-typewriter {
+  display: inline-block;
+  width: 0;
+  animation:
+    typewriter 4s steps(4) forwards,
+    blink 0.75s step-end infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid;
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
 @utility text-gradient {
   @apply bg-linear-to-r from-[#4e21ca] to-[#7053b8] bg-clip-text text-transparent;
 }

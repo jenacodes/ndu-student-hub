@@ -23,6 +23,8 @@ const Footer = () => {
       links: [
         { name: "Clubs", href: "/clubs" },
         { name: "Student Union", href: "/student-union" },
+        { name: "Resources", href: "/resources" },
+        { name: "Faculties and Departments", href: "/faculties" },
       ],
     },
     {
@@ -137,8 +139,9 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-gray-300 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
-          <p className="mb-4 md:mb-0">
-            &copy; {currentYear} ndustudenthub. All rights reserved.
+          <p className="mb-4 md:mb-0">&copy; {currentYear} ndustudenthub.</p>
+          <p className="text-center text-base text-indigo-400 font-semibold tracking-wide mt-6 mb-4 animate-pulse">
+            🚀 Built by the Students, Powered by the Students
           </p>
           <div className="flex items-center space-x-4">
             <Link href="/terms" className="hover:text-blue-500">

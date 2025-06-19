@@ -38,21 +38,21 @@ const Navbar = () => {
             Sports
           </Link>
           <Link
-            href="/clubs"
+            href="/resources"
             className=" hover:text-blue-600 transition-colors tracking-wide"
           >
-            Clubs
+            Resources
           </Link>
           <Link
             href="/spotlights"
-            className=" hover:text-blue-600 transition-colors tracking-wide"
+            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 "
           >
             Weekly Spotlights
           </Link>
         </div>
 
         {/* Call to Action Button - Desktop */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link
             href="/auth/signup"
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors shadow-sm"
@@ -99,10 +99,10 @@ const Navbar = () => {
               Sports
             </Link>
             <Link
-              href="/clubs"
+              href="/resources"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
             >
-              Clubs
+              Resources
             </Link>
 
             <Link

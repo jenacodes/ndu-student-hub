@@ -113,7 +113,7 @@ export default async function NewsPage({ searchParams }) {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <h2 className="text-xl font-bold text-green-900 flex items-center">
               <FaFilter className="mr-2" />
-              Filter Events
+              Filter News
             </h2>
 
             <div className="flex flex-wrap gap-2">
