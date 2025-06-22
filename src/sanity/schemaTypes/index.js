@@ -8,6 +8,8 @@ import announcement from "./announcementsdata";
 import sugExecutives from "./sug";
 import clubs from "./clubs";
 import teamMembers from "./teamMembers";
+import faculty from "./faculty";
+import department from "./department";
 
 export const schema = {
   types: [
@@ -21,5 +23,7 @@ export const schema = {
     announcement,
     sugExecutives,
     teamMembers,
+    faculty,
+    department,
   ],
 };

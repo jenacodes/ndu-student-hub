@@ -44,17 +44,19 @@ const UpdatesCard = ({
   venue,
   author,
   details,
+  isSponsored,
+  sponsoredBy,
 }) => {
   const pathname = usePathname();
   const current = getColorClasses(pathname);
 
   return (
-    <div className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col group transform hover:scale-105 transition-transform duration-300 ease-in-out">
+    <div className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col group transform hover:scale-105 transition-transform duration-300 ease-in-out h-full">
       {imageUrl && (
         <div className="w-full h-48 relative">
           <Image
             src={imageUrl}
-            alt={title}
+            alt={title || "Card image"}
             layout="fill"
             objectFit="cover"
             className="transition-opacity duration-300 group-hover:opacity-90"
@@ -63,16 +65,30 @@ const UpdatesCard = ({
       )}
       <div className="p-6 flex flex-col justify-between flex-grow">
         <div>
-          <p
-            className={`text-sm font-semibold ${current.text} uppercase tracking-wide`}
-          >
-            {category}
-          </p>
+          <div className="flex justify-between items-center">
+            <p
+              className={`text-sm font-semibold ${current.text} uppercase tracking-wide`}
+            >
+              {category}
+            </p>
+            {isSponsored && (
+              <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">
+                Sponsored
+              </span>
+            )}
+          </div>
+
           <h3
             className={`mt-2 text-xl font-bold text-gray-900 ${current.hover} transition-colors`}
           >
-            <Link href={link}>{title}</Link>
+            <Link href={link || "#"}>{title || "Untitled"}</Link>
           </h3>
+
+          {isSponsored && sponsoredBy && (
+            <p className="text-xs text-gray-500 mt-1">
+              In partnership with <strong>{sponsoredBy}</strong>
+            </p>
+          )}
 
           {date && (
             <p className="mt-1 text-xs text-gray-500">
@@ -95,13 +111,13 @@ const UpdatesCard = ({
             </p>
           )}
           {details && <p className="text-xs text-gray-500">{details}</p>}
-          <p className="mt-3 text-base text-gray-600 leading-relaxed">
+          <p className="mt-3 text-base text-gray-600 leading-relaxed line-clamp-3">
             {snippet}
           </p>
         </div>
         <div className="mt-6">
           <Link
-            href={link}
+            href={link || "#"}
             className={`text-base font-semibold ${current.text} ${current.linkHover} transition-colors`}
           >
             View Details &rarr;

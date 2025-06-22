@@ -1,82 +1,31 @@
 import NotFoundMessage from "@/components/NotFoundMessage";
 import StaffCard from "@/components/StaffCard";
+import { client } from "@/sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
+import Link from "next/link";
 
-const allDepartmentsData = {
-  "mechanical-engineering": {
-    name: "Department of Mechanical Engineering",
-    faculty: "Faculty of Engineering",
-    hod: {
-      id: 1,
-      name: "Prof. Johnbull O.",
-      title: "Head of Department",
-      photoUrl: "/images/staff-hod-mech.jpg",
-      email: "hod.mech@ndu.edu.ng",
-    },
-    staff: [
-      {
-        id: 2,
-        name: "Dr. Funke Adebayo",
-        title: "Associate Professor",
-        photoUrl: "/images/staff-mech-1.jpg",
-      },
-      {
-        id: 3,
-        name: "Engr. Tunde Bello",
-        title: "Lecturer I",
-        photoUrl: "/images/staff-mech-2.jpg",
-      },
-      {
-        id: 4,
-        name: "Ms. Chioma Eze",
-        title: "Lecturer II",
-        photoUrl: "/images/staff-mech-3.jpg",
-      },
-    ],
-  },
-  "computer-science": {
-    name: "Department of Computer Science",
-    faculty: "Faculty of Science",
-    hod: {
-      id: 5,
-      name: "Dr. Amina Sadiq",
-      title: "Head of Department",
-      photoUrl: "/images/staff-hod-cs.jpg",
-      email: "hod.cs@ndu.edu.ng",
-    },
-    staff: [
-      {
-        id: 6,
-        name: "Prof. Chinedu Eze",
-        title: "Professor",
-        photoUrl: "/images/staff-cs-1.jpg",
-      },
-      {
-        id: 7,
-        name: "Mr. David Okon",
-        title: "Lecturer I",
-        photoUrl: "/images/staff-cs-2.jpg",
-      },
-      {
-        id: 8,
-        name: "Mrs. Halima Abubakar",
-        title: "Assistant Lecturer",
-        photoUrl: "/images/staff-cs-3.jpg",
-      },
-      {
-        id: 9,
-        name: "Mr. Femi Adekunle",
-        title: "Graduate Assistant",
-        photoUrl: "/images/staff-cs-4.jpg",
-      },
-    ],
-  },
-  // Add more department data here
-};
+export default async function DepartmentDetailPage({ params }) {
+  const { slug } = params;
 
-export default function DepartmentDetailPage({ params }) {
-  // Simulating dynamic route parameter access
-  const departmentId = params?.departmentId || "computer-science"; // Fallback for example
-  const department = allDepartmentsData[departmentId];
+  const department = await client.fetch(
+    `*[_type == "department" && slug.current == $slug][0]{
+      name,
+      description,
+      "faculty": faculty->name,
+      hod {
+        name,
+        title,
+        email,
+        "photoUrl": photoUrl.asset->url
+      },
+      staff[]{
+        name,
+        title,
+        "photoUrl": photoUrl.asset->url
+      }
+    }`,
+    { slug }
+  );
 
   if (!department) {
     return (
@@ -100,12 +49,14 @@ export default function DepartmentDetailPage({ params }) {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mt-2">
             {department.name}
           </h1>
+          <p className="mt-4 text-lg sm:text-xl max-w-3xl mx-auto">
+            {department.description}
+          </p>
         </div>
       </section>
 
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          {/* Head of Department Section */}
           <div className="mb-16 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Head of Department (HOD)
@@ -131,15 +82,14 @@ export default function DepartmentDetailPage({ params }) {
             </div>
           </div>
 
-          {/* Academic Staff Section */}
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-12">
               Academic Staff
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {department.staff.map((staffMember) => (
+              {department.staff.map((staffMember, index) => (
                 <StaffCard
-                  key={staffMember.id}
+                  key={index}
                   name={staffMember.name}
                   title={staffMember.title}
                   photoUrl={staffMember.photoUrl}
@@ -150,13 +100,14 @@ export default function DepartmentDetailPage({ params }) {
           </div>
         </div>
       </section>
+
       <div className="py-12 text-center">
-        <a
+        <Link
           href="/faculties"
           className="text-blue-600 hover:text-blue-800 font-semibold transition-colors"
         >
           &larr; Back to All Faculties
-        </a>
+        </Link>
       </div>
     </div>
   );

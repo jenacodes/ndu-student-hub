@@ -8,6 +8,7 @@ import ImportantAnnouncementsSection from "@/components/ImportantAnnouncementsSe
 import AboutNduStudentHubSection from "@/components/AboutNduStudentHubSection";
 import SportsNewsSection from "@/components/SportsNewsSection";
 import WeeklySpotlightSection from "@/components/WeeklySpotlightSection";
+import SponsoredContentSection from "@/components/SponsoredContentSection";
 const HomePageContent = () => {
   return (
     <>
@@ -26,6 +27,7 @@ const HomePageContent = () => {
       <UpdatesSection />
       <TodayOnCampusSection />
       <EventsSection />
+      <SponsoredContentSection />
       <SportsNewsSection />
       <StudentsUnionSection />
       <AboutNduStudentHubSection />
