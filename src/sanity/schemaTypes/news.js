@@ -51,6 +51,44 @@ export default {
       },
     },
     {
+      name: "faculty",
+      title: "Faculty",
+      type: "string",
+      description: "Select the faculty this news item belongs to.",
+      options: {
+        list: [
+          { title: "Faculty of Arts", value: "Faculty of Arts" },
+          {
+            title: "Faculty of Basic Medical Sciences",
+            value: "Faculty of Basic Medical Sciences",
+          },
+          {
+            title: "Faculty of Clinical Sciences",
+            value: "Faculty of Clinical Sciences",
+          },
+          { title: "Faculty of Education", value: "Faculty of Education" },
+          { title: "Faculty of Engineering", value: "Faculty of Engineering" },
+          {
+            title: "Faculty of Environmental Sciences",
+            value: "Faculty of Environmental Sciences",
+          },
+          { title: "Faculty of Law", value: "Faculty of Law" },
+          {
+            title: "Faculty of Management Sciences",
+            value: "Faculty of Management Sciences",
+          },
+          { title: "Faculty of Nursing", value: "Faculty of Nursing" },
+          { title: "Faculty of Pharmacy", value: "Faculty of Pharmacy" },
+          { title: "Faculty of Science", value: "Faculty of Science" },
+          {
+            title: "Faculty of Social Sciences",
+            value: "Faculty of Social Sciences",
+          },
+        ],
+      },
+    },
+
+    {
       name: "image",
       title: "Image",
       type: "image",

@@ -10,6 +10,7 @@ import clubs from "./clubs";
 import teamMembers from "./teamMembers";
 import faculty from "./faculty";
 import department from "./department";
+import sponsorPost from "./sponsorPost";
 
 export const schema = {
   types: [
@@ -25,5 +26,6 @@ export const schema = {
     teamMembers,
     faculty,
     department,
+    sponsorPost,
   ],
 };

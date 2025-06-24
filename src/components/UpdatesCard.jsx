@@ -44,6 +44,7 @@ const UpdatesCard = ({
   venue,
   author,
   details,
+  faculty,
   isSponsored,
   sponsoredBy,
 }) => {
@@ -87,6 +88,12 @@ const UpdatesCard = ({
           {isSponsored && sponsoredBy && (
             <p className="text-xs text-gray-500 mt-1">
               In partnership with <strong>{sponsoredBy}</strong>
+            </p>
+          )}
+
+          {faculty && (
+            <p className="text-xs text-gray-500 mt-1">
+              <strong>Faculty:</strong> {faculty}
             </p>
           )}
 

@@ -1,77 +1,19 @@
+// app/news/page.jsx
+
 import Image from "next/image";
 import UpdatesCard from "@/components/UpdatesCard";
 import PagesHeaderSection from "@/components/PagesHeaderSection";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
-import { FaFilter } from "react-icons/fa";
+import { FaFilter, FaChevronDown } from "react-icons/fa";
 
 export default async function NewsPage({ searchParams }) {
-  //Mock data for styling
-  // const allNewsData = [
-  //   {
-  //     id: 1,
-  //     category: "Campus News",
-  //     title: "University Announces New State-of-the-Art Library Wing",
-  //     snippet:
-  //       "Construction is set to begin next month on a new library extension, featuring modern study spaces, digital archives, and a cafe.",
-  //     imageUrl: "/images/news-library-wing.jpg", // Placeholder image
-  //     link: "/news/new-library-wing-announcement",
-  //     date: "May 28, 2025",
-  //     author: "University Administration",
-  //   },
-  //   {
-  //     id: 2,
-  //     category: "Academics",
-  //     title:
-  //       "Research Grant Awarded to Engineering Department for Renewable Energy Project",
-  //     snippet:
-  //       "Professor Adaobi's team secures a significant grant to further their research into innovative solar panel technology.",
-  //     imageUrl: "/images/news-research-grant.jpg", // Placeholder image
-  //     link: "/news/engineering-research-grant-solar",
-  //     date: "May 25, 2025",
-  //     author: "Faculty of Engineering",
-  //   },
-  //   {
-  //     id: 3,
-  //     category: "Student Achievements",
-  //     title:
-  //       "Debate Team Wins National Championship for the Third Consecutive Year",
-  //     snippet:
-  //       "Our talented debate society has once again proven their mettle, bringing home the national trophy. Congratulations to the team!",
-  //     imageUrl: "/images/news-debate-team-win.jpg", // Placeholder image
-  //     link: "/news/debate-team-national-champions-2025",
-  //     date: "May 20, 2025",
-  //     author: "Student Affairs Office",
-  //   },
-  //   {
-  //     id: 4,
-  //     category: "Community Outreach",
-  //     title: "Successful 'Clean Yenagoa' Initiative Led by Student Volunteers",
-  //     snippet:
-  //       "Over 100 student volunteers participated in the recent city cleanup drive, making a significant impact on our local community.",
-  //     imageUrl: "/images/news-community-cleanup.jpg", // Placeholder image
-  //     link: "/news/clean-yenagoa-student-initiative",
-  //     date: "May 15, 2025",
-  //     author: "Social Responsibility Club",
-  //   },
-  //   {
-  //     id: 5,
-  //     category: "Campus Development",
-  //     title: "New Cafeteria Opens with Diverse Menu Options",
-  //     snippet:
-  //       "Students welcome the newly renovated cafeteria, offering a wider range of healthy and international food choices.",
-  //     imageUrl: "/images/news-cafeteria-opening.jpg", // Placeholder image
-  //     link: "/news/new-cafeteria-opens",
-  //     date: "May 10, 2025",
-  //     author: "Campus Services",
-  //   },
-  //   // Add more news articles here
-  // ];
-
-  const query = groq`*[_type == "news"] |  {
+  // Fetch news data with faculty information
+  const query = groq`*[_type == "news"] | {
     _id,
     title,
     category,
+    faculty,
     "slug": slug.current,
     "imageUrl": image.asset->url,
     snippet,
@@ -81,20 +23,53 @@ export default async function NewsPage({ searchParams }) {
 
   const allNewsData = await client.fetch(query);
 
+  // Create safe searchParams object
+  const safeSearchParams = {};
+  for (const [key, value] of Object.entries(searchParams || {})) {
+    safeSearchParams[key] = String(value);
+  }
+
+  // Extract unique categories and faculties
   const uniqueCategories = [
     ...new Set(allNewsData.map((newsItem) => newsItem.category)),
   ];
+  const uniqueFaculties = [
+    ...new Set(allNewsData.map((newsItem) => newsItem.faculty)),
+  ].filter(Boolean);
 
-  // Get active category from URL params
-  const SearchParams = await searchParams; // await for the search params
+  // Get active filters
+  const activeCategory = safeSearchParams.category || "all";
+  const activeFaculty = safeSearchParams.faculty || "all";
 
-  const activeCategory = SearchParams?.category || "all";
+  // Filter news based on selected filters
+  const filteredNews = allNewsData.filter((newsItem) => {
+    const categoryMatch =
+      activeCategory === "all" || newsItem.category === activeCategory;
+    const facultyMatch =
+      activeFaculty === "all" || newsItem.faculty === activeFaculty;
+    return categoryMatch && facultyMatch;
+  });
 
-  // Filter events based on selected category
-  const filteredNews =
-    activeCategory === "all"
-      ? allNewsData
-      : allNewsData.filter((newsItem) => newsItem.category === activeCategory);
+  // Helper function to generate query string
+  const createQueryString = (newParams) => {
+    const params = new URLSearchParams();
+
+    // Preserve existing params except the one being changed
+    for (const [key, value] of Object.entries(safeSearchParams)) {
+      if (!Object.keys(newParams).includes(key)) {
+        params.append(key, value);
+      }
+    }
+
+    // Add new params
+    for (const [key, value] of Object.entries(newParams)) {
+      if (value !== "all") {
+        params.append(key, value);
+      }
+    }
+
+    return params.toString();
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -102,8 +77,7 @@ export default async function NewsPage({ searchParams }) {
       <PagesHeaderSection
         bgColor="bg-green-600"
         title="School News & Announcements"
-        subtitle="Stay informed with the latest updates, achievements, and important
-            notices from "
+        subtitle="Stay informed with the latest updates, achievements, and important notices"
         paragrpahColor="text-green-100"
       />
 
@@ -116,46 +90,108 @@ export default async function NewsPage({ searchParams }) {
               Filter News
             </h2>
 
-            <div className="flex flex-wrap gap-2">
-              {/* "All" Category Button */}
-              <a
-                href="/news"
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === "all"
-                    ? "bg-green-600 text-white shadow-md"
-                    : "bg-white text-green-700 border border-green-300 hover:bg-green-100"
-                }`}
-              >
-                All News and Announcements
-              </a>
+            <div className="flex flex-wrap gap-4">
+              {/* Category Filter Dropdown */}
+              <div className="relative">
+                <div className="group relative">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white text-green-700 border border-green-300 rounded-full cursor-pointer group-hover:bg-green-100 transition-colors">
+                    <span>
+                      Category:{" "}
+                      {activeCategory === "all" ? "All" : activeCategory}
+                    </span>
+                    <FaChevronDown className="text-xs" />
+                  </div>
+                  <div className="absolute z-10 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block hover:block">
+                    <a
+                      href={`/news?${createQueryString({ category: "all" })}`}
+                      className={`block px-4 py-2 text-sm ${
+                        activeCategory === "all"
+                          ? "bg-green-100 text-green-700"
+                          : "text-gray-700 hover:bg-gray-100"
+                      }`}
+                    >
+                      All Categories
+                    </a>
+                    {uniqueCategories.map((category) => (
+                      <a
+                        key={category}
+                        href={`/news?${createQueryString({ category })}`}
+                        className={`block px-4 py-2 text-sm capitalize ${
+                          activeCategory === category
+                            ? "bg-green-100 text-green-700"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        {category}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
-              {/* Category Buttons */}
-              {uniqueCategories.map((category) => (
+              {/* Faculty Filter Dropdown */}
+              {uniqueFaculties.length > 0 && (
+                <div className="relative">
+                  <div className="group relative">
+                    <div className="flex items-center gap-2 px-4 py-2 bg-white text-green-700 border border-green-300 rounded-full cursor-pointer group-hover:bg-green-100 transition-colors">
+                      <span>
+                        Faculty:{" "}
+                        {activeFaculty === "all" ? "All" : activeFaculty}
+                      </span>
+                      <FaChevronDown className="text-xs" />
+                    </div>
+                    <div className="absolute z-10 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block hover:block">
+                      <a
+                        href={`/news?${createQueryString({ faculty: "all" })}`}
+                        className={`block px-4 py-2 text-sm ${
+                          activeFaculty === "all"
+                            ? "bg-green-100 text-green-700"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        All Faculties
+                      </a>
+                      {uniqueFaculties.map((faculty) => (
+                        <a
+                          key={faculty}
+                          href={`/news?${createQueryString({ faculty })}`}
+                          className={`block px-4 py-2 text-sm ${
+                            activeFaculty === faculty
+                              ? "bg-green-100 text-green-700"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          {faculty}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Reset Filters Button */}
+              {(activeCategory !== "all" || activeFaculty !== "all") && (
                 <a
-                  key={category}
-                  href={`/news?category=${encodeURIComponent(category)}`}
-                  className={`px-4 py-2 rounded-full text-sm capitalize font-medium transition-all duration-200 ${
-                    activeCategory === category
-                      ? "bg-green-600 text-white shadow-md"
-                      : "bg-white text-green-700 border border-green-300 hover:bg-green-100"
-                  }`}
+                  href="/news"
+                  className="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 transition-colors flex items-center"
                 >
-                  {category}
+                  Reset Filters
                 </a>
-              ))}
+              )}
             </div>
           </div>
 
-          {/* Active Filter Indicator */}
-          <div className="mt-4">
+          {/* Active Filter Indicators */}
+          <div className="mt-4 flex flex-wrap gap-2">
             {activeCategory !== "all" && (
-              <p className="text-green-700 font-medium">
-                Showing:{" "}
-                <span className="bg-green-100 px-2 py-1 rounded-lg">
-                  {activeCategory}
-                </span>{" "}
-                News
-              </p>
+              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                Category: {activeCategory}
+              </span>
+            )}
+            {activeFaculty !== "all" && (
+              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                Faculty: {activeFaculty}
+              </span>
             )}
           </div>
         </div>
@@ -168,44 +204,56 @@ export default async function NewsPage({ searchParams }) {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
                 {filteredNews.map((newsItem) => (
-                  <UpdatesCard // Reusing the UpdateCard component
-                    key={newsItem.slug}
+                  <UpdatesCard
+                    key={newsItem._id}
                     category={newsItem.category}
                     title={newsItem.title}
                     snippet={newsItem.snippet}
                     imageUrl={newsItem.imageUrl}
                     link={`/news/${newsItem.slug}`}
                     date={newsItem.date}
-                    author={newsItem.author} // Added an author prop
+                    author={newsItem.author}
+                    faculty={newsItem.faculty}
                   />
                 ))}
               </div>
 
-              {/* Results count */}
               <div className="mt-8 text-center text-gray-600">
-                Showing {filteredNews.length} of {allNewsData.length}{" "}
-                Announcements and News
+                Showing {filteredNews.length} of {allNewsData.length} News Items
               </div>
             </>
           ) : (
             <div className="text-center py-12">
               <Image
                 src="/images/no-news-placeholder.svg"
-                alt="No news"
+                alt="No news found"
                 width={200}
                 height={200}
                 className="mx-auto mb-4"
-              />{" "}
-              {/* Placeholder for no news */}
+              />
               <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-                No News Articles Available
+                No News Articles Found
               </h2>
               <p className="text-gray-500 mb-4">
-                There are no events in the "{activeCategory}" category.
+                {activeCategory !== "all" && activeFaculty !== "all" ? (
+                  <>
+                    No news matching both "{activeCategory}" category and "
+                    {activeFaculty}" faculty.
+                  </>
+                ) : activeCategory !== "all" ? (
+                  <>No news in the "{activeCategory}" category.</>
+                ) : activeFaculty !== "all" ? (
+                  <>No news for the "{activeFaculty}" faculty.</>
+                ) : (
+                  "There are currently no news articles available."
+                )}
               </p>
-              <p className="text-gray-500">
-                Please check back later for the latest updates.
-              </p>
+              <a
+                href="/news"
+                className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                View All News
+              </a>
             </div>
           )}
         </div>
