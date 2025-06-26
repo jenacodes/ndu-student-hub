@@ -27,7 +27,7 @@ const ImportantAnnouncementsSection = async () => {
 
   const query = groq`*[_type == "announcement"] | order(date desc) {
   _id,
-  text,
+  title,
   type,
   date
 }`;
@@ -128,12 +128,12 @@ const ImportantAnnouncementsSection = async () => {
           <div className="space-y-4 max-w-2xl mx-auto">
             {announcementsData.map((announcement) => (
               <div
-                key={announcement.type}
+                key={announcement._id}
                 className="bg-white p-4 rounded-lg shadow-md flex items-center border-l-4 border-yellow-500"
               >
                 {getIconForType(announcement.type)}
                 <p className="text-gray-700 text-md font-medium">
-                  {announcement.text}
+                  {announcement.title}
                 </p>
               </div>
             ))}

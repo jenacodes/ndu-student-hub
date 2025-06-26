@@ -38,7 +38,7 @@ const announcement = {
   ],
   preview: {
     select: {
-      title: "text",
+      title: "title",
     },
   },
 };

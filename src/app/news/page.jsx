@@ -1,14 +1,11 @@
-// app/news/page.jsx
-
 import Image from "next/image";
 import UpdatesCard from "@/components/UpdatesCard";
 import PagesHeaderSection from "@/components/PagesHeaderSection";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
-import { FaFilter, FaChevronDown } from "react-icons/fa";
+import FilterControls from "@/components/FilterControls";
 
 export default async function NewsPage({ searchParams }) {
-  // Fetch news data with faculty information
   const query = groq`*[_type == "news"] | {
     _id,
     title,
@@ -23,9 +20,11 @@ export default async function NewsPage({ searchParams }) {
 
   const allNewsData = await client.fetch(query);
 
+  const params = await searchParams;
+
   // Create safe searchParams object
   const safeSearchParams = {};
-  for (const [key, value] of Object.entries(searchParams || {})) {
+  for (const [key, value] of Object.entries(params || {})) {
     safeSearchParams[key] = String(value);
   }
 
@@ -84,116 +83,12 @@ export default async function NewsPage({ searchParams }) {
       {/* Filter Section */}
       <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 bg-green-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-xl font-bold text-green-900 flex items-center">
-              <FaFilter className="mr-2" />
-              Filter News
-            </h2>
-
-            <div className="flex flex-wrap gap-4">
-              {/* Category Filter Dropdown */}
-              <div className="relative">
-                <div className="group relative">
-                  <div className="flex items-center gap-2 px-4 py-2 bg-white text-green-700 border border-green-300 rounded-full cursor-pointer group-hover:bg-green-100 transition-colors">
-                    <span>
-                      Category:{" "}
-                      {activeCategory === "all" ? "All" : activeCategory}
-                    </span>
-                    <FaChevronDown className="text-xs" />
-                  </div>
-                  <div className="absolute z-10 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block hover:block">
-                    <a
-                      href={`/news?${createQueryString({ category: "all" })}`}
-                      className={`block px-4 py-2 text-sm ${
-                        activeCategory === "all"
-                          ? "bg-green-100 text-green-700"
-                          : "text-gray-700 hover:bg-gray-100"
-                      }`}
-                    >
-                      All Categories
-                    </a>
-                    {uniqueCategories.map((category) => (
-                      <a
-                        key={category}
-                        href={`/news?${createQueryString({ category })}`}
-                        className={`block px-4 py-2 text-sm capitalize ${
-                          activeCategory === category
-                            ? "bg-green-100 text-green-700"
-                            : "text-gray-700 hover:bg-gray-100"
-                        }`}
-                      >
-                        {category}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Faculty Filter Dropdown */}
-              {uniqueFaculties.length > 0 && (
-                <div className="relative">
-                  <div className="group relative">
-                    <div className="flex items-center gap-2 px-4 py-2 bg-white text-green-700 border border-green-300 rounded-full cursor-pointer group-hover:bg-green-100 transition-colors">
-                      <span>
-                        Faculty:{" "}
-                        {activeFaculty === "all" ? "All" : activeFaculty}
-                      </span>
-                      <FaChevronDown className="text-xs" />
-                    </div>
-                    <div className="absolute z-10 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 hidden group-hover:block hover:block">
-                      <a
-                        href={`/news?${createQueryString({ faculty: "all" })}`}
-                        className={`block px-4 py-2 text-sm ${
-                          activeFaculty === "all"
-                            ? "bg-green-100 text-green-700"
-                            : "text-gray-700 hover:bg-gray-100"
-                        }`}
-                      >
-                        All Faculties
-                      </a>
-                      {uniqueFaculties.map((faculty) => (
-                        <a
-                          key={faculty}
-                          href={`/news?${createQueryString({ faculty })}`}
-                          className={`block px-4 py-2 text-sm ${
-                            activeFaculty === faculty
-                              ? "bg-green-100 text-green-700"
-                              : "text-gray-700 hover:bg-gray-100"
-                          }`}
-                        >
-                          {faculty}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Reset Filters Button */}
-              {(activeCategory !== "all" || activeFaculty !== "all") && (
-                <a
-                  href="/news"
-                  className="px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:bg-gray-100 transition-colors flex items-center"
-                >
-                  Reset Filters
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* Active Filter Indicators */}
-          <div className="mt-4 flex flex-wrap gap-2">
-            {activeCategory !== "all" && (
-              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                Category: {activeCategory}
-              </span>
-            )}
-            {activeFaculty !== "all" && (
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                Faculty: {activeFaculty}
-              </span>
-            )}
-          </div>
+          <FilterControls
+            uniqueCategories={uniqueCategories}
+            uniqueFaculties={uniqueFaculties}
+            activeCategory={activeCategory}
+            activeFaculty={activeFaculty}
+          />
         </div>
       </section>
 

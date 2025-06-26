@@ -92,7 +92,7 @@ const UpdatesCard = ({
           )}
 
           {faculty && (
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-sm text-gray-700 mt-1">
               <strong>Faculty:</strong> {faculty}
             </p>
           )}

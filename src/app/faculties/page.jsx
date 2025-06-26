@@ -14,36 +14,36 @@ const leadersData = [
     post: "Dean of Engineering",
     imageUrl: "https://randomuser.me/api/portraits/men/7.jpg",
   },
-  {
-    id: 2,
-    name: "Fatima Bello",
-    post: "Dean of Arts and Humanities",
-    imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
-  },
-  {
-    id: 3,
-    name: "Emeka Okafor",
-    post: "Dean of Sciences",
-    imageUrl: "https://randomuser.me/api/portraits/women/2.jpg",
-  },
-  {
-    id: 4,
-    name: "Ngozi Eze",
-    post: "Dean of Social Sciences",
-    imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-  },
-  {
-    id: 5,
-    name: "Ngozi Eze",
-    post: "Dean of Nursing",
-    imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-  },
-  {
-    id: 6,
-    name: "Dr Rex Ojo",
-    post: "Dean of Pharmacy",
-    imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-  },
+  // {
+  //   id: 2,
+  //   name: "Fatima Bello",
+  //   post: "Dean of Arts and Humanities",
+  //   imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
+  // },
+  // {
+  //   id: 3,
+  //   name: "Emeka Okafor",
+  //   post: "Dean of Sciences",
+  //   imageUrl: "https://randomuser.me/api/portraits/women/2.jpg",
+  // },
+  // {
+  //   id: 4,
+  //   name: "Ngozi Eze",
+  //   post: "Dean of Social Sciences",
+  //   imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+  // },
+  // {
+  //   id: 5,
+  //   name: "Ngozi Eze",
+  //   post: "Dean of Nursing",
+  //   imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+  // },
+  // {
+  //   id: 6,
+  //   name: "Dr Rex Ojo",
+  //   post: "Dean of Pharmacy",
+  //   imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
+  // },
 ];
 
 export default function FacultiesPage() {

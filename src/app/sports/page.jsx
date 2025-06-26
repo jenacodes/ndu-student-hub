@@ -65,7 +65,7 @@ export default async function SportsPage({ searchParams }) {
   //   },
   // ];
 
-  // TODO: Add filtering logic here in the future (e.g., by sport, date, type - news/fixture/result)
+
 
   const query = groq`*[_type == "sports"] | order(date desc) {
   _id,
@@ -169,18 +169,29 @@ export default async function SportsPage({ searchParams }) {
           {filteredSports.length > 0 ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                {filteredSports.map((sportsItem) => (
-                  <UpdatesCard
-                    key={sportsItem.category}
-                    category={sportsItem.category}
-                    title={sportsItem.title}
-                    snippet={sportsItem.shortDescription}
-                    imageUrl={sportsItem.imageUrl}
-                    link={`/sports/${sportsItem.slug}`}
-                    date={sportsItem.date}
-                    details={sportsItem.details}
-                  />
-                ))}
+                {filteredSports.map((sportsItem) => {
+                  const formattedDate = new Date(
+                    sportsItem.date
+                  ).toLocaleDateString("en-US", {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  });
+
+                  return (
+                    <UpdatesCard
+                      key={sportsItem._id}
+                      category={sportsItem.category}
+                      title={sportsItem.title}
+                      snippet={sportsItem.shortDescription}
+                      imageUrl={sportsItem.imageUrl}
+                      link={`/sports/${sportsItem.slug}`}
+                      date={formattedDate}
+                      details={sportsItem.details}
+                    />
+                  );
+                })}
               </div>
 
               {/* Results count */}
