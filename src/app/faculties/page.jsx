@@ -7,48 +7,10 @@ import StudentUnionCard from "@/components/StudentsUnionCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
-const leadersData = [
-  {
-    id: 1,
-    name: "Adebayo Chinedu",
-    post: "Dean of Engineering",
-    imageUrl: "https://randomuser.me/api/portraits/men/7.jpg",
-  },
-  // {
-  //   id: 2,
-  //   name: "Fatima Bello",
-  //   post: "Dean of Arts and Humanities",
-  //   imageUrl: "https://randomuser.me/api/portraits/men/1.jpg",
-  // },
-  // {
-  //   id: 3,
-  //   name: "Emeka Okafor",
-  //   post: "Dean of Sciences",
-  //   imageUrl: "https://randomuser.me/api/portraits/women/2.jpg",
-  // },
-  // {
-  //   id: 4,
-  //   name: "Ngozi Eze",
-  //   post: "Dean of Social Sciences",
-  //   imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-  // },
-  // {
-  //   id: 5,
-  //   name: "Ngozi Eze",
-  //   post: "Dean of Nursing",
-  //   imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-  // },
-  // {
-  //   id: 6,
-  //   name: "Dr Rex Ojo",
-  //   post: "Dean of Pharmacy",
-  //   imageUrl: "https://randomuser.me/api/portraits/women/3.jpg",
-  // },
-];
-
 export default function FacultiesPage() {
   const [faculties, setFaculties] = useState([]);
   const [sortOption, setSortOption] = useState("alphabetical");
+  const [deans, setDeans] = useState([]);
 
   useEffect(() => {
     const fetchFaculties = async () => {
@@ -71,6 +33,23 @@ export default function FacultiesPage() {
     };
 
     fetchFaculties();
+  }, []);
+
+  useEffect(() => {
+    const fetchDeans = async () => {
+      const data = await client.fetch(`
+      *[_type == "dean"]{
+        _id,
+        name,
+        position,
+        faculty,
+        "image": image.asset->url
+      }
+    `);
+      setDeans(data);
+    };
+
+    fetchDeans();
   }, []);
 
   const sortedFaculties = [...faculties].sort((a, b) => {
@@ -140,7 +119,7 @@ export default function FacultiesPage() {
             </p>
           </div>
 
-          {leadersData.length > 0 ? (
+          {deans.length > 0 ? (
             <Swiper
               modules={[Autoplay, Pagination]}
               spaceBetween={20}
@@ -155,12 +134,12 @@ export default function FacultiesPage() {
               pagination={{ clickable: true }}
               className="!pb-12"
             >
-              {leadersData.map((leader) => (
+              {deans.map((leader) => (
                 <SwiperSlide key={leader._id}>
                   <StudentUnionCard
                     imageUrl={leader.image}
                     name={leader.name}
-                    post={leader.post}
+                    post={leader.faculty}
                     hoverColor="group-hover:text-blue-600"
                   />
                 </SwiperSlide>

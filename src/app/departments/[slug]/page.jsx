@@ -5,7 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 
 export default async function DepartmentDetailPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const department = await client.fetch(
     `*[_type == "department" && slug.current == $slug][0]{

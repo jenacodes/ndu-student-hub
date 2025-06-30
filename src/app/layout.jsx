@@ -15,7 +15,7 @@ export const metadata = {
   description:
     "Your go-to source for all the latest news, events, and happenings at your school.",
   keywords:
-    "school news, student events, university updates, campus life, student hub, school announcements, academic news, extracurricular activities, ndu, Niger Delta University, student portal, student resources, school community, student life",
+    "school news, Faculties, Resources, Departments, Hod, Engineering student events, university updates, campus life, student hub, school announcements, academic news, extracurricular activities, ndu, Niger Delta University, student portal, student resources, school community, student life",
 };
 
 export default function RootLayout({ children }) {

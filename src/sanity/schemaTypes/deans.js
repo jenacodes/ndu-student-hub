@@ -14,18 +14,38 @@ export default {
       name: "faculty",
       title: "Faculty",
       type: "string",
-      description:
-        "Specify the faculty this Dean oversees (e.g., Engineering, Law, Management Sciences)",
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: "position",
-      title: "Position",
-      type: "string",
-      description:
-        'The title or role of the person. Default is "Dean of Faculty".',
-      initialValue: "Dean of Faculty",
-      readOnly: true,
+      description: "Select the faculty this news item belongs to.",
+      options: {
+        list: [
+          { title: "Faculty of Arts", value: "Faculty of Arts" },
+          {
+            title: "Dean of Faculty of Basic Medical Sciences",
+            value: "Dean of Faculty of Basic Medical Sciences",
+          },
+          {
+            title: "Faculty of Clinical Sciences",
+            value: "Faculty of Clinical Sciences",
+          },
+          { title: "Faculty of Education", value: "Faculty of Education" },
+          { title: "Faculty of Engineering", value: "Faculty of Engineering" },
+          {
+            title: "Faculty of Environmental Sciences",
+            value: "Faculty of Environmental Sciences",
+          },
+          { title: "Faculty of Law", value: "Faculty of Law" },
+          {
+            title: "Faculty of Management Sciences",
+            value: "Faculty of Management Sciences",
+          },
+          { title: "Faculty of Nursing", value: "Faculty of Nursing" },
+          { title: "Faculty of Pharmacy", value: "Faculty of Pharmacy" },
+          { title: "Faculty of Science", value: "Faculty of Science" },
+          {
+            title: "Faculty of Social Sciences",
+            value: "Faculty of Social Sciences",
+          },
+        ],
+      },
     },
     {
       name: "image",

@@ -18,6 +18,7 @@ const StudentUnionCard = ({
           fill
           objectFit="cover"
           className="group-hover:opacity-90 transition-opacity duration-300"
+          loading="lazy"
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">
