@@ -2,11 +2,12 @@ import { client } from "@/sanity/lib/client";
 import ResourceCard from "@/components/ResourceCard";
 import PagesHeaderSection from "@/components/PagesHeaderSection";
 import { getIconComponent } from "@/utils/iconMapper";
+import { groq } from "next-sanity";
 
 export const revalidate = 60;
 
 async function getResourceSections() {
-  const query = `*[_type == "resourceSection"] | order(order asc) {
+  const query = groq`*[_type == "resourceSection"] | order(order asc) {
     _id,
     title,
     iconName,
