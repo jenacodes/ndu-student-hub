@@ -3,7 +3,9 @@ import Image from "next/image";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 
-export default async function SpotlightsPage({ searchParams }) {
+export const revalidate = 60;
+
+export default async function SpotlightsPage({}) {
   // Using a subset of data from the detail page example for the listing
   // const allSpotlightSummaries = [
   //   {

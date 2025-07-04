@@ -9,6 +9,8 @@ import { FaRegClock } from "react-icons/fa";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import imageUrlBuilder from "@sanity/image-url";
 
+export const revalidate = 60; // Revalidate page every 60 seconds
+
 export async function generateStaticParams() {
   const slugs = await client.fetch(
     `*[_type == "event"]{ "slug": slug.current }`

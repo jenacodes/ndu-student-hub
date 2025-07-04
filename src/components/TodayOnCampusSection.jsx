@@ -1,6 +1,8 @@
 import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
 
+export const revalidate = 60;
+
 const TodayOnCampusSection = async () => {
   const today_start = new Date();
   today_start.setHours(0, 0, 0, 0);

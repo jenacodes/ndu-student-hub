@@ -3,9 +3,12 @@ import Link from "next/link";
 const FacultyCard = ({ name, description, imageUrl, departments }) => {
   return (
     <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-      <div className="h-56 relative">
+      <div className="h-56 lg:h-72 relative">
         <img
-          src={imageUrl || "/images/faculty-placeholder.jpg"}
+          src={
+            imageUrl ||
+            "https://ui-avatars.com/api/?name=Faculty+President&background=0D8ABC&color=fff&size=400"
+          }
           alt={`Image of ${name}`}
           className="absolute top-0 left-0 w-full h-full object-cover"
         />

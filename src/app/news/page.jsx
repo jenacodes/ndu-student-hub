@@ -5,6 +5,8 @@ import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import FilterControls from "@/components/FilterControls";
 
+export const revalidate = 60;
+
 export default async function NewsPage({ searchParams }) {
   const query = groq`*[_type == "news"] | {
     _id,

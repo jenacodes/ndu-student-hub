@@ -13,6 +13,8 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+export const revalidate = 60; // Revalidate page every 60 seconds
+
 const StudentsUnionSection = () => {
   const [leadersData, setLeadersData] = useState([]);
 

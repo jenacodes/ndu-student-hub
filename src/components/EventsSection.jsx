@@ -3,6 +3,8 @@ import UpdatesCard from "@/components/UpdatesCard";
 import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
 
+export const revalidate = 60;
+
 const EventsSection = async () => {
   // const eventsData = [
   //   {

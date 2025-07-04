@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import NotFoundMessage from "@/components/NotFoundMessage";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { HiOutlineUserGroup } from "react-icons/hi";
@@ -81,8 +82,42 @@ const NewsArticlePage = async ({ params }) => {
     );
   }
 
+  const metaTitle = article.title;
+  const metaDescription = article.body
+    ?.map((block) => block.children?.map((child) => child.text).join(" "))
+    .join(" ")
+    .slice(0, 150); // first 150 chars as summary
+
+  const metaImage = urlFor(article.image).url();
+  const metaUrl = `https://ndustudenthub.com/news/${article.slug.current}`;
+
   return (
     <div className="bg-gray-50 min-h-screen">
+      <Head>
+        <title>{metaTitle} | NDUSTUDENTHUB</title>
+        <meta name="description" content={metaDescription} />
+        <meta
+          name="keywords"
+          content="NDU, NDUSTUDENTHUB, news, campus news, student blog"
+        />
+        <meta name="author" content={article.author || "NDUSTUDENTHUB"} />
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {/* Open Graph Meta Tags (Facebook, WhatsApp) */}
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:image" content={metaImage} />
+        <meta property="og:url" content={metaUrl} />
+        <meta property="og:type" content="article" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={metaImage} />
+      </Head>
+
       <article>
         {/* Article Header Image */}
         {urlFor(article.image).url() && (

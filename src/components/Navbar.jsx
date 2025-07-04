@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
 import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
+import { useState } from "react";
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white  shadow-md sticky top-0 z-50">

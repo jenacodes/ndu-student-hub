@@ -5,6 +5,8 @@ import Link from "next/link";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 
+export const revalidate = 60; // Revalidate page every 60 seconds
+
 const StudentUnionPage = async () => {
   // const sugExecutives = [
   //   {

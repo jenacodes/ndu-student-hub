@@ -7,6 +7,8 @@ import { client } from "@/sanity/client";
 import NotFoundMessage from "@/components/NotFoundMessage";
 import PortableTextRenderer from "@/components/PortableTextRenderer";
 
+export const revalidate = 60; // Revalidate page every 60 seconds
+
 // const allSpotlightItems = [
 //   {
 //     id: "adaeze-nwosu-interview",

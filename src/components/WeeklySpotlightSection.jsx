@@ -3,6 +3,8 @@ import Link from "next/link";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 
+export const revalidate = 60;
+
 const WeeklySpotlightSection = async ({}) => {
   // const spotlightItem = [
   //     {

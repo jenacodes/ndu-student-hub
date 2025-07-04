@@ -6,6 +6,8 @@ import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import { FaFilter } from "react-icons/fa";
 
+export const revalidate = 60;
+
 export default async function EventsPage({ searchParams }) {
   // Query all events from Sanity
   const query = groq`*[_type == "event"] | order(date asc) {

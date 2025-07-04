@@ -6,6 +6,8 @@ import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import { FaFilter } from "react-icons/fa";
 
+export const revalidate = 60;
+
 export default async function SportsPage({ searchParams }) {
   // const allSportsData = [
   //   {
@@ -64,8 +66,6 @@ export default async function SportsPage({ searchParams }) {
   //     details: "Check individual sports pages for specific dates.",
   //   },
   // ];
-
-
 
   const query = groq`*[_type == "sports"] | order(date desc) {
   _id,

@@ -1,8 +1,9 @@
 import NotFoundMessage from "@/components/NotFoundMessage";
 import StaffCard from "@/components/StaffCard";
 import { client } from "@/sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
+
+export const revalidate = 60; // Revalidate page every 60 seconds
 
 export default async function DepartmentDetailPage({ params }) {
   const { slug } = await params;

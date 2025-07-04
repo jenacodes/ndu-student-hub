@@ -1,6 +1,8 @@
 import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
 
+export const revalidate = 60;
+
 const ImportantAnnouncementsSection = async () => {
   // const announcementsData = [
   //   {
@@ -78,7 +80,7 @@ const ImportantAnnouncementsSection = async () => {
             ></path>
           </svg>
         );
-      case "info":
+      case "information":
       default:
         return (
           // Information circle

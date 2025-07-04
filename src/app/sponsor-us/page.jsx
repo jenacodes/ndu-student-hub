@@ -10,8 +10,6 @@ import Head from "next/head";
     content="Partner with ndustudenthub and connect with the most vibrant student audience at Niger Delta University."
   />
 </Head>;
-
-// Reusable Icon Components
 const IconWrapper = ({ children }) => (
   <div className="w-12 h-12 text-blue-600 mb-4">{children}</div>
 );
