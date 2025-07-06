@@ -157,7 +157,8 @@ export default async function EventsPage({ searchParams }) {
                 No Events Found
               </h2>
               <p className="text-gray-500 mb-4">
-                There are no events in the "{activeCategory}" category.
+                There are no events in the `&quot;{activeCategory}`&quot;
+                category.
               </p>
               <Link
                 href="/events"

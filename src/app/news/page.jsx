@@ -135,13 +135,14 @@ export default async function NewsPage({ searchParams }) {
               <p className="text-gray-500 mb-4">
                 {activeCategory !== "all" && activeFaculty !== "all" ? (
                   <>
-                    No news matching both "{activeCategory}" category and "
-                    {activeFaculty}" faculty.
+                    No news matching both `&quot;`{activeCategory}`&quot;
+                    category and `&quot;
+                    {activeFaculty}`&quot; faculty.
                   </>
                 ) : activeCategory !== "all" ? (
-                  <>No news in the "{activeCategory}" category.</>
+                  <>No news in the `&quot;{activeCategory}`&quot; category.</>
                 ) : activeFaculty !== "all" ? (
-                  <>No news for the "{activeFaculty}" faculty.</>
+                  <>No news for the `&quot;{activeFaculty}`&quot; faculty.</>
                 ) : (
                   "There are currently no news articles available."
                 )}
