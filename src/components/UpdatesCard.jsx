@@ -89,9 +89,8 @@ const UpdatesCard = ({
           <Image
             src={imageUrl}
             alt={title || "Card image"}
-            layout="fill"
-            objectFit="cover"
-            className="transition-opacity duration-300 group-hover:opacity-90"
+            fill
+            className="transition-opacity duration-300 group-hover:opacity-90 object-cover"
           />
         </div>
       )}

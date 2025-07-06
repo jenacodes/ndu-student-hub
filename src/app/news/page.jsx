@@ -4,6 +4,7 @@ import PagesHeaderSection from "@/components/PagesHeaderSection";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import FilterControls from "@/components/FilterControls";
+import Link from "next/link";
 
 export const revalidate = 60;
 
@@ -145,12 +146,12 @@ export default async function NewsPage({ searchParams }) {
                   "There are currently no news articles available."
                 )}
               </p>
-              <a
+              <Link
                 href="/news"
                 className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
               >
                 View All News
-              </a>
+              </Link>
             </div>
           )}
         </div>

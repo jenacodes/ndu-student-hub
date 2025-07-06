@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import { FaFilter } from "react-icons/fa";
+import Link from "next/link";
 
 export const revalidate = 60;
 
@@ -62,7 +63,7 @@ export default async function EventsPage({ searchParams }) {
 
             <div className="flex flex-wrap gap-2">
               {/* "All" Category Button */}
-              <a
+              <Link
                 href="/events"
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === "all"
@@ -71,11 +72,11 @@ export default async function EventsPage({ searchParams }) {
                 }`}
               >
                 All Events
-              </a>
+              </Link>
 
               {/* Category Buttons */}
               {uniqueCategories.map((category) => (
-                <a
+                <Link
                   key={category}
                   href={`/events?category=${encodeURIComponent(category)}`}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
@@ -85,7 +86,7 @@ export default async function EventsPage({ searchParams }) {
                   }`}
                 >
                   {category}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -158,12 +159,12 @@ export default async function EventsPage({ searchParams }) {
               <p className="text-gray-500 mb-4">
                 There are no events in the "{activeCategory}" category.
               </p>
-              <a
+              <Link
                 href="/events"
                 className="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition-colors"
               >
                 View All Events
-              </a>
+              </Link>
             </div>
           )}
         </div>

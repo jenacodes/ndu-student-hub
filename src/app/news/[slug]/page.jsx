@@ -11,6 +11,8 @@ import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const slugs = await client.fetch(
     `*[_type == "news"]{ "slug": slug.current }`
