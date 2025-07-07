@@ -123,12 +123,19 @@ export default {
       of: [{ type: "string" }],
       options: { layout: "tags" },
     },
+
+    {
+      name: "publishedAt",
+      title: "Published At",
+      type: "datetime",
+      description: "The date and time this news item was published",
+    },
   ],
   preview: {
     select: {
       title: "title",
       publicationDate: "publicationDate",
-      media: "mainImage", // Note: This should match the actual image field name — likely "image"
+      media: "mainImage",
     },
     prepare(selection) {
       const { title, publicationDate, media } = selection;

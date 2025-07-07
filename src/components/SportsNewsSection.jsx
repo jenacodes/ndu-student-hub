@@ -48,7 +48,7 @@ const SportsNewsSection = async () => {
   const sportsNewsData = await client.fetch(query);
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-100">
+    <section className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="container max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
