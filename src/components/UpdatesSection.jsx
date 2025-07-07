@@ -25,7 +25,7 @@ const UpdatesSection = async () => {
   //   },
   // ];
 
-  const query = groq`*[_type == "news"] | order(date desc)[0...2] {
+  const query = groq`*[_type == "news"] | order(date asc)[0...2] {
     _id,
     category,
     title,
