@@ -25,15 +25,14 @@ const UpdatesSection = async () => {
   //   },
   // ];
 
-  const query = groq`*[_type == "news" && defined(publishedAt)] | order(publishedAt desc)[0...2] {
-  _id,
-  category,
-  title,
-  snippet,
-  publishedAt,
-  "imageUrl": image.asset->url,
-  "link": "/news/" + slug.current
-}`;
+  const query = groq`*[_type == "news"] | order(date desc)[0...2] {
+    _id,
+    category,
+    title,
+    snippet,
+    "imageUrl": image.asset->url,
+    "link": "/news/" + slug.current
+  }`;
 
   const updatesData = await client.fetch(query);
   return (

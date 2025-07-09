@@ -1,4 +1,3 @@
-// schemas/newsArticle.js
 export default {
   name: "news",
   title: "News",
@@ -122,13 +121,6 @@ export default {
         "Add keywords related to this article. Example: 'engineering', 'graduation', 'technology'.",
       of: [{ type: "string" }],
       options: { layout: "tags" },
-    },
-
-    {
-      name: "publishedAt",
-      title: "Published At",
-      type: "datetime",
-      description: "The date and time this news item was published",
     },
   ],
   preview: {

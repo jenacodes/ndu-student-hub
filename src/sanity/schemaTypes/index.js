@@ -14,6 +14,7 @@ import sponsorPost from "./sponsorPost";
 import deans from "./deans";
 import resourceCard from "./resourceCard";
 import resourceSection from "./resourceSection";
+import submission from "./submission";
 
 export const schema = {
   types: [
@@ -33,5 +34,6 @@ export const schema = {
     deans,
     resourceCard,
     resourceSection,
+    submission,
   ],
 };
