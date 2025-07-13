@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
@@ -25,11 +26,16 @@ const Navbar = () => {
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors"
-        >
-          ndustudenthub
+        <Link href="/" className="flex items-center space-x-2">
+          {/* <Image
+            src="/logo.jpg"
+            alt="ndustudenthub logo"
+            width={32}
+            height={32}
+          /> */}
+          <span className="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+            ndustudenthub
+          </span>
         </Link>
 
         {/* Navigation Links - Desktop */}

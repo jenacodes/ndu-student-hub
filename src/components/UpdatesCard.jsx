@@ -85,7 +85,7 @@ const UpdatesCard = ({
   return (
     <div className="bg-white shadow-xl rounded-lg overflow-hidden flex flex-col group transform hover:scale-105 transition-transform duration-300 ease-in-out h-full">
       {imageUrl && (
-        <div className="w-full h-48 relative">
+        <div className="w-full h-80 relative">
           <Image
             src={imageUrl}
             alt={title || "Card image"}
