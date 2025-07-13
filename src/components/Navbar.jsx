@@ -95,30 +95,35 @@ const Navbar = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
             <Link
               href="/events"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-3 py-2 hover:text-blue-600 hover:bg-gray-50"
             >
               Events
             </Link>
             <Link
               href="/news"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-3 py-2 hover:text-blue-600 hover:bg-gray-50"
             >
               News
             </Link>
             <Link
               href="/sports"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-3 py-2 hover:text-blue-600 hover:bg-gray-50"
             >
               Sports
             </Link>
             <Link
               href="/resources"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-3 py-2 hover:text-blue-600 hover:bg-gray-50"
             >
               Resources
             </Link>
             <Link
               href="/spotlights"
+              onClick={() => setIsMobileMenuOpen(false)}
               className="block px-3 py-2 hover:text-blue-600 hover:bg-gray-50"
             >
               Weekly Spotlights

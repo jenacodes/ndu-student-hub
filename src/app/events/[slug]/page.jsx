@@ -107,9 +107,9 @@ const EventDetailPage = async ({ params }) => {
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex items-center justify-center px-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white text-center max-w-4xl drop-shadow-xl leading-snug ">
+            {/* <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white text-center max-w-4xl drop-shadow-xl leading-snug ">
               {event.title}
-            </h1>
+            </h1> */}
           </div>
         </div>
       )}
