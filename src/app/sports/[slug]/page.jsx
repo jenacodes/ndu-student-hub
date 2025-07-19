@@ -124,12 +124,18 @@ const SportsItemDetailPage = async ({ params }) => {
 
             {/* Meta Information (Date & Specific Details) */}
             <div className="flex flex-wrap items-center text-sm text-gray-500 mb-6 space-x-4">
-              {item.date && (
-                <div className="flex items-center">
-                  <FaRegCalendarAlt />
-                  <span>{item.date}</span>
-                </div>
-              )}
+              <div className="flex items-center">
+                <FaRegCalendarAlt />
+                <span>
+                  <strong>Date: </strong>
+                  {new Date(item.date).toLocaleDateString("en-US", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
               {item.details && (
                 <div className="flex items-center">
                   <HiOutlineUserGroup />

@@ -115,13 +115,13 @@ export default async function SportsPage({ searchParams }) {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <h2 className="text-xl font-bold text-cyan-900 flex items-center">
               <FaFilter className="mr-2" />
-              Filter Events
+              Filter Categories
             </h2>
 
             <div className="flex flex-wrap gap-2">
               {/* "All" Category Button */}
               <Link
-                href="/events"
+                href="/sports"
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === "all"
                     ? "bg-cyan-600 text-white shadow-md"
