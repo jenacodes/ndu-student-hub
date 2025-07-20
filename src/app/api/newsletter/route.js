@@ -1,5 +1,9 @@
 import { createClient } from "next-sanity";
 import { NextResponse } from "next/server";
+import Resend from "resend";
+
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Initialize Sanity client
 const client = createClient({
@@ -44,6 +48,22 @@ export async function POST(req) {
       _type: "newsletter",
       email,
       subscribedAt: new Date().toISOString(),
+    });
+
+    // Send confirmation email via Resend
+    await resend.emails.send({
+      from: "NDU Student Hub <onboarding@resend.dev>",
+      to: email,
+      subject: "Welcome to NDU Student Hub Newsletter 🎉",
+      html: `
+        <div style="font-family: sans-serif; line-height: 1.5;">
+          <h2>You're subscribed! 🎉</h2>
+          <p>Thanks for signing up for the <strong>NDU Student Hub</strong> newsletter.</p>
+          <p>You’ll now get exclusive updates, events, and helpful info from campus.</p>
+          <br/>
+          <small>If this wasn’t you, you can safely ignore this email.</small>
+        </div>
+      `,
     });
 
     return NextResponse.json(
