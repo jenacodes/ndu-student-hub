@@ -2,9 +2,6 @@ import { createClient } from "next-sanity";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Initialize Sanity client
 const client = createClient({
   projectId: "v32nzca8",
@@ -17,6 +14,8 @@ const client = createClient({
 // POST /api/newsletter
 // This route handles newsletter subscriptions
 export async function POST(req) {
+  // Initialize Resend
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();
     let { email } = body;
