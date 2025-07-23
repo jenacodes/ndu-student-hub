@@ -5,8 +5,47 @@ import { CiMail } from "react-icons/ci";
 import { IoCall } from "react-icons/io5";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return setMessage("Please enter your email");
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (res.ok) {
+        setEmail("");
+        setMessage("Thank you for subscribing!");
+      } else {
+        const data = await res.json();
+        setMessage(data.message || "Something went wrong.");
+      }
+    } catch (err) {
+      setMessage("Error subscribing.");
+    }
+  };
+
+  // Clear message after 5 seconds
+  useEffect(() => {
+    if (message) {
+      const timeout = setTimeout(() => {
+        setMessage("");
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, [message]);
+
+  // Get current year for copyright
   const currentYear = new Date().getFullYear();
 
   const linkGroups = [
@@ -105,7 +144,20 @@ const Footer = () => {
               <ul className="space-y-2 text-sm">
                 {group.links.map((link, j) => (
                   <li key={j}>
-                    <Link href={link.href} className="hover:text-blue-500">
+                    <Link
+                      href={link.href}
+                      className="
+                                     inline-flex items-center
+                                     text-blue-600            
+                                      underline               
+                                     hover:text-blue-800      
+                                      hover:underline-offset-4 
+                                      focus:outline-none
+                                      focus:ring-2
+                                       focus:ring-blue-400
+                                      cursor-pointer
+                                      transition-colors"
+                    >
                       {link.name}
                     </Link>
                   </li>
@@ -120,20 +172,62 @@ const Footer = () => {
             <p className="text-sm mb-3">
               Stay updated with the latest from ndustudenthub.
             </p>
-            <form className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                required
-                className="w-full px-4 py-2 text-sm border rounded-md focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your email"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+            <div className="flex flex-col">
+              <form
+                className="flex flex-col sm:flex-row gap-2"
+                onSubmit={handleSubmit}
               >
-                Subscribe
-              </button>
-            </form>
+                <input
+                  type="email"
+                  required
+                  className="w-full px-4 py-2 text-sm border rounded-md focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                />
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
+              {message && (
+                <div
+                  className={`mt-4 lg:mt-4 sm:ml-4 sm:mt-0 px-4 py-3 rounded-lg shadow-md flex items-center space-x-3 transition-all duration-300 ${
+                    message.includes("Thank you")
+                      ? "bg-green-100 text-green-800 border border-green-300"
+                      : "bg-red-100 text-red-800 border border-red-300"
+                  }`}
+                >
+                  <svg
+                    className={`w-5 h-5 flex-shrink-0 ${
+                      message.includes("Thank you")
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    {message.includes("Thank you") ? (
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    ) : (
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 9V5a1 1 0 112 0v4a1 1 0 01-2 0zm1 4a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+                        clipRule="evenodd"
+                      />
+                    )}
+                  </svg>
+                  <span className="text-sm font-medium">{message}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

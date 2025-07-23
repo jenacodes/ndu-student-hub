@@ -31,41 +31,6 @@ const TodayOnCampusSection = async () => {
     day: "numeric",
   });
 
-  // const todayItems = [
-  //   {
-  //     id: 1,
-  //     type: "Event",
-  //     title: "Guest Lecture: AI in Healthcare",
-  //     time: "2:00 PM - 3:30 PM",
-  //     location: "Lecture Theatre 4",
-  //     link: "/events/guest-lecture-ai-healthcare",
-  //   },
-  //   {
-  //     id: 2,
-  //     type: "Deadline",
-  //     title: "Final day for Course Add/Drop",
-  //     time: "Ends 11:59 PM",
-  //     location: "Online via Student Portal",
-  //     link: "/resources/student-portal", // Link to the portal
-  //   },
-  //   {
-  //     id: 3,
-  //     type: "Announcement",
-  //     title: "Maintenance on E-Learning Portal",
-  //     time: "Tonight from 10 PM",
-  //     location: "Brief downtime expected",
-  //     link: "/news/e-learning-maintenance",
-  //   },
-  //   {
-  //     id: 4,
-  //     type: "Event",
-  //     title: "Debate Society Practice Session",
-  //     time: "4:00 PM - 6:00 PM",
-  //     location: "Room 201, Student Centre",
-  //     link: "/clubs/debate-society",
-  //   },
-  // ];
-
   const getIconForType = (type) => {
     switch (type) {
       case "Event":
@@ -150,7 +115,7 @@ const TodayOnCampusSection = async () => {
           <div className="max-w-3xl mx-auto space-y-4">
             {todayItems.map((item) => (
               <a
-                href={item.link}
+                href={item.slug ? `/events/${item.slug}` : "#"}
                 key={item._id}
                 className="flex items-center bg-white p-4 rounded-lg shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group"
               >
