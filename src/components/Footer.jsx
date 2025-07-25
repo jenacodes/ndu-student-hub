@@ -152,9 +152,6 @@ const Footer = () => {
                                       underline               
                                      hover:text-blue-800      
                                       hover:underline-offset-4 
-                                      focus:outline-none
-                                      focus:ring-2
-                                       focus:ring-blue-400
                                       cursor-pointer
                                       transition-colors"
                     >
