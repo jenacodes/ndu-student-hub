@@ -3,10 +3,11 @@ import Link from "next/link";
 import { FaXTwitter, FaLinkedin } from "react-icons/fa6";
 import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
-
 import PagesHeaderSection from "@/components/PagesHeaderSection";
+
+export const revalidate = 60;
 const AboutUsPage = async () => {
-  const query = groq`*[_type == "teamMember"] | order(name asc) {
+  const query = groq`*[_type == "teamMember"] | order(publishedAt desc) {
     _id,
     name,
     role,
