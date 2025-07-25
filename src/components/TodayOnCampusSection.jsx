@@ -1,7 +1,8 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 60;
+
 import { groq } from "next-sanity";
 import { client } from "@/sanity/client";
-
-export const revalidate = 60;
 
 const TodayOnCampusSection = async () => {
   const today_start = new Date();
@@ -12,7 +13,7 @@ const TodayOnCampusSection = async () => {
 
   const query = groq`*[_type in ["event", "announcement"] && date >= $today_start && date <= $today_end] {
   _id,
-  _type, // This is crucial to know what kind of item it is
+  _type, // crucial to know what kind of item it is
   title,
   "slug": slug.current,
   "time": time, // For events
