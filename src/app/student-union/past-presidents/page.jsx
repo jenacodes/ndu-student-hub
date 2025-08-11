@@ -66,7 +66,7 @@ export default function PastPresidentsPage() {
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
             Honoring the legacy of student leadership and the individuals who
-            have served the student body of [Your School&apos;s Name].
+            have served the student body of Niger Delta University.
           </p>
         </div>
       </section>
