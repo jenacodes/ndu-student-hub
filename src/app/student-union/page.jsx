@@ -220,7 +220,8 @@ const StudentUnionPage = async () => {
                 Contact Us
               </h3>
               <p className="text-gray-600 mb-1">
-                <strong>SUG Office:</strong> Student Centre, Room 101
+                <strong>SUG Office:</strong> SUG secretariat Opposite Lecture
+                Theatre
               </p>
               <p className="text-gray-600 mb-1">
                 <strong>Office Hours:</strong> Monday - Friday, 10 AM - 4 PM
@@ -249,6 +250,21 @@ const StudentUnionPage = async () => {
                 className="inline-block px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors"
               >
                 View SUG News
+              </Link>
+            </div>
+            <div className="bg-white p-6 rounded-lg shadow-md text-left">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                A Legacy of Leadership
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Explore the history of student governance and learn about the
+                leaders who have served our university.
+              </p>
+              <Link
+                href="/student-union/past-presidents"
+                className="inline-block px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors"
+              >
+                View Past Presidents
               </Link>
             </div>
           </div>
