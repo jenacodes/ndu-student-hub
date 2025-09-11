@@ -11,45 +11,48 @@ export default function FacultiesPage() {
   const [faculties, setFaculties] = useState([]);
   const [sortOption, setSortOption] = useState("alphabetical");
   const [deans, setDeans] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchFaculties = async () => {
-      const data = await client.fetch(`
-        *[_type == "faculty"]{
-          _id,
-          name,
-          "id": id.current,
-          description,
-          "imageUrl": imageUrl.asset->url,
-          departments[]->{
-            _id,
-            name,
-            "id": slug.current
-          }
-        }
-      `);
+    const fetchData = async () => {
+      try {
+        // Run both queries in parallel
+        const [facultiesData, deansData] = await Promise.all([
+          client.fetch(`
+            *[_type == "faculty"]{
+              _id,
+              name,
+              "id": id.current,
+              description,
+              "imageUrl": imageUrl.asset->url,
+              departments[]->{
+                _id,
+                name,
+                "id": slug.current
+              }
+            }
+          `),
+          client.fetch(`
+            *[_type == "dean"]{
+              _id,
+              name,
+              position,
+              faculty,
+              "image": image.asset->url
+            }
+          `),
+        ]);
 
-      setFaculties(data);
-    };
-
-    fetchFaculties();
-  }, []);
-
-  useEffect(() => {
-    const fetchDeans = async () => {
-      const data = await client.fetch(`
-      *[_type == "dean"]{
-        _id,
-        name,
-        position,
-        faculty,
-        "image": image.asset->url
+        setFaculties(facultiesData);
+        setDeans(deansData);
+      } catch (error) {
+        console.error("Error fetching faculties or deans:", error);
+      } finally {
+        setLoading(false); // stop loading once both are done
       }
-    `);
-      setDeans(data);
     };
 
-    fetchDeans();
+    fetchData();
   }, []);
 
   const sortedFaculties = [...faculties].sort((a, b) => {
@@ -58,12 +61,23 @@ export default function FacultiesPage() {
     } else if (sortOption === "reverse") {
       return b.name.localeCompare(a.name);
     } else {
-      return 0; // default order in sanity
+      return 0; // default order from Sanity
     }
   });
 
+  // Show spinner while fetching
+  if (loading) {
+    return (
+      <div className="flex flex-col justify-center items-center min-h-screen space-y-4">
+        <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+        <p className="text-gray-600 font-medium">Loading faculties...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gray-100 min-h-screen">
+      {/* Hero Section */}
       <section className="bg-blue-800 text-white py-16 sm:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight">
@@ -90,6 +104,7 @@ export default function FacultiesPage() {
         </div>
       </section>
 
+      {/* Faculties Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto space-y-12">
           {sortedFaculties.map((faculty) => (

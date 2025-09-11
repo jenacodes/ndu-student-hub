@@ -36,12 +36,12 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 left-0 w-full z-50 transition-all duration-300 bg-white">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-15">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className={`text-2xl font-bold ${
+              className={`text-xl font-bold ${
                 isScrolled ? "text-gray-900" : "text-gray-800"
               }`}
             >

@@ -25,7 +25,7 @@ const UpdatesSection = async () => {
   //   },
   // ];
 
-  const query = groq`*[_type == "news"] | order(date desc)[0...2] {
+  const query = groq`*[_type == "news"] | order(publicationDate desc)[0...2] {
     _id,
     category,
     title,
@@ -65,7 +65,7 @@ const UpdatesSection = async () => {
           </div>
         ) : (
           <p className="text-center text-gray-500">
-            No updates available at the moment.
+            🚧 No updates available right now. Check back soon!
           </p>
         )}
       </div>
