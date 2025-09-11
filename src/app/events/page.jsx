@@ -46,7 +46,7 @@ export default async function EventsPage({ searchParams }) {
   return (
     <div className="min-h-screen">
       <PagesHeaderSection
-        bgColor="bg-blue-600"
+        bgColor="bg-orange-600"
         title="School Events"
         subtitle="Discover all upcoming academic, cultural, sports, and community events "
         paragrpahColor="text-blue-100"
@@ -67,8 +67,8 @@ export default async function EventsPage({ searchParams }) {
                 href="/events"
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === "all"
-                    ? "bg-blue-600 text-white shadow-md"
-                    : "bg-white text-blue-700 border border-blue-300 hover:bg-blue-100"
+                    ? "bg-orange-600 text-white shadow-md"
+                    : "bg-white text-orange-700 border border-orange-300 hover:bg-orange-100"
                 }`}
               >
                 All Events
@@ -81,8 +81,8 @@ export default async function EventsPage({ searchParams }) {
                   href={`/events?category=${encodeURIComponent(category)}`}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     activeCategory === category
-                      ? "bg-blue-600 text-white shadow-md"
-                      : "bg-white text-blue-700 border border-blue-300 hover:bg-blue-100"
+                      ? "bg-orange-600 text-white shadow-md"
+                      : "bg-white text-orange-700 border border-orange-300 hover:bg-orange-100"
                   }`}
                 >
                   {category}
