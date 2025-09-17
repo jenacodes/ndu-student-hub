@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
@@ -18,11 +19,20 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   }, [activePath]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navLinks = [
-    { name: "Home", href: "/" },
+    // { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
     { name: "News", href: "/news" },
     { name: "Sports", href: "/sports" },
+    { name: "Contribute", href: "/contribute" },
     {
       name: "Academics",
       href: "#",
@@ -34,7 +44,9 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 left-0 w-full z-50 transition-all duration-300 bg-white">
+    <header
+      className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 bg-white  ${isScrolled ? "bg-white/90 backdrop-blur-sm shadow-md" : "bg-transparent"}`}
+    >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-15">
           {/* Logo */}
@@ -42,11 +54,19 @@ const Navbar = () => {
             <Link
               href="/"
               className={`text-xl font-bold ${
-                isScrolled ? "text-gray-900" : "text-gray-800"
+                isScrolled ? "text-gray-900" : "text-blue-500"
               }`}
             >
               ndustudenthub
             </Link>
+            {/* <Image
+              src="/images/logo.jpg"
+              alt="ndustudenthub logo"
+              width={144} // same as w-36
+              height={48} // same as h-12
+              priority // ensures it loads fast
+              className="h-12 w-auto object-contain"
+            /> */}
           </div>
 
           {/* Desktop Menu */}
@@ -110,7 +130,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             {/* Search */}
             <div className="relative">
-              <button
+              {/* <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className={`transition-colors ${
                   isScrolled
@@ -131,7 +151,7 @@ const Navbar = () => {
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   ></path>
                 </svg>
-              </button>
+              </button> */}
               {isSearchOpen && (
                 <div className="absolute top-full right-0 mt-3">
                   <input

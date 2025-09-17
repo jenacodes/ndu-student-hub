@@ -46,17 +46,17 @@ export default async function EventsPage({ searchParams }) {
   return (
     <div className="min-h-screen">
       <PagesHeaderSection
-        bgColor="bg-orange-600"
+        bgColor="bg-yellow-600"
         title="School Events"
         subtitle="Discover all upcoming academic, cultural, sports, and community events "
         paragrpahColor="text-blue-100"
       />
 
       {/* Filter Section */}
-      <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 bg-blue-50">
+      <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 bg-yellow-50">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-xl font-bold text-blue-900 flex items-center">
+            <h2 className="text-xl font-bold text-yellow-600 flex items-center">
               <FaFilter className="mr-2" />
               Filter Events
             </h2>
@@ -67,8 +67,8 @@ export default async function EventsPage({ searchParams }) {
                 href="/events"
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === "all"
-                    ? "bg-orange-600 text-white shadow-md"
-                    : "bg-white text-orange-700 border border-orange-300 hover:bg-orange-100"
+                    ? "bg-yellow-600 text-white shadow-md"
+                    : "bg-white text-yellow-700 border border-yellow-300 hover:bg-yellow-100"
                 }`}
               >
                 All Events
@@ -81,8 +81,8 @@ export default async function EventsPage({ searchParams }) {
                   href={`/events?category=${encodeURIComponent(category)}`}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                     activeCategory === category
-                      ? "bg-orange-600 text-white shadow-md"
-                      : "bg-white text-orange-700 border border-orange-300 hover:bg-orange-100"
+                      ? "bg-yellow-900 text-white shadow-md"
+                      : "bg-white text-yellow-700 border border-yellow-300 hover:bg-yellow-100"
                   }`}
                 >
                   {category}

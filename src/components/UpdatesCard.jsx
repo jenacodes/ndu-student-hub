@@ -15,9 +15,9 @@ const getColorClasses = (pathname) => {
       };
     case "/events":
       return {
-        text: "text-orange-600",
-        hover: "group-hover:text-orange-600",
-        linkHover: "hover:text-orange-800",
+        text: "text-yellow-600",
+        hover: "group-hover:text-yellow-600",
+        linkHover: "hover:text-yellow-800",
       };
     case "/sports":
       return {
