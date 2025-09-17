@@ -4,8 +4,8 @@ import Image from "next/image";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
-import { FaFilter } from "react-icons/fa";
 import Link from "next/link";
+import FilterControls from "@/components/FilterControls";
 
 export const revalidate = 60;
 
@@ -26,6 +26,14 @@ export default async function EventsPage({ searchParams }) {
   const allEventsData = await client.fetch(query);
   if (!allEventsData) return notFound();
 
+  const params = await searchParams;
+
+  // Create safe searchParams object
+  const safeSearchParams = {};
+  for (const [key, value] of Object.entries(params || {})) {
+    safeSearchParams[key] = String(value);
+  }
+
   // Extract unique categories from events
   // i'm creating a new array from the set(used to remove duplicates) from the extracted categories in the database
   const uniqueCategories = [
@@ -43,6 +51,27 @@ export default async function EventsPage({ searchParams }) {
       ? allEventsData
       : allEventsData.filter((event) => event.category === activeCategory);
 
+  // Helper function to generate query string
+  const createQueryString = (newParams) => {
+    const params = new URLSearchParams();
+
+    // Preserve existing params except the one being changed
+    for (const [key, value] of Object.entries(safeSearchParams)) {
+      if (!Object.keys(newParams).includes(key)) {
+        params.append(key, value);
+      }
+    }
+
+    // Add new params
+    for (const [key, value] of Object.entries(newParams)) {
+      if (value !== "all") {
+        params.append(key, value);
+      }
+    }
+
+    return params.toString();
+  };
+
   return (
     <div className="min-h-screen">
       <PagesHeaderSection
@@ -55,54 +84,15 @@ export default async function EventsPage({ searchParams }) {
       {/* Filter Section */}
       <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 bg-yellow-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-xl font-bold text-yellow-600 flex items-center">
-              <FaFilter className="mr-2" />
-              Filter Events
-            </h2>
-
-            <div className="flex flex-wrap gap-2">
-              {/* "All" Category Button */}
-              <Link
-                href="/events"
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === "all"
-                    ? "bg-yellow-600 text-white shadow-md"
-                    : "bg-white text-yellow-700 border border-yellow-300 hover:bg-yellow-100"
-                }`}
-              >
-                All Events
-              </Link>
-
-              {/* Category Buttons */}
-              {uniqueCategories.map((category) => (
-                <Link
-                  key={category}
-                  href={`/events?category=${encodeURIComponent(category)}`}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    activeCategory === category
-                      ? "bg-yellow-900 text-white shadow-md"
-                      : "bg-white text-yellow-700 border border-yellow-300 hover:bg-yellow-100"
-                  }`}
-                >
-                  {category}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Active Filter Indicator */}
-          <div className="mt-4">
-            {activeCategory !== "all" && (
-              <p className="text-blue-700 font-medium">
-                Showing:{" "}
-                <span className="bg-blue-100 px-2 py-1 rounded-lg">
-                  {activeCategory}
-                </span>{" "}
-                events
-              </p>
-            )}
-          </div>
+          <FilterControls
+            uniqueCategories={uniqueCategories}
+            uniqueFaculties={[]}
+            activeFaculty={"" || "all"}
+            activeCategory={activeCategory}
+            filterTitle={"Filter Events"}
+            titleColor="text-yellow-900"
+            basePath="/events"
+          />
         </div>
       </section>
 

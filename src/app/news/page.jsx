@@ -91,6 +91,9 @@ export default async function NewsPage({ searchParams }) {
             uniqueFaculties={uniqueFaculties}
             activeCategory={activeCategory}
             activeFaculty={activeFaculty}
+            filterTitle={"Filter News"}
+            titleColor="text-green-900"
+            basePath="/news"
           />
         </div>
       </section>

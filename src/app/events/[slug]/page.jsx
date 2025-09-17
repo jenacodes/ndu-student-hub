@@ -24,56 +24,6 @@ function urlFor(source) {
 }
 
 const EventDetailPage = async ({ params }) => {
-  // const allEventsData = [
-  //   {
-  //     id: "tech-symposium-2025", // This would match the [eventId] from the URL Very important cos .find returns the first value. it does not modift the array
-  //     category: "Academic",
-  //     title: "Annual Tech Symposium 2025",
-  //     fullDescription:
-  //       "Dive deep into the world of technology at our Annual Tech Symposium! This year's theme is 'Innovate, Integrate, Inspire.' The day will be packed with keynote speeches from industry pioneers, interactive workshops on AI, Cybersecurity, and Web3, a student project showcase, and ample networking opportunities. Whether you're a tech enthusiast or just curious about the future, there's something for everyone. Lunch and refreshments will be provided. Don't forget to register early as spots are limited!",
-  //     imageUrl: "/images/tech-symposium-2025.jpg",
-  //     date: "October 15, 2025",
-  //     time: "9:00 AM - 5:00 PM",
-  //     venue: "Main Auditorium & Computer Science Building Complex",
-  //     organizer: "Faculty of Engineering & Tech Innovators Club",
-  //     registrationLink: "#", // Placeholder for actual registration link
-  //   },
-  //   {
-  //     id: "spring-fest-2025",
-  //     category: "Cultural Fest",
-  //     title: "Spring Fest '25: A Celebration of Talents",
-  //     fullDescription:
-  //       "Join us for Spring Fest '25, our university's grandest cultural extravaganza! Experience a vibrant tapestry of music, dance, drama, fine arts, and literary events. Featuring performances by renowned artists and our very own talented students. Enjoy delicious food from various stalls, exciting games, and a festive atmosphere. A perfect way to celebrate creativity and campus spirit.",
-  //     imageUrl: "/images/event-cultural-fest.jpg",
-  //     date: "November 5-7, 2025",
-  //     time: "11:00 AM onwards daily",
-  //     venue:
-  //       "University Grounds, Open Air Theatre, and Student Activity Centre",
-  //     organizer: "Student Cultural Committee & Various Clubs",
-  //     registrationLink: null, // Or link to ticket sales
-  //   },
-  //  {
-  //   id: "debate-rebuttal-workshop-2025", // The event ID from your URL
-  //   category: "Workshop",
-  //   title: "Workshop: Mastering Rebuttals in Debates",
-  //   fullDescription: "Elevate your debating skills by mastering the art of effective rebuttals. This interactive workshop, hosted by the Debate Society, will cover key strategies, common pitfalls, and provide hands-on practice. Learn how to deconstruct arguments, identify logical fallacies, and deliver persuasive counter-arguments. Open to all students interested in improving their debating and public speaking abilities. No prior experience required, but an interest in debate is encouraged! Refreshments will be served.",
-  //   imageUrl: "/images/event-debate-workshop.jpg", // You'll need to add this image
-  //   date: "November 5, 2025",
-  //   time: "2:00 PM - 4:00 PM",
-  //   venue: "Seminar Hall B, Student Activities Building",
-  //   organizer: "Debate Society",
-  //   registrationLink: "#reg-debate-workshop" // Placeholder registration link
-  // }
-  // ];
-
-  // // Helper function to find event data (simulates data fetching)
-  // const getEventData = (eventId) => {
-  //   return allEventsData.find((event) => event.id === eventId);
-  // };
-
-  // //   const eventId = params.eventId || "tech-symposium-2025"; // Fallback for this example if params is not available
-  // const event = getEventData(params.eventId);
-
   const { slug } = await params;
 
   const query = groq`*[_type == "event" && slug.current == $slug][0]`;
