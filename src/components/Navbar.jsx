@@ -47,7 +47,7 @@ const Navbar = () => {
     <header
       className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 bg-white  ${isScrolled ? "bg-white/90 backdrop-blur-sm shadow-md" : "bg-transparent"}`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="container mx-auto lg:px-8">
         <div className="flex items-center justify-between h-15">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -152,7 +152,7 @@ const Navbar = () => {
                   ></path>
                 </svg>
               </button> */}
-              {isSearchOpen && (
+              {/* {isSearchOpen && (
                 <div className="absolute top-full right-0 mt-3">
                   <input
                     type="text"
@@ -160,7 +160,7 @@ const Navbar = () => {
                     className="w-64 p-2 border border-gray-300 rounded-lg shadow-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Get Started Button */}
@@ -199,7 +199,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-white">
+          <div className="md:hidden px-4 sm:px-6 py-4 bg-white">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) =>
                 link.dropdown ? (
