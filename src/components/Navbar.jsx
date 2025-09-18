@@ -47,7 +47,7 @@ const Navbar = () => {
     <header
       className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 bg-white  ${isScrolled ? "bg-white/90 backdrop-blur-sm shadow-md" : "bg-transparent"}`}
     >
-      <nav className="container mx-auto lg:px-8">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-15">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -59,14 +59,16 @@ const Navbar = () => {
             >
               ndustudenthub
             </Link>
-            {/* <Image
-              src="/images/logo.jpg"
-              alt="ndustudenthub logo"
-              width={144} // same as w-36
-              height={48} // same as h-12
-              priority // ensures it loads fast
-              className="h-12 w-auto object-contain"
-            /> */}
+            {/* <Link href="/">
+              <Image
+                src="/images/logo.jpg"
+                alt="ndustudenthub logo"
+                width={200} // same as w-36
+                height={55} // same as h-12
+                priority // ensures it loads fast
+                className="h-12 w-auto object-contain"
+              />
+            </Link> */}
           </div>
 
           {/* Desktop Menu */}
