@@ -32,6 +32,7 @@ export default {
           { title: "Student Spotlight", value: "student" },
           { title: "Club Spotlight", value: "club" },
           { title: "Faculty Spotlight", value: "faculty" },
+          { title: "Events Spotlight", value: "events" },
         ],
       },
       validation: (Rule) => Rule.required(),
