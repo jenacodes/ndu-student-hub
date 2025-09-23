@@ -13,9 +13,30 @@ const poppins = Poppins({
 export const metadata = {
   title: "ndustudenthub - Your School Info Hub",
   description:
-    "Your go-to source for all the latest news, events, and happenings at your school.",
-  keywords:
-    "school news, Faculties, Resources, Departments, Hod, Engineering student events, university updates, campus life, student hub, school announcements, academic news, extracurricular activities, ndu, Niger Delta University, student portal, student resources, school community, student life",
+    "Stay updated with news, events, sports, and opportunities at Niger Delta University.",
+  openGraph: {
+    title: "ndustudenthub - Your School Info Hub",
+    description:
+      "Stay updated with news, events, sports, and opportunities at Niger Delta University.",
+    url: "https://ndustudenthub.com",
+    siteName: "ndustudenthub",
+    images: [
+      {
+        url: "https://ndustudenthub.com/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "ndustudenthub preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ndustudenthub - Your School Info Hub",
+    description: "Stay updated with NDU news, events, sports, and more.",
+    images: ["https://ndustudenthub.com/preview.png"],
+  },
 };
 
 export default function RootLayout({ children }) {

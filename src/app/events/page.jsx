@@ -9,6 +9,29 @@ import FilterControls from "@/components/FilterControls";
 
 export const revalidate = 60;
 
+export const metadata = {
+  title: "NDU Events - Campus Activities & Programs | ndustudenthub",
+  description:
+    "Stay updated with all upcoming events at Niger Delta University. Explore academic, cultural, sports, and community activities happening on campus.",
+  openGraph: {
+    title: "NDU Events - Campus Activities & Programs",
+    description:
+      "Discover all upcoming events at Niger Delta University. From sports to academics, find out what's happening on campus.",
+    url: "https://ndustudenthub.com/events",
+    siteName: "ndustudenthub",
+    images: [
+      {
+        url: "/images/ndu-events-preview.png", // Replace with your real image
+        width: 1200,
+        height: 630,
+        alt: "NDU Events Preview",
+      },
+    ],
+    locale: "en_NG",
+    type: "website",
+  },
+};
+
 export default async function EventsPage({ searchParams }) {
   // Query all events from Sanity
   const query = groq`*[_type == "event"] | order(date asc) {
