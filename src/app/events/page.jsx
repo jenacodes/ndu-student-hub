@@ -6,6 +6,7 @@ import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import FilterControls from "@/components/FilterControls";
+import EventsList from "@/components/EventsList";
 
 export const revalidate = 60;
 
@@ -122,65 +123,7 @@ export default async function EventsPage({ searchParams }) {
       {/* Events Grid Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
-          {filteredEvents.length > 0 ? (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-                {filteredEvents.map((event) => {
-                  const formattedDate = new Date(event.date).toLocaleDateString(
-                    "en-US",
-                    {
-                      weekday: "long",
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    }
-                  );
-
-                  return (
-                    <UpdatesCard
-                      key={event._id}
-                      category={event.category}
-                      title={event.title}
-                      snippet={event.shortDescription}
-                      imageUrl={event.imageUrl}
-                      link={`/events/${event.slug}`}
-                      date={formattedDate}
-                      time={event.time}
-                      venue={event.venue}
-                    />
-                  );
-                })}
-              </div>
-
-              {/* Results count */}
-              <div className="mt-8 text-center text-gray-600">
-                Showing {filteredEvents.length} of {allEventsData.length} events
-              </div>
-            </>
-          ) : (
-            <div className="text-center py-12 bg-white rounded-xl shadow-sm">
-              <Image
-                src="/images/no-events-available.png"
-                alt="No events"
-                width={300}
-                height={300}
-                className="mx-auto mb-4"
-              />
-              <h2 className="text-2xl font-semibold text-gray-700 mb-2">
-                No Events Found
-              </h2>
-              <p className="text-gray-500 mb-4">
-                There are no events in the `&quot;{activeCategory}`&quot;
-                category.
-              </p>
-              <Link
-                href="/events"
-                className="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition-colors"
-              >
-                View All Events
-              </Link>
-            </div>
-          )}
+          <EventsList activeCategory={activeCategory} />
         </div>
       </section>
     </div>

@@ -58,7 +58,7 @@ const EventsSection = async () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {eventsData.map((event) => (
               <UpdatesCard
-                key={event.category}
+                key={event._id}
                 category={event.category}
                 title={event.title}
                 snippet={event.shortDescription}

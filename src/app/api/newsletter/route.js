@@ -34,16 +34,19 @@ export async function POST(req) {
     const results = await Promise.allSettled(
       subscribers.map((sub) =>
         resend.emails.send({
-          from: "newsletter@ndustudenthub.com", // ✅ must be verified domain
-          to: sub.email,
+          from: "Jena <jenakumoemmanuel@ndustudenthub.com>", // ✅ must be verified domain
+          to: "jenakumoemmanuel@gmail.com", // for testing purposes
+          // to: sub.email, // for production
           subject: subject || "This Week at NDU Student Hub ✨",
           html:
             html ||
             `
-            <div style="font-family: sans-serif; line-height: 1.5;">
-              <h2>Hello from NDU Student Hub 🎉</h2>
-              <p>Here’s the latest news, events, and updates from campus.</p>
-              <p><a href="https://ndustudenthub.com">Check them out here</a></p>
+            <div style="font-family: sans-serif; ">
+              <h2>Catch up on this week on ndustudenthub</h2>
+              <p>Here’s the latest news, events, and updates from Niger Delta University</p>
+              <p>Don’t miss out on our upcoming events and activities!</p>
+              <p>Click the link below to stay updated:</p>
+              <p><a href="https://ndustudenthub.com">Stay Connected</a></p>
             </div>
           `,
         })

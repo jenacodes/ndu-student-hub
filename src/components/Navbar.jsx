@@ -61,7 +61,7 @@ const Navbar = () => {
             </Link>
             {/* <Link href="/">
               <Image
-                src="/images/logo.jpg"
+                src="/images/logo copy.jpg"
                 alt="ndustudenthub logo"
                 width={200} // same as w-36
                 height={55} // same as h-12

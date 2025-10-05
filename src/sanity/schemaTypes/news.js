@@ -46,6 +46,7 @@ export default {
           { title: "Academics", value: "Academics" },
           { title: "Student Achievements", value: "Student-achievements" },
           { title: "SUG News", value: "Sug-news" },
+          { title: "Student Life", value: "Student-life" },
         ],
       },
     },

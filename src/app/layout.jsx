@@ -11,21 +11,25 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "ndustudenthub - Your School Info Hub",
+  metadataBase: new URL("https://ndustudenthub.com"),
+  title: {
+    default: "NDU Student Hub",
+    template: "%s | NDU Student Hub",
+  },
   description:
-    "Stay updated with news, events, sports, and opportunities at Niger Delta University.",
+    "Stay informed with events, news, and campus life updates from Niger Delta University.",
   openGraph: {
-    title: "ndustudenthub - Your School Info Hub",
+    title: "NDU Student Hub",
     description:
-      "Stay updated with news, events, sports, and opportunities at Niger Delta University.",
+      "Explore the latest happenings, stories, and opportunities at Niger Delta University.",
     url: "https://ndustudenthub.com",
-    siteName: "ndustudenthub",
+    siteName: "NDU Student Hub",
     images: [
       {
-        url: "https://ndustudenthub.com/preview.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ndustudenthub preview",
+        alt: "NDU Student Hub Preview",
       },
     ],
     locale: "en_US",
@@ -33,9 +37,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ndustudenthub - Your School Info Hub",
-    description: "Stay updated with NDU news, events, sports, and more.",
-    images: ["https://ndustudenthub.com/preview.png"],
+    title: "NDU Student Hub",
+    description: "Your go-to source for NDU news, events, and updates.",
+    images: ["/images/logo.jpg"],
   },
 };
 
