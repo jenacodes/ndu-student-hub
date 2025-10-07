@@ -16,10 +16,11 @@ export default function NewsletterForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
+      const data = await res.json();
 
       if (res.ok) {
         setEmail("");
-        setMessage("Thank you for subscribing!");
+        setMessage(data.message || "Thank you for subscribing!");
       } else {
         const data = await res.json();
         setMessage(data.message || "Something went wrong.");
