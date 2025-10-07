@@ -17,7 +17,7 @@ const Footer = () => {
     if (!email) return setMessage("Please enter your email");
 
     try {
-      const res = await fetch("/api/newsletter", {
+      const res = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -60,7 +60,6 @@ const Footer = () => {
     {
       title: "Student Life",
       links: [
-        { name: "Clubs", href: "/clubs" },
         { name: "Student Union", href: "/student-union" },
         { name: "Resources", href: "/resources" },
         { name: "Faculties and Departments", href: "/faculties" },
@@ -236,12 +235,12 @@ const Footer = () => {
             🚀 Built by the Students, Powered by the Students
           </p>
           <div className="flex items-center space-x-4">
-            <Link href="/terms" className="hover:text-blue-500">
+            {/* <Link href="/terms" className="hover:text-blue-500">
               Terms
             </Link>
             <Link href="/privacy" className="hover:text-blue-500">
               Privacy
-            </Link>
+            </Link> */}
             {socialLinks.map(({ href, icon, label }, i) => (
               <Link
                 key={i}
