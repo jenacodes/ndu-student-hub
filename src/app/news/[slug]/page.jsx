@@ -1,12 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import Head from "next/head";
 import NotFoundMessage from "@/components/NotFoundMessage";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { FaTags } from "react-icons/fa";
 import { PortableText } from "next-sanity";
-
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
@@ -20,63 +18,77 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug: slug.slug }));
 }
 
-const NewsArticlePage = async ({ params }) => {
-  // const allNewsArticles = [
-  //   {
-  //     id: "new-library-wing-announcement",
-  //     category: "Campus News",
-  //     title: "University Announces New State-of-the-Art Library Wing",
-  //     imageUrl: "/images/news-library-wing.jpg",
-  //     date: "May 28, 2025",
-  //     author: "University Administration",
-  //     // Using an array of paragraphs for the body for more structured content
-  //     body: [
-  //       "The university is thrilled to announce the upcoming construction of a new, state-of-the-art library wing, set to break ground next month. This ambitious project aims to provide students and faculty with enhanced learning resources and modern study environments.",
-  //       "The new wing will feature collaborative study rooms equipped with the latest technology, quiet individual study zones, expanded digital archives, a dedicated research commons, and a much-anticipated cafe. The design prioritizes natural light and sustainable building practices.",
-  //       '"This expansion reflects our commitment to providing world-class academic facilities for our students," said Vice-Chancellor [Vice-Chancellor\'s Name]. "We believe this new space will become a central hub for learning, research, and collaboration on campus."',
-  //       "Further details regarding the construction timeline and alternative study spaces during the build will be communicated shortly. The university appreciates the patience and understanding of the campus community during this exciting development.",
-  //     ],
-  //     tags: ["library", "campus development", "academics", "student resources"],
-  //   },
-  //   {
-  //     id: "engineering-research-grant-solar",
-  //     category: "Academics",
-  //     title:
-  //       "Research Grant Awarded to Engineering Department for Renewable Energy Project",
-  //     imageUrl: "/images/news-research-grant.jpg",
-  //     date: "May 25, 2025",
-  //     author: "Faculty of Engineering",
-  //     body: [
-  //       "The Faculty of Engineering is proud to announce that Professor Adaobi's research team has been awarded a significant grant to advance their groundbreaking work in renewable energy. The [Grant Name] grant, valued at [Amount], will support their project focused on developing next-generation solar panel technology.",
-  //       "Professor Adaobi's research aims to create more efficient, durable, and cost-effective solar panels, potentially revolutionizing how we harness solar energy. The project will involve collaboration with industry partners and provide valuable research opportunities for postgraduate students.",
-  //       '"This grant is a testament to the innovative spirit of our department and the dedication of our researchers," stated Dean [Dean\'s Name]. "We are excited about the potential impact of this project on sustainable energy solutions."',
-  //     ],
-  //     tags: [
-  //       "research",
-  //       "engineering",
-  //       "renewable energy",
-  //       "grants",
-  //       "academics",
-  //     ],
-  //   },
-  // ];
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
 
-  const builder = imageUrlBuilder(client);
-  function urlFor(source) {
-    return builder.image(source);
+  const query = groq`*[_type == "news" && slug.current == $slug][0]{
+    title,
+    author,
+    body,
+    image,
+    "slug": slug.current
+  }`;
+
+  const article = await client.fetch(query, { slug });
+
+  if (!article) {
+    return {
+      title: "Article Not Found | NDUSTUDENTHUB",
+      description:
+        "Sorry, we couldn't find the news article you were looking for.",
+    };
   }
 
+  const builder = imageUrlBuilder(client);
+  const urlFor = (source) => builder.image(source).url();
+
+  // Building readable meta description (skip empty blocks)
+  const metaDescription =
+    article.body
+      ?.filter((block) => block.children && block.children.length > 0)
+      .map((block) => block.children.map((child) => child.text).join(" "))
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 150) ||
+    "Read the latest campus news and updates from NDUSTUDENTHUB.";
+
+  const metaTitle = article.title;
+  const metaImage = urlFor(article.image);
+  const metaUrl = `https://ndustudenthub.com/news/${article.slug}`;
+
+  return {
+    title: `${metaTitle} | NDUSTUDENTHUB`,
+    description: metaDescription,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      url: metaUrl,
+      type: "article",
+      images: [{ url: metaImage, alt: metaTitle }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
+      images: [metaImage],
+    },
+  };
+}
+
+const NewsArticlePage = async ({ params }) => {
   const { slug } = await params;
   const query = groq`*[_type == "news" && slug.current == $slug][0]`;
   const article = await client.fetch(query, { slug });
 
-  //404 UI
+  const builder = imageUrlBuilder(client);
+  const urlFor = (source) => builder.image(source);
+
   if (!article) {
     return (
       <NotFoundMessage
         title="Article Not Found"
-        message="  Sorry, we couldn't find the news article you were looking
-          for."
+        message="Sorry, we couldn't find the news article you were looking for."
         backLink="/news"
         backText="Back to All News"
         buttonColor="bg-green-600 hover:bg-green-700"
@@ -84,44 +96,10 @@ const NewsArticlePage = async ({ params }) => {
     );
   }
 
-  const metaTitle = article.title;
-  const metaDescription = article.body
-    ?.map((block) => block.children?.map((child) => child.text).join(" "))
-    .join(" ")
-    .slice(0, 150); // first 150 chars as summary
-
-  const metaImage = urlFor(article.image).url();
-  const metaUrl = `https://ndustudenthub.com/news/${article.slug.current}`;
-
   return (
     <div className="bg-gray-50 min-h-screen">
-      <Head>
-        <title>{metaTitle} | NDUSTUDENTHUB</title>
-        <meta name="description" content={metaDescription} />
-        <meta
-          name="keywords"
-          content="NDU, NDUSTUDENTHUB, news, campus news, student blog"
-        />
-        <meta name="author" content={article.author || "NDUSTUDENTHUB"} />
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        {/* Open Graph Meta Tags (Facebook, WhatsApp) */}
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:image" content={metaImage} />
-        <meta property="og:url" content={metaUrl} />
-        <meta property="og:type" content="article" />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metaTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={metaImage} />
-      </Head>
-
       <article>
-        {/* Article Header Image */}
+        {/* Header Image */}
         {urlFor(article.image).url() && (
           <div className="w-full h-72 sm:h-96 md:h-[500px] relative">
             <Image
@@ -149,9 +127,9 @@ const NewsArticlePage = async ({ params }) => {
               {article.title}
             </h1>
 
-            {/* Meta Information (Date & Author) */}
+            {/* Meta Info */}
             <div className="flex flex-wrap items-center text-sm text-gray-500 mb-6 space-x-4">
-              <div className="flex items-center">
+              <div className="flex items-center gap-1">
                 <FaRegCalendarAlt />
                 <span>
                   Published:{" "}
@@ -167,14 +145,14 @@ const NewsArticlePage = async ({ params }) => {
                 </span>
               </div>
               {article.author && (
-                <div className="flex items-center">
+                <div className="flex items-center gap-1">
                   <HiOutlineUserGroup />
                   <span>By: {article.author}</span>
                 </div>
               )}
             </div>
 
-            {/* Article Body */}
+            {/* Body */}
             <div className="prose prose-lg prose-green max-w-none text-gray-700 leading-relaxed">
               <PortableText value={article.body} />
             </div>
@@ -182,7 +160,7 @@ const NewsArticlePage = async ({ params }) => {
             {/* Tags */}
             {article.tags && article.tags.length > 0 && (
               <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-600 mb-2 flex items-center">
+                <h3 className="text-sm font-semibold text-gray-600 mb-2 flex items-center gap-2">
                   <FaTags />
                   Tags:
                 </h3>
@@ -199,7 +177,7 @@ const NewsArticlePage = async ({ params }) => {
               </div>
             )}
 
-            {/* Back to News Link */}
+            {/* Back Link */}
             <div className="mt-10 pt-8 border-t border-gray-200 text-center">
               <Link
                 href="/news"

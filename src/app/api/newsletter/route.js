@@ -35,8 +35,8 @@ export async function POST(req) {
       subscribers.map((sub) =>
         resend.emails.send({
           from: "Jena <jenakumoemmanuel@ndustudenthub.com>", // ✅ must be verified domain
-          to: "jenakumoemmanuel@gmail.com", // for testing purposes
-          // to: sub.email, // for production
+          // to: "jenakumoemmanuel@gmail.com", // for testing purposes
+          to: sub.email, // for production
           subject: subject || "This Week at NDU Student Hub ✨",
           html:
             html ||
