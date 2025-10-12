@@ -21,12 +21,12 @@ export const metadata = {
   openGraph: {
     title: "NDU Student Hub",
     description:
-      "Explore the latest happenings, stories, and opportunities at Niger Delta University.",
+      "Explore the latest happenings, stories, articles, events and opportunities at Niger Delta University.",
     url: "https://ndustudenthub.com",
     siteName: "NDU Student Hub",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: "NDU Student Hub Preview",

@@ -7,7 +7,7 @@ const client = createClient({
   projectId: "v32nzca8",
   dataset: "production",
   apiVersion: "2023-01-01",
-  token: process.env.SANITY_WRITE_TOKEN_NEWSLETTER, // must have read access
+  token: process.env.SANITY_WRITE_TOKEN_NEWSLETTER,
   useCdn: false,
 });
 
@@ -34,21 +34,39 @@ export async function POST(req) {
     const results = await Promise.allSettled(
       subscribers.map((sub) =>
         resend.emails.send({
-          from: "Jena <jenakumoemmanuel@ndustudenthub.com>", // ✅ must be verified domain
+          from: "Jena from NDU <newsletter@ndustudenthub.com>", // ✅ must be verified domain
           // to: "jenakumoemmanuel@gmail.com", // for testing purposes
           to: sub.email, // for production
           subject: subject || "This Week at NDU Student Hub ✨",
           html:
             html ||
             `
-            <div style="font-family: sans-serif; ">
-              <h2>Catch up on this week on ndustudenthub</h2>
-              <p>Here’s the latest news, events, and updates from Niger Delta University</p>
-              <p>Don’t miss out on our upcoming events and activities!</p>
-              <p>Click the link below to stay updated:</p>
-              <p><a href="https://ndustudenthub.com">Stay Connected</a></p>
-            </div>
-          `,
+            <div style="font-family: Arial, sans-serif; text-align: center; color: #333; padding: 20px; background-color: #f9fafb;">
+            <h2 style="color: #0056b3;">Stay Updated with the Latest from NDU Student Hub 🎓</h2>
+
+            <p style="font-size: 16px; line-height: 1.6;">
+             If you haven’t checked in lately, <strong>NDU Student Hub</strong> has some exciting new stories and updates waiting for you!  
+            From campus events and student highlights to insightful reads and opportunities — there’s always something new to discover.
+             </p>
+
+            <a href="https://ndustudenthub.com/news"
+       style="display: inline-block; margin: 16px 0; background-color: #0056b3; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+       Catch Up on the Latest Articles
+    </a>
+
+    <p style="margin-top: 20px; color: #555; font-size: 15px;">
+      Enjoy what we’re building? Share it with your friends and coursemates 💙  
+      Let’s grow this community together and make sure every NDU student stays informed and inspired.
+    </p>
+
+    <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;" />
+
+    <p style="font-size: 13px; color: #888;">
+      You’re receiving this email because you subscribed to NDU Student Hub updates.<br/>
+      <a href="https://ndustudenthub.com/unsubscribe" style="color: #0056b3;">Unsubscribe</a>
+    </p>
+  </div>
+`,
         })
       )
     );

@@ -1,11 +1,8 @@
-import Image from "next/image";
-import UpdatesCard from "@/components/UpdatesCard";
 import PagesHeaderSection from "@/components/PagesHeaderSection";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import FilterControls from "@/components/FilterControls";
 import NewsList from "@/components/NewsList";
-import Link from "next/link";
 
 export const revalidate = 60;
 
@@ -48,7 +45,9 @@ export const metadata = {
 };
 
 export default async function NewsPage({ searchParams }) {
-  const query = groq`*[_type == "news"] | order(publishedAt desc)[0...6] {
+  const query = groq`
+  *[_type == "news"]
+  | order(coalesce(publicationDate, date, _createdAt) desc)[0..5] {
     _id,
     title,
     category,
@@ -58,7 +57,8 @@ export default async function NewsPage({ searchParams }) {
     snippet,
     date,
     author
-  }`;
+  }
+`;
 
   const allNewsData = await client.fetch(query);
 
@@ -82,14 +82,14 @@ export default async function NewsPage({ searchParams }) {
   const activeCategory = safeSearchParams.category || "all";
   const activeFaculty = safeSearchParams.faculty || "all";
 
-  // Filter news based on selected filters
-  const filteredNews = allNewsData.filter((newsItem) => {
-    const categoryMatch =
-      activeCategory === "all" || newsItem.category === activeCategory;
-    const facultyMatch =
-      activeFaculty === "all" || newsItem.faculty === activeFaculty;
-    return categoryMatch && facultyMatch;
-  });
+  // // Filter news based on selected filters
+  // const filteredNews = allNewsData.filter((newsItem) => {
+  //   const categoryMatch =
+  //     activeCategory === "all" || newsItem.category === activeCategory;
+  //   const facultyMatch =
+  //     activeFaculty === "all" || newsItem.faculty === activeFaculty;
+  //   return categoryMatch && facultyMatch;
+  // });
 
   // Helper function to generate query string
   const createQueryString = (newParams) => {
