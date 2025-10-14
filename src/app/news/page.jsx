@@ -118,7 +118,7 @@ export default async function NewsPage({ searchParams }) {
       <PagesHeaderSection
         bgColor="bg-green-600"
         title="School News & Announcements"
-        subtitle="Stay informed with the latest updates, achievements, and important notices"
+        subtitle="Stay informed with the latest updates, achievements, and important notices. "
         paragrpahColor="text-green-100"
       />
 
