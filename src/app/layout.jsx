@@ -46,12 +46,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={poppins.variable}>
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <SpeedInsights>
+      <html lang="en">
+        <body className={poppins.variable}>
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </SpeedInsights>
   );
 }
