@@ -67,6 +67,7 @@ export default {
             value: "Faculty of Clinical Sciences",
           },
           { title: "Faculty of Education", value: "Faculty of Education" },
+
           { title: "Faculty of Engineering", value: "Faculty of Engineering" },
           {
             title: "Faculty of Environmental Sciences",

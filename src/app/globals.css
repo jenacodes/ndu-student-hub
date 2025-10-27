@@ -194,3 +194,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+.custom-prose h1 {
+  font-size: 2.5rem !important;
+}
+.custom-prose h2 {
+  font-size: 2rem !important;
+}
+.custom-prose h3 {
+  font-size: 1.5rem !important;
+}

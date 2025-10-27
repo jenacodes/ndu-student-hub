@@ -153,7 +153,7 @@ const NewsArticlePage = async ({ params }) => {
             </div>
 
             {/* Body */}
-            <div className="prose prose-lg prose-green max-w-none text-gray-700 leading-relaxed">
+            <div className="prose prose-lg custom-prose max-w-none text-gray-700 leading-relaxed">
               <PortableText value={article.body} />
             </div>
 

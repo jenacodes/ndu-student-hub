@@ -1,10 +1,8 @@
-import UpdatesCard from "@/components/UpdatesCard";
 import PagesHeaderSection from "@/components/PagesHeaderSection";
-import Image from "next/image";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
-import Link from "next/link";
+
 import FilterControls from "@/components/FilterControls";
 import EventsList from "@/components/EventsList";
 

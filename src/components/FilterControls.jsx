@@ -19,6 +19,7 @@ export default function FilterControls({
   const createQueryString = (newParams) => {
     const params = new URLSearchParams(searchParams.toString());
 
+    // Preserve existing params except the one being changed
     Object.entries(newParams).forEach(([key, value]) => {
       if (value === "all") {
         params.delete(key);

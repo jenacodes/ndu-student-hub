@@ -47,7 +47,7 @@ export const metadata = {
 export default async function NewsPage({ searchParams }) {
   const query = groq`
   *[_type == "news"]
-  | order(coalesce(publicationDate, date, _createdAt) desc)[0..5] {
+  | order(coalesce(publicationDate, date, _createdAt) desc) {
     _id,
     title,
     category,
@@ -90,27 +90,6 @@ export default async function NewsPage({ searchParams }) {
   //     activeFaculty === "all" || newsItem.faculty === activeFaculty;
   //   return categoryMatch && facultyMatch;
   // });
-
-  // Helper function to generate query string
-  const createQueryString = (newParams) => {
-    const params = new URLSearchParams();
-
-    // Preserve existing params except the one being changed
-    for (const [key, value] of Object.entries(safeSearchParams)) {
-      if (!Object.keys(newParams).includes(key)) {
-        params.append(key, value);
-      }
-    }
-
-    // Add new params
-    for (const [key, value] of Object.entries(newParams)) {
-      if (value !== "all") {
-        params.append(key, value);
-      }
-    }
-
-    return params.toString();
-  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
