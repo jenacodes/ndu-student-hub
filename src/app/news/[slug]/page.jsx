@@ -84,6 +84,42 @@ const NewsArticlePage = async ({ params }) => {
   const builder = imageUrlBuilder(client);
   const urlFor = (source) => builder.image(source);
 
+  const components = {
+    types: {
+      image: ({ value }) => (
+        <div className="my-6 flex justify-center">
+          <div className="w-full sm:w-[90%] md:w-[80%] lg:w-[70%]">
+            <Image
+              src={urlFor(value).width(1000).url()}
+              alt={value.alt || "Article image"}
+              width={1000}
+              height={400}
+              className="rounded-xl object-cover shadow w-full h-auto"
+            />
+            {value.alt && (
+              <p className="text-sm text-gray-500 text-center mt-2">
+                {value.alt}
+              </p>
+            )}
+          </div>
+        </div>
+      ),
+    },
+    block: {
+      h1: ({ children }) => (
+        <h1 className="text-4xl font-bold text-gray-900 my-6">{children}</h1>
+      ),
+      h2: ({ children }) => (
+        <h2 className="text-3xl font-semibold text-gray-800 my-5">
+          {children}
+        </h2>
+      ),
+      normal: ({ children }) => (
+        <p className="text-lg leading-relaxed my-3">{children}</p>
+      ),
+    },
+  };
+
   if (!article) {
     return (
       <NotFoundMessage
@@ -154,7 +190,7 @@ const NewsArticlePage = async ({ params }) => {
 
             {/* Body */}
             <div className="prose prose-lg custom-prose max-w-none text-gray-700 leading-relaxed">
-              <PortableText value={article.body} />
+              <PortableText value={article.body} components={components} />
             </div>
 
             {/* Tags */}

@@ -82,15 +82,6 @@ export default async function NewsPage({ searchParams }) {
   const activeCategory = safeSearchParams.category || "all";
   const activeFaculty = safeSearchParams.faculty || "all";
 
-  // // Filter news based on selected filters
-  // const filteredNews = allNewsData.filter((newsItem) => {
-  //   const categoryMatch =
-  //     activeCategory === "all" || newsItem.category === activeCategory;
-  //   const facultyMatch =
-  //     activeFaculty === "all" || newsItem.faculty === activeFaculty;
-  //   return categoryMatch && facultyMatch;
-  // });
-
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Page Header */}

@@ -67,7 +67,6 @@ export default {
             value: "Faculty of Clinical Sciences",
           },
           { title: "Faculty of Education", value: "Faculty of Education" },
-
           { title: "Faculty of Engineering", value: "Faculty of Engineering" },
           {
             title: "Faculty of Environmental Sciences",
@@ -91,7 +90,7 @@ export default {
 
     {
       name: "image",
-      title: "Image",
+      title: "Featured Image",
       type: "image",
       description:
         "Upload a featured image for this news article. It appears in previews and on the article page.",
@@ -99,6 +98,7 @@ export default {
         hotspot: true,
       },
     },
+
     {
       name: "snippet",
       title: "Snippet / Short Description",
@@ -112,9 +112,24 @@ export default {
       title: "Body Content",
       type: "array",
       description:
-        "Write or paste the full article here. You can format text with headings, quotes, and lists.",
-      of: [{ type: "block" }],
+        "Write or paste the full article here. You can add text, headings, quotes, lists, and images in between.",
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "alt",
+              type: "string",
+              title: "Alt text",
+              description: "Describe the image for accessibility and SEO.",
+            },
+          ],
+        },
+      ],
     },
+
     {
       name: "tags",
       title: "Tags",
@@ -125,11 +140,12 @@ export default {
       options: { layout: "tags" },
     },
   ],
+
   preview: {
     select: {
       title: "title",
       publicationDate: "publicationDate",
-      media: "mainImage",
+      media: "image",
     },
     prepare(selection) {
       const { title, publicationDate, media } = selection;
