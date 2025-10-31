@@ -47,7 +47,7 @@ export const metadata = {
 export default async function NewsPage({ searchParams }) {
   const query = groq`
   *[_type == "news"]
-  | order(coalesce(publicationDate, date, _createdAt) desc) {
+  | order(publicationDate asc) {
     _id,
     title,
     category,
@@ -55,7 +55,7 @@ export default async function NewsPage({ searchParams }) {
     "slug": slug.current,
     "imageUrl": image.asset->url,
     snippet,
-    date,
+    publicationDate,
     author
   }
 `;

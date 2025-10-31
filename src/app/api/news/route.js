@@ -14,9 +14,8 @@ export async function GET(request) {
 
   const filterQuery = filters.join(" && ");
 
-  const newsQuery = `* [${filterQuery}] | order(date desc) [${start}...${
-    start + limit
-  }] {
+  const newsQuery = `* [${filterQuery}] | order(coalesce(publicationDate, _createdAt) desc)
+ [${start}...${start + limit}] {
     _id,
     title,
     category,
@@ -24,7 +23,7 @@ export async function GET(request) {
     "slug": slug.current,
     "imageUrl": image.asset->url,
     snippet,
-    date,
+    publicationDate,
     author
   }`;
 
