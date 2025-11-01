@@ -4,6 +4,29 @@ import PagesHeaderSection from "@/components/PagesHeaderSection";
 import { getIconComponent } from "@/utils/iconMapper";
 import { groq } from "next-sanity";
 
+export const metadata = {
+  title: "Student Resource Hub | NDU StudentHub",
+  description:
+    "Explore links, guides, and tools every NDU student needs — from course portals to study resources — all organized in one hub.",
+  openGraph: {
+    title: "Student Resource Hub | NDU StudentHub",
+    description:
+      "Explore links, guides, and tools every NDU student needs — from course portals to study resources — all organized in one hub.",
+    url: "https://ndustudenthub.com/resources",
+    siteName: "NDU StudentHub",
+    images: [
+      {
+        url: "/images/ndu-resource-hub-banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: "NDU Student Resource Hub",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
 export const revalidate = 60;
 
 async function getResourceSections() {

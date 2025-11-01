@@ -16,5 +16,11 @@ export default {
       initialValue: () => new Date().toISOString(),
       readOnly: true,
     },
+    {
+      name: "unsubscribed",
+      title: "Unsubscribed",
+      type: "boolean",
+      initialValue: false,
+    },
   ],
 };
