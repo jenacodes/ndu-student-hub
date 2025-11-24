@@ -30,10 +30,10 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           
             <Link href="/" className="flex-shrink-0 flex items-center gap-2">
-              <div className=" bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm p-2">
+              <div className=" bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-base shadow-sm p-1.5 lg:p-2">
                 NDU
               </div>
-              <span className="font-bold text-xl text-gray-900">Student Hub</span>
+              <span className="font-bold text-lg text-gray-900">Student Hub</span>
             </Link>
             <div className="hidden md:ml-6 md:flex md:space-x-8">
               {navLinks.map((link) =>
@@ -92,7 +92,7 @@ const Navbar = () => {
              <div className="hidden md:flex items-center">
             <Link
               href="/auth/signup"
-              className="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 md:hidden"
+              className="ml-8 hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               Get Started
             </Link>
