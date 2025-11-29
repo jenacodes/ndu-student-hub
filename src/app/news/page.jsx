@@ -20,7 +20,7 @@ export const metadata = {
     siteName: "ndustudenthub",
     images: [
       {
-        url: "/images/logo.jpg",
+        url: "https://ndustudenthub.com/images/logo.jpg",
         width: 1200,
         height: 630,
         alt: "NDU News - Niger Delta University Updates",
