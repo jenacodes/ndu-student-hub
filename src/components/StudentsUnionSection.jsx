@@ -36,7 +36,7 @@ const StudentsUnionSection = () => {
 
   return (
     <section className="section sm:px-6 lg:px-8">
-      <div className="container max-w-6xl mx-auto">
+      <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
             Meet Your Student Union Leaders

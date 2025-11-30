@@ -41,7 +41,7 @@ const EventsSection = async () => {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white ">
       {" "}
-      <div className="container max-w-6xl mx-auto">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900  tracking-tight">

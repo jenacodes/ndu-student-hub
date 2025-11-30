@@ -8,8 +8,8 @@ const AboutNduStudentHubSection = () => {
     { id: 3, label: "Years Connecting Students", value: "3" }, // Example value
   ];
   return (
-    <section className="section sm:px-6 lg:px-8 bg-gray-100 ">
-      <div className="container max-w-6xl mx-auto">
+    <section className="section sm:px-6 lg:px-8  md:py-16 bg-gray-100 ">
+      <div className="container mx-auto">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center ">
           {/* image coloumn */}
           <div className="mb-10 lg:mb-0">
