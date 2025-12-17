@@ -9,7 +9,10 @@ import AboutNduStudentHubSection from "@/components/AboutNduStudentHubSection";
 import SportsNewsSection from "@/components/SportsNewsSection";
 import WeeklySpotlightSection from "@/components/WeeklySpotlightSection";
 import SponsoredContentSection from "@/components/SponsoredContentSection";
-const HomePageContent = () => {
+
+export const revalidate = 60;
+
+export default function HomePageContent() {
   return (
     <>
       <HeroSection />
@@ -31,11 +34,6 @@ const HomePageContent = () => {
       <SportsNewsSection />
       <StudentsUnionSection />
       <AboutNduStudentHubSection />
-      {/* <section className="py-12 px-4 md:px-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
-      </section> */}
     </>
   );
-};
-
-export default HomePageContent;
+}
