@@ -18,13 +18,13 @@ export default function NewsletterTrigger() {
       const data = await res.json();
 
       if (res.ok) {
-        setMessage("✅ Newsletter sent successfully!");
+        setMessage(" Newsletter sent successfully!");
         console.log("Response:", data);
       } else {
-        setMessage(`❌ Failed: ${data.error || "Unknown error"}`);
+        setMessage(` Failed: ${data.error || "Unknown error"}`);
       }
     } catch (err) {
-      setMessage(`⚠️ Error: ${err.message}`);
+      setMessage(` Error: ${err.message}`);
     } finally {
       setLoading(false);
     }
