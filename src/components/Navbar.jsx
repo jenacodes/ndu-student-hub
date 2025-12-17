@@ -28,24 +28,27 @@ const Navbar = () => {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2">
-              <div className=" bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-base shadow-sm p-1.5 lg:p-2">
-                NDU
-              </div>
-              <span className="font-bold text-lg text-gray-900">Student Hub</span>
-            </Link>
-            <div className="hidden md:ml-6 md:flex md:space-x-8">
-              {navLinks.map((link) =>
-                link.dropdown ? (
-                  <div key={link.name} className="relative group inline-flex items-center">
-                    <button
-                      className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${activePath.startsWith(link.href) && link.href !== "#"
-                          ? "border-blue-500 text-gray-900"
-                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                        }`}
-                    >
-                      {link.name}
+          <Link
+            href="/"
+            className={`text-xl font-bold text-blue-500 items-center flex `}
+          >
+            ndustudenthub
+          </Link>
+          <div className="hidden md:ml-6 md:flex md:space-x-8">
+            {navLinks.map((link) =>
+              link.dropdown ? (
+                <div
+                  key={link.name}
+                  className="relative group inline-flex items-center"
+                >
+                  <button
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                      activePath.startsWith(link.href) && link.href !== "#"
+                        ? "border-blue-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    }`}
+                  >
+                    {link.name}
                     <svg
                       className="w-4 h-4 inline-block ml-1"
                       fill="none"
@@ -59,37 +62,38 @@ const Navbar = () => {
                         d="M19 9l-7 7-7-7"
                       ></path>
                     </svg>
-                    </button>
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                      <div className="py-0.5">
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
+                  </button>
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
+                    <div className="py-0.5">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
                     </div>
                   </div>
-                ) : (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${activePath === link.href
-                        ? "border-blue-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                      }`}
-                  >
-                    {link.name}
-                  </Link>
-                )
-              )}
-            </div>
-         
-             <div className="hidden md:flex items-center">
+                </div>
+              ) : (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                    activePath === link.href
+                      ? "border-blue-500 text-gray-900"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              )
+            )}
+          </div>
+
+          <div className="hidden md:flex items-center">
             <Link
               href="/auth/signup"
               className="ml-8 hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -97,10 +101,6 @@ const Navbar = () => {
               Get Started
             </Link>
           </div>
-         
-
-
-
 
           <div className="-mr-2 flex items-center md:hidden">
             <button
@@ -161,8 +161,9 @@ const Navbar = () => {
                     >
                       {link.name}
                       <svg
-                        className={`w-4 h-4 ml-1 transition-transform ${isDropdownOpen ? "rotate-180" : "rotate-0"
-                          }`}
+                        className={`w-4 h-4 ml-1 transition-transform ${
+                          isDropdownOpen ? "rotate-180" : "rotate-0"
+                        }`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -202,8 +203,9 @@ const Navbar = () => {
                       setIsDropdownOpen(false);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`font-medium text-gray-700 hover:text-blue-600 ${activePath === link.href ? "text-blue-600" : ""
-                      }`}
+                    className={`font-medium text-gray-700 hover:text-blue-600 ${
+                      activePath === link.href ? "text-blue-600" : ""
+                    }`}
                   >
                     {link.name}
                   </Link>
