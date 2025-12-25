@@ -20,7 +20,7 @@ export const metadata = {
     siteName: "ndustudenthub",
     images: [
       {
-        url: "/images/ndu-events-preview.png", // Replace with your real image
+        url: "/images/ndu-events-preview.png",
         width: 1200,
         height: 630,
         alt: "NDU Events Preview",
@@ -120,7 +120,7 @@ export default async function EventsPage({ searchParams }) {
 
       {/* Events Grid Section */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto">
           <EventsList activeCategory={activeCategory} />
         </div>
       </section>

@@ -5,7 +5,7 @@ export default function SuccessPage() {
     <div className="min-h-screen flex items-center justify-center p-6 bg-green-50">
       <div className="bg-white shadow-md rounded-xl p-6 max-w-lg text-center">
         <h1 className="text-2xl font-bold text-green-700 mb-4">
-          ✅ Submission Successful!
+           Submission Successful!
         </h1>
         <p className="text-gray-700">
           Thank you for contributing to <strong>NDUSTUDENTHUB</strong>. Your

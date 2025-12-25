@@ -80,7 +80,7 @@ export default function SubmitContentForm() {
       });
     } else {
       console.error("Error submitting:", result.message);
-      setStatus("❌ Submission failed: " + result.message);
+      setStatus(" Submission failed: " + result.message);
     }
   };
 

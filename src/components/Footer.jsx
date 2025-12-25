@@ -97,7 +97,7 @@ const Footer = () => {
 
   return (
     <footer className=" border-t border-gray-300  bg-gray-800 text-gray-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
         {/* Contact */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center text-white">
           {[
@@ -107,9 +107,9 @@ const Footer = () => {
               content: (
                 <>
                   For any questions, reach out to{" "}
-                  <span className="text-blue-500 font-medium">
+                  <a href="mailto:contact@ndustudenthub.com" className="text-blue-500 font-medium">
                     contact@ndustudenthub.com
-                  </span>
+                  </a>
                   . We'll reply within 24 hours.
                 </>
               ),
