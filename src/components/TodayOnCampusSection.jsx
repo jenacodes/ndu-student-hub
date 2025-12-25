@@ -92,7 +92,7 @@ const TodayOnCampusSection = async () => {
   const getColorForType = (type) => {
     switch (type) {
       case "Event":
-        return "bg-blue-500";
+        return "bg-primary";
       case "Deadline":
         return "bg-red-500";
       case "Announcement":
@@ -103,7 +103,7 @@ const TodayOnCampusSection = async () => {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-50">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-primary/10">
       <div className="container mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -126,7 +126,7 @@ const TodayOnCampusSection = async () => {
                   {getIconForType(item.type)}
                 </div>
                 <div className="ml-4 flex-grow">
-                  <p className="font-bold text-gray-800 group-hover:text-blue-600">
+                  <p className="font-bold text-gray-800 group-hover:text-primary">
                     {item.title}
                   </p>
                   <p className="text-sm text-gray-500">
@@ -134,7 +134,7 @@ const TodayOnCampusSection = async () => {
                   </p>
                 </div>
                 <div className="ml-4 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-blue-500">&rarr;</span>
+                  <span className="text-primary">&rarr;</span>
                 </div>
               </a>
             ))}

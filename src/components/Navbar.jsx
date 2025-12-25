@@ -30,8 +30,9 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <Link
             href="/"
-            className={`text-xl font-bold text-blue-500 items-center flex `}
+            className={`text-xl font-bold text-primary items-center flex `}
           >
+            <span className="mr-2 text-2xl">🎅</span>
             ndustudenthub
           </Link>
           <div className="hidden md:ml-6 md:flex md:space-x-8">
@@ -44,7 +45,7 @@ const Navbar = () => {
                   <button
                     className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                       activePath.startsWith(link.href) && link.href !== "#"
-                        ? "border-blue-500 text-gray-900"
+                        ? "border-primary text-gray-900"
                         : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                     }`}
                   >
@@ -83,7 +84,7 @@ const Navbar = () => {
                   href={link.href}
                   className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                     activePath === link.href
-                      ? "border-blue-500 text-gray-900"
+                      ? "border-primary text-gray-900"
                       : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   }`}
                 >
@@ -96,7 +97,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center">
             <Link
               href="/auth/signup"
-              className="ml-8 hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="ml-8 hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             >
               Get Started
             </Link>
@@ -106,7 +107,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -157,7 +158,7 @@ const Navbar = () => {
                   <div key={link.name} className="flex flex-col">
                     <button
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="font-medium text-gray-700 hover:text-blue-600 flex justify-between items-center"
+                      className="font-medium text-gray-700 hover:text-primary flex justify-between items-center"
                     >
                       {link.name}
                       <svg
@@ -187,7 +188,7 @@ const Navbar = () => {
                               setIsDropdownOpen(false);
                               setIsMobileMenuOpen(false);
                             }}
-                            className="text-gray-600 hover:text-blue-600"
+                            className="text-gray-600 hover:text-primary"
                           >
                             {item.name}
                           </Link>
@@ -203,8 +204,8 @@ const Navbar = () => {
                       setIsDropdownOpen(false);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`font-medium text-gray-700 hover:text-blue-600 ${
-                      activePath === link.href ? "text-blue-600" : ""
+                    className={`font-medium text-gray-700 hover:text-primary ${
+                      activePath === link.href ? "text-primary" : ""
                     }`}
                   >
                     {link.name}
@@ -215,7 +216,7 @@ const Navbar = () => {
               <Link
                 href="/auth/signup"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700"
+                className="w-full text-center px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg shadow-md hover:bg-primary/90"
               >
                 Get Started
               </Link>

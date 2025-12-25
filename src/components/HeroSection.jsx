@@ -18,14 +18,14 @@ const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="max-w-3xl mx-auto space-y-8"
         >
-          <div className="inline-flex items-center rounded-full border border-blue-100 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600">
-            <span className="flex h-2 w-2 rounded-full bg-blue-600 mr-2"></span>
-            New Semester Updates Available
+          <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+            <span className="flex h-2 w-2 rounded-full bg-primary mr-2"></span>
+            Happy Holidays! Season's Greetings 🎄
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900">
             Your Campus Life, <br />
-            <span className="text-blue-600">Simplified.</span>
+            <span className="text-primary">Simplified.</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
@@ -35,7 +35,6 @@ const HeroSection = () => {
           </p>
 
           <div className="pb-12 max-w-md mx-auto">
-
             <NewsletterForm />
             <p className="text-sm text-slate-500 mt-4">
               Join 2,000+ students getting weekly updates
