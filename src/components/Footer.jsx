@@ -102,12 +102,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center text-white">
           {[
             {
-              icon: <CiMail className="text-blue-600" size={26} />,
+              icon: <CiMail className="text-primary" size={26} />,
               title: "Email Us",
               content: (
                 <>
                   For any questions, reach out to{" "}
-                  <a href="mailto:contact@ndustudenthub.com" className="text-blue-500 font-medium">
+                  <a
+                    href="mailto:contact@ndustudenthub.com"
+                    className="text-primary font-medium"
+                  >
                     contact@ndustudenthub.com
                   </a>
                   . We'll reply within 24 hours.
@@ -115,7 +118,7 @@ const Footer = () => {
               ),
             },
             {
-              icon: <IoCall className="text-blue-600" size={22} />,
+              icon: <IoCall className="text-primary" size={22} />,
               title: "Call Us",
               content: (
                 <>
@@ -148,9 +151,9 @@ const Footer = () => {
                       href={link.href}
                       className="
                                      inline-flex items-center
-                                     text-blue-600            
+                                     text-primary            
                                       underline               
-                                     hover:text-blue-800      
+                                     hover:text-primary/80      
                                       hover:underline-offset-4 
                                       cursor-pointer
                                       transition-colors"
@@ -177,7 +180,7 @@ const Footer = () => {
                 <input
                   type="email"
                   required
-                  className="w-full px-4 py-2 text-sm border rounded-md focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 text-sm border rounded-md focus:ring-2 focus:ring-primary"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -185,7 +188,7 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
                 >
                   Subscribe
                 </button>
@@ -248,7 +251,7 @@ const Footer = () => {
                 aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-blue-500"
+                className="hover:text-primary"
               >
                 {icon}
               </Link>

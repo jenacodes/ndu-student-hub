@@ -46,6 +46,22 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.variable}>
+        {/* Snowflakes */}
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 pointer-events-none z-50 overflow-hidden"
+        >
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+          <div className="snow-flake">❅</div>
+        </div>
         <Navbar />
         {children}
         <Footer />

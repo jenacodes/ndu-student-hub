@@ -54,13 +54,13 @@ export default function NewsletterForm() {
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
           required
-          className="w-full px-5 py-3 placeholder-gray-500 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 focus:outline-none border border-gray-300 rounded-lg shadow-sm sm:max-w-xs text-base"
+          className="w-full px-5 py-3 placeholder-gray-500 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary focus:outline-none border border-gray-300 rounded-lg shadow-sm sm:max-w-xs text-base"
           placeholder="Enter your email"
         />
         <div className="mt-3 rounded-lg shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
           <button
             type="submit"
-            className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500 transition-colors"
+            className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary transition-colors"
           >
             Sign up
           </button>
