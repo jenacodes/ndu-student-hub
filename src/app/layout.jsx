@@ -9,6 +9,8 @@ const inter = Inter({
   display: "swap",
 });
 
+import { Analytics } from "@vercel/analytics/react";
+
 export const metadata = {
   metadataBase: new URL("https://ndustudenthub.com"),
   title: {
@@ -65,6 +67,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
