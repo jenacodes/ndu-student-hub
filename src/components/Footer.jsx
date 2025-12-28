@@ -89,7 +89,7 @@ const Footer = () => {
       label: "Instagram",
     },
     {
-      href: "https://twitter.com",
+      href: "https://twitter.com/kingjenathe7th",
       icon: <BsTwitterX />,
       label: "Twitter",
     },
