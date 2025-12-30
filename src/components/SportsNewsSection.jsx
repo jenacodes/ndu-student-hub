@@ -6,36 +6,6 @@ import { client } from "@/sanity/client";
 export const revalidate = 60;
 
 const SportsNewsSection = async () => {
-  // const sportsNewsData = [
-  //   {
-  //     id: 1,
-  //     category: "Football",
-  //     title: "University Lions Roar to Victory in Regional Finals!",
-  //     snippet:
-  //       "A stunning last-minute goal secures the championship trophy for our beloved Lions. Read the full match report and player interviews.",
-  //     imageUrl: "/images/sports-football-victory.jpg", // Replace with your actual image path
-  //     link: "/sports/news/lions-regional-champions",
-  //   },
-  //   {
-  //     id: 2,
-  //     category: "Athletics",
-  //     title: "New Sprint Record Set at Annual Inter-Faculty Games",
-  //     snippet:
-  //       "Record-breaking speed on the tracks as [Student's Name] clocks an impressive 10.5s in the 100m dash. See all results.",
-  //     imageUrl: "/images/sports-athletics-record.jpg", // Replace with your actual image path
-  //     link: "/sports/news/inter-faculty-games-sprint-record",
-  //   },
-  //   {
-  //     id: 3,
-  //     category: "Basketball",
-  //     title: "Warriors Secure Playoff Spot with Thrilling Overtime Win",
-  //     snippet:
-  //       "The university basketball team, the Warriors, fought hard in an intense match, clinching their playoff berth in the final seconds.",
-  //     imageUrl: "/images/sports-basketball-win.jpg", // Replace with your actual image path
-  //     link: "/sports/news/warriors-secure-playoff",
-  //   },
-  // ];
-
   const query = groq`*[_type == "sports"] | order(date desc)[0...2] {
   _id,
   category,
@@ -49,7 +19,7 @@ const SportsNewsSection = async () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="container max-w-6xl mx-auto">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">

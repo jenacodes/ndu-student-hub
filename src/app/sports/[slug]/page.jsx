@@ -23,55 +23,6 @@ function urlFor(source) {
 }
 
 const SportsItemDetailPage = async ({ params }) => {
-  // const allSportsItems = [
-  //   {
-  //     id: "lions-win-interfaculty-2025",
-  //     itemType: "News",
-  //     category: "Football News",
-  //     title: "University Lions Clinch Inter-Faculty Trophy!",
-  //     imageUrl: "/images/sports-football-victory.jpg",
-  //     date: "May 27, 2025",
-  //     details: "Final Score: Lions 2 - 1 Eagles",
-
-  //     body: [
-  //       "In an electrifying final match that kept spectators on the edge of their seats, the University Lions football team emerged victorious in the Inter-Faculty Championship, defeating the formidable Eagles with a score of 2-1.",
-  //       "The game was a hard-fought battle from the first whistle. The Eagles took an early lead in the first half, but the Lions showed incredible resilience, equalizing just before halftime with a brilliant strike from star forward, [Player's Name].",
-  //       "The second half saw intense back-and-forth action, with both teams creating numerous chances. It wasn't until the 88th minute that [Another Player's Name] scored a stunning header from a corner kick, sending the Lions' supporters into a frenzy. The campus erupted in celebration as the final whistle blew, marking a well-deserved championship for the Lions.",
-  //       "Team captain, [Captain's Name], praised the team's spirit and the unwavering support from the fans. Coach [Coach's Name] highlighted the months of hard work and dedication that led to this triumph. Full match highlights and player interviews will be available soon on ndustudenthub TV.",
-  //     ],
-  //     tags: ["football", "championship", "inter-faculty", "lions", "victory"],
-  //   },
-  //   {
-  //     id: "warriors-vs-titans-2025",
-  //     itemType: "Fixture",
-  //     category: "Upcoming Match: Basketball",
-  //     title: "Warriors vs. Titans - Crucial Conference Game",
-  //     imageUrl: "/images/sports-basketball-upcoming.jpg",
-  //     date: "June 5, 2025",
-  //     details: "Time: 7:00 PM, Venue: University Sports Arena",
-  //     body: [
-  //       "Get ready for a high-stakes basketball showdown as our University Warriors take on the formidable Titans in a crucial conference game! This match could determine the top seed for the upcoming playoffs, and both teams are expected to bring their A-game.",
-  //       "The Warriors have had a strong season so far, with impressive performances from key players like [Player 1 Name] and [Player 2 Name]. The Titans, known for their aggressive defense, will be a tough opponent.",
-  //       "Come out and support your Warriors! Let's fill the University Sports Arena and create an electrifying atmosphere. Tickets are available at the Students' Union office and online. Don't miss this thrilling encounter!",
-  //     ],
-  //     tags: ["basketball", "fixture", "warriors", "titans", "conference game"],
-  //   },
-  //   {
-  //     id: "annual-athletics-meet-2025",
-  //     itemType: "Results",
-  //     category: "Athletics Results",
-  //     title: "New School Records Set at Annual Athletics Meet",
-  //     imageUrl: "/images/sports-athletics-meet.jpg",
-  //     date: "May 15, 2025",
-  //     details: "Highlights: 100m, Long Jump, Javelin Throw",
-  //     body: [
-  //       "The Annual University Athletics Meet concluded last week with spectacular performances and several new school records being set. Students from all faculties showcased their athletic prowess in a day filled with excitement and sportsmanship.",
-  //       "In the men's 100m dash, [Student Name] clocked an incredible [Time], shattering the previous record. [Another Student Name] soared to a new record in the women's long jump with a leap of [Distance]. The javelin throw also saw a new benchmark set by [Yet Another Student Name] with a throw of [Distance].",
-  //       "Congratulations to all participants and medal winners! A full list of results and a photo gallery from the event are now available on the university sports portal. The event highlighted the incredible talent and dedication of our student athletes.",
-  //     ],
-  //     tags: ["athletics", "results", "track and field", "school records"],
-  //   },
-  // ];
 
   const { slug } = await params;
 
@@ -90,6 +41,43 @@ const SportsItemDetailPage = async ({ params }) => {
       />
     );
   }
+
+   const components = {
+      types: {
+        image: ({ value }) => (
+          <div className="my-6 flex justify-center">
+            <div className="w-full sm:w-[90%] md:w-[80%] lg:w-[70%]">
+              <Image
+                src={urlFor(value).width(1000).url()}
+                alt={value.alt || "Article image"}
+                width={1000}
+                height={400}
+                className="rounded-xl object-cover shadow w-full h-auto"
+              />
+              {value.alt && (
+                <p className="text-sm text-gray-500 text-center mt-2">
+                  {value.alt}
+                </p>
+              )}
+            </div>
+          </div>
+        ),
+      },
+      block: {
+        h1: ({ children }) => (
+          <h1 className="text-4xl font-bold text-gray-900 my-6">{children}</h1>
+        ),
+        h2: ({ children }) => (
+          <h2 className="text-3xl font-semibold text-gray-800 my-5">
+            {children}
+          </h2>
+        ),
+        normal: ({ children }) => (
+          <p className="text-lg leading-relaxed my-3">{children}</p>
+        ),
+      },
+    };
+  
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -146,7 +134,7 @@ const SportsItemDetailPage = async ({ params }) => {
 
             {/* Body Content */}
             <div className="prose prose-lg prose-red max-w-none text-gray-700 leading-relaxed">
-              <PortableText value={item.body} />
+              <PortableText value={item.body} components={components} />
             </div>
 
             {/* Tags */}
