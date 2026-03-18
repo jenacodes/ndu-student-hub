@@ -15,6 +15,7 @@ import deans from "./deans";
 import resourceCard from "./resourceCard";
 import resourceSection from "./resourceSection";
 import submission from "./submission";
+import comment from "./comment";
 
 export const schema = {
   types: [
@@ -35,5 +36,6 @@ export const schema = {
     resourceCard,
     resourceSection,
     submission,
+    comment,
   ],
 };

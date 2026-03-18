@@ -8,12 +8,13 @@ import { PortableText } from "next-sanity";
 import { client } from "@/sanity/client";
 import { groq } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
+import CommentSection from "@/components/CommentSection";
 
 export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(
-    `*[_type == "news"]{ "slug": slug.current }`
+    `*[_type == "news"]{ "slug": slug.current }`,
   );
   return slugs.map((slug) => ({ slug: slug.slug }));
 }
@@ -133,7 +134,7 @@ const NewsArticlePage = async ({ params }) => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen" style={{ background: "var(--background)" }}>
       <article>
         {/* Header Image */}
         {urlFor(article.image).url() && (
@@ -150,21 +151,49 @@ const NewsArticlePage = async ({ params }) => {
         )}
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-          <div className="max-w-3xl mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl -mt-16 sm:-mt-24 md:-mt-32 relative z-10">
+          <div
+            className="max-w-3xl mx-auto p-6 sm:p-8 md:p-10 border-2 -mt-16 sm:-mt-24 md:-mt-32 relative z-10"
+            style={{
+              background: "var(--card)",
+              borderColor: "var(--border)",
+              borderRadius: "0",
+              boxShadow: "4px 4px 0 var(--accent)",
+            }}
+          >
             {/* Category */}
             <div className="mb-4">
-              <span className="inline-block bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full uppercase">
+              <span
+                className="inline-block text-xs font-bold px-3 py-1 uppercase tracking-widest"
+                style={{
+                  background: "var(--accent)",
+                  color: "var(--accent-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                  borderRadius: "0",
+                }}
+              >
                 {article.category}
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight"
+              style={{
+                color: "var(--foreground)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               {article.title}
             </h1>
 
             {/* Meta Info */}
-            <div className="flex flex-wrap items-center text-sm text-gray-500 mb-6 space-x-4">
+            <div
+              className="flex flex-wrap items-center text-sm mb-6 space-x-4"
+              style={{
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
+            >
               <div className="flex items-center gap-1">
                 <FaRegCalendarAlt />
                 <span>
@@ -176,7 +205,7 @@ const NewsArticlePage = async ({ params }) => {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
-                    }
+                    },
                   )}
                 </span>
               </div>
@@ -189,14 +218,26 @@ const NewsArticlePage = async ({ params }) => {
             </div>
 
             {/* Body */}
-            <div className="prose prose-lg custom-prose max-w-none text-gray-700 leading-relaxed">
+            <div
+              className="prose prose-lg custom-prose max-w-none leading-relaxed"
+              style={{ color: "var(--foreground)" }}
+            >
               <PortableText value={article.body} components={components} />
             </div>
 
             {/* Tags */}
             {article.tags && article.tags.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-600 mb-2 flex items-center gap-2">
+              <div
+                className="mt-8 pt-6 border-t"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <h3
+                  className="text-sm font-bold mb-2 flex items-center gap-2 uppercase tracking-wide"
+                  style={{
+                    color: "var(--muted-foreground)",
+                    fontFamily: "var(--font-special-elite), monospace",
+                  }}
+                >
                   <FaTags />
                   Tags:
                 </h3>
@@ -204,7 +245,13 @@ const NewsArticlePage = async ({ params }) => {
                   {article.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
+                      className="text-xs px-2 py-1"
+                      style={{
+                        background: "var(--muted)",
+                        color: "var(--muted-foreground)",
+                        borderRadius: "0",
+                        fontFamily: "var(--font-special-elite), monospace",
+                      }}
                     >
                       {tag}
                     </span>
@@ -213,11 +260,21 @@ const NewsArticlePage = async ({ params }) => {
               </div>
             )}
 
+            {/* Comments */}
+            <CommentSection slug={slug} />
+
             {/* Back Link */}
-            <div className="mt-10 pt-8 border-t border-gray-200 text-center">
+            <div
+              className="mt-10 pt-8 border-t text-center"
+              style={{ borderColor: "var(--border)" }}
+            >
               <Link
                 href="/news"
-                className="text-green-600 hover:text-green-800 font-semibold transition-colors"
+                className="font-bold uppercase tracking-widest transition-opacity hover:opacity-70"
+                style={{
+                  color: "var(--primary)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
               >
                 &larr; Back to All News
               </Link>

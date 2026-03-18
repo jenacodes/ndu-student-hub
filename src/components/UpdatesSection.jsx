@@ -15,15 +15,29 @@ const UpdatesSection = async () => {
 
   const updatesData = await client.fetch(query);
   return (
-    <section className="py-12 px-4 md:px-8 bg-gray-100 ">
+    <section
+      className="py-12 px-4 md:px-8"
+      style={{ background: "var(--muted)" }}
+    >
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-4 md:mb-0">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900  tracking-tight">
+            <h2
+              className="text-3xl sm:text-4xl font-extrabold tracking-tight"
+              style={{
+                color: "var(--foreground)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               Latest Updates
             </h2>
-
-            <p className="text-base md:text-left text-gray-600 max-w-2xl mb-6 md:mb-0 mt-2">
+            <p
+              className="text-base mt-2 max-w-2xl"
+              style={{
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
+            >
               Catch up on the latest happenings at ndustudenthub!
             </p>
           </div>
@@ -43,7 +57,13 @@ const UpdatesSection = async () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500">
+          <p
+            className="text-center"
+            style={{
+              color: "var(--muted-foreground)",
+              fontFamily: "var(--font-special-elite), monospace",
+            }}
+          >
             🚧 No updates available right now. Check back soon!
           </p>
         )}

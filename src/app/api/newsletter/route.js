@@ -29,7 +29,7 @@ export async function POST(req) {
     if (!subscribers.length) {
       return NextResponse.json(
         { message: "No subscribers found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -60,8 +60,8 @@ export async function POST(req) {
                 <p style="font-size:13px;color:#888;">You’re receiving this email because you subscribed to NDU Student Hub updates.<br/>
                 <a href="https://ndustudenthub.com/unsubscribe" style="color:#0056b3;">Unsubscribe</a></p>
               </div>`,
-          })
-        )
+          }),
+        ),
       );
 
       sent += results.filter((r) => r.status === "fulfilled").length;
@@ -81,7 +81,7 @@ export async function POST(req) {
     console.error("Newsletter send error:", error);
     return NextResponse.json(
       { message: "Failed to send newsletter", error: error.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

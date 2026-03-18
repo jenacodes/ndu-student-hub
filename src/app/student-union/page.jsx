@@ -72,12 +72,10 @@ const StudentUnionPage = async () => {
 
   const sugExecutives = await client.fetch(query);
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen" style={{ background: "var(--background)" }}>
       <PagesHeaderSection
         title="Student Union Government (SUG)"
         subtitle=" Your Voice, Your Representation, Your Campus. Learn about your SUG and how we serve the students of "
-        bgColor="bg-teal-600"
-        paragrpahColor="text-teal-100"
       />
 
       {/* SUG Mission/Role Section */}
@@ -85,18 +83,37 @@ const StudentUnionPage = async () => {
         <div className="container mx-auto">
           <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
             <div className="mb-10 lg:mb-0">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              <h2
+                className="text-3xl font-bold tracking-tight sm:text-4xl"
+                style={{
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                }}
+              >
                 Our Role & Commitment
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p
+                className="mt-4 text-lg"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 The Student Union Government (SUG) at Niger Delta University is
                 dedicated to representing the interests and welfare of all
                 students. We strive to:
               </p>
-              <ul className="mt-6 space-y-3 text-lg text-gray-600">
+              <ul
+                className="mt-6 space-y-3 text-lg"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 <li className="flex items-start">
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-teal-500 mr-2"
+                    className="flex-shrink-0 h-6 w-6 mr-2"
+                    style={{ color: "var(--primary)" }}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -112,7 +129,8 @@ const StudentUnionPage = async () => {
                 </li>
                 <li className="flex items-start">
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-teal-500 mr-2"
+                    className="flex-shrink-0 h-6 w-6 mr-2"
+                    style={{ color: "var(--primary)" }}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -129,7 +147,8 @@ const StudentUnionPage = async () => {
                 </li>
                 <li className="flex items-start">
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-teal-500 mr-2"
+                    className="flex-shrink-0 h-6 w-6 mr-2"
+                    style={{ color: "var(--primary)" }}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -145,7 +164,8 @@ const StudentUnionPage = async () => {
                 </li>
                 <li className="flex items-start">
                   <svg
-                    className="flex-shrink-0 h-6 w-6 text-teal-500 mr-2"
+                    className="flex-shrink-0 h-6 w-6 mr-2"
+                    style={{ color: "var(--primary)" }}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -174,13 +194,28 @@ const StudentUnionPage = async () => {
       </section>
 
       {/* Meet Your SUG Executives Section */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section
+        className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8"
+        style={{ background: "var(--muted)" }}
+      >
         <div className="container mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
+              style={{
+                color: "var(--foreground)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               Meet Your SUG Executives
             </h2>
-            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            <p
+              className="mt-4 text-lg max-w-2xl mx-auto"
+              style={{
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
+            >
               The elected student leaders dedicated to serving you this academic
               session.
             </p>
@@ -201,7 +236,13 @@ const StudentUnionPage = async () => {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">
+            <p
+              className="text-center"
+              style={{
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
+            >
               Information on current SUG executives coming soon.
             </p>
           )}
@@ -211,58 +252,150 @@ const StudentUnionPage = async () => {
       {/* Get Involved / SUG News Section */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2
+            className="text-3xl font-bold tracking-tight sm:text-4xl"
+            style={{
+              color: "var(--foreground)",
+              fontFamily: "var(--font-playfair), Georgia, serif",
+            }}
+          >
             Engage with Your SUG
           </h2>
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-md text-left">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+            <div
+              className="p-6 text-left border-2"
+              style={{
+                background: "var(--card)",
+                borderColor: "var(--border)",
+                borderRadius: "0",
+                boxShadow: "2px 2px 0 var(--accent)",
+              }}
+            >
+              <h3
+                className="text-xl font-bold mb-3"
+                style={{
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                }}
+              >
                 Contact Us
               </h3>
-              <p className="text-gray-600 mb-1">
+              <p
+                className="mb-1 text-sm"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 <strong>SUG Office:</strong> SUG secretariat Opposite Lecture
                 Theatre
               </p>
-              <p className="text-gray-600 mb-1">
+              <p
+                className="mb-1 text-sm"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 <strong>Office Hours:</strong> Monday - Friday, 10 AM - 4 PM
               </p>
-              <p className="text-gray-600">
+              <p
+                className="text-sm"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 <strong>General Email:</strong>{" "}
                 <a
                   href="mailto:sug.info@ndustudenthub.com"
-                  className="text-teal-600 hover:text-teal-800"
+                  className="font-bold transition-opacity hover:opacity-70"
+                  style={{ color: "var(--primary)" }}
                 >
                   sug.info@ndustudenthub.com
                 </a>
               </p>
-              {/* might add a link to a suggestion box form here */}
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md text-left">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+            <div
+              className="p-6 text-left border-2"
+              style={{
+                background: "var(--card)",
+                borderColor: "var(--border)",
+                borderRadius: "0",
+                boxShadow: "2px 2px 0 var(--accent)",
+              }}
+            >
+              <h3
+                className="text-xl font-bold mb-3"
+                style={{
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                }}
+              >
                 SUG News & Updates
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p
+                className="mb-4 text-sm"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 Stay updated with the latest initiatives, announcements, and
                 reports from your SUG.
               </p>
               <Link
-                href="/news?category=sug" // Example link to filter news by SUG category maybe later
-                className="inline-block px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors"
+                href="/news?category=sug"
+                className="inline-block px-6 py-2.5 text-sm font-bold uppercase tracking-widest transition-opacity hover:opacity-80"
+                style={{
+                  background: "var(--primary)",
+                  color: "var(--primary-foreground)",
+                  borderRadius: "0",
+                  boxShadow: "2px 2px 0 var(--accent)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
               >
                 View SUG News
               </Link>
             </div>
-            <div className="bg-white p-6 rounded-lg shadow-md text-left">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+            <div
+              className="p-6 text-left border-2"
+              style={{
+                background: "var(--card)",
+                borderColor: "var(--border)",
+                borderRadius: "0",
+                boxShadow: "2px 2px 0 var(--accent)",
+              }}
+            >
+              <h3
+                className="text-xl font-bold mb-3"
+                style={{
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                }}
+              >
                 A Legacy of Leadership
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p
+                className="mb-4 text-sm"
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 Explore the history of student governance and learn about the
                 leaders who have served our university.
               </p>
               <Link
                 href="/student-union/past-presidents"
-                className="inline-block px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-teal-600 hover:bg-teal-700 transition-colors"
+                className="inline-block px-6 py-2.5 text-sm font-bold uppercase tracking-widest transition-opacity hover:opacity-80"
+                style={{
+                  background: "var(--primary)",
+                  color: "var(--primary-foreground)",
+                  borderRadius: "0",
+                  boxShadow: "2px 2px 0 var(--accent)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
               >
                 View Past Presidents
               </Link>

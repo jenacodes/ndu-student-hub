@@ -1,11 +1,18 @@
-import { Inter } from "next/font/google";
+import { Playfair_Display, Special_Elite } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const inter = Inter({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const specialElite = Special_Elite({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-special-elite",
   display: "swap",
 });
 
@@ -47,23 +54,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
-        {/* Snowflakes */}
-        <div
-          aria-hidden="true"
-          className="fixed inset-0 pointer-events-none z-50 overflow-hidden"
-        >
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-          <div className="snow-flake">❅</div>
-        </div>
+      <body className={`${playfair.variable} ${specialElite.variable}`}>
         <Navbar />
         {children}
         <Footer />

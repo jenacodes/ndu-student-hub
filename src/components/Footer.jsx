@@ -11,7 +11,6 @@ const Footer = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return setMessage("Please enter your email");
@@ -35,17 +34,13 @@ const Footer = () => {
     }
   };
 
-  // Clear message after 5 seconds
   useEffect(() => {
     if (message) {
-      const timeout = setTimeout(() => {
-        setMessage("");
-      }, 5000);
+      const timeout = setTimeout(() => setMessage(""), 5000);
       return () => clearTimeout(timeout);
     }
   }, [message]);
 
-  // Get current year for copyright
   const currentYear = new Date().getFullYear();
 
   const linkGroups = [
@@ -78,11 +73,7 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    {
-      href: "https://facebook.com",
-      icon: <FaFacebookF />,
-      label: "Facebook",
-    },
+    { href: "https://facebook.com", icon: <FaFacebookF />, label: "Facebook" },
     {
       href: "https://instagram.com",
       icon: <FaInstagram />,
@@ -96,20 +87,43 @@ const Footer = () => {
   ];
 
   return (
-    <footer className=" border-t border-gray-300  bg-gray-800 text-gray-300">
+    <footer
+      className="border-t-2 border-accent/40"
+      style={{
+        background: "#1a160f",
+        color: "#e8dcc8",
+        fontFamily: "var(--font-special-elite), monospace",
+      }}
+    >
+      {/* Top ornamental bar */}
+      <div className="h-1 w-full" style={{ background: "var(--primary)" }} />
+
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+        {/* Ornamental section header */}
+        <div className="retro-divider" style={{ color: "#c9a84c" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              fontSize: "1.1rem",
+            }}
+          >
+            ✦ NDU Student Hub ✦
+          </span>
+        </div>
+
         {/* Contact */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center text-white">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
           {[
             {
-              icon: <CiMail className="text-primary" size={26} />,
+              icon: <CiMail size={26} style={{ color: "#c9a84c" }} />,
               title: "Email Us",
               content: (
                 <>
                   For any questions, reach out to{" "}
                   <a
                     href="mailto:contact@ndustudenthub.com"
-                    className="text-primary font-medium"
+                    style={{ color: "#c9a84c" }}
+                    className="font-medium underline underline-offset-2 hover:opacity-80"
                   >
                     contact@ndustudenthub.com
                   </a>
@@ -118,7 +132,7 @@ const Footer = () => {
               ),
             },
             {
-              icon: <IoCall className="text-primary" size={22} />,
+              icon: <IoCall size={22} style={{ color: "#c9a84c" }} />,
               title: "Call Us",
               content: (
                 <>
@@ -131,17 +145,42 @@ const Footer = () => {
           ].map(({ icon, title, content }, i) => (
             <div key={i} className="flex flex-col items-center gap-3">
               {icon}
-              <h2 className="text-xl font-bold">{title}</h2>
-              <p className="text-sm">{content}</p>
+              <h2
+                className="text-xl font-bold tracking-wide"
+                style={{
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                  color: "#e8dcc8",
+                }}
+              >
+                {title}
+              </h2>
+              <p className="text-sm" style={{ color: "#a08c74" }}>
+                {content}
+              </p>
             </div>
           ))}
+        </div>
+
+        {/* Divider */}
+        <div
+          className="retro-divider"
+          style={{ color: "#c9a84c", opacity: 0.4 }}
+        >
+          <span>—</span>
         </div>
 
         {/* Links + Newsletter */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {linkGroups.map((group, i) => (
             <div key={i}>
-              <h5 className="text-md font-semibold uppercase mb-4">
+              <h5
+                className="text-xs font-semibold uppercase tracking-widest mb-4 pb-2 border-b"
+                style={{
+                  color: "#c9a84c",
+                  borderColor: "#3d3022",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 {group.title}
               </h5>
               <ul className="space-y-2 text-sm">
@@ -149,14 +188,12 @@ const Footer = () => {
                   <li key={j}>
                     <Link
                       href={link.href}
-                      className="
-                                     inline-flex items-center
-                                     text-primary            
-                                      underline               
-                                     hover:text-primary/80      
-                                      hover:underline-offset-4 
-                                      cursor-pointer
-                                      transition-colors"
+                      className="inline-flex items-center transition-colors hover:opacity-70"
+                      style={{
+                        color: "#c9a84c",
+                        textDecoration: "underline",
+                        textUnderlineOffset: "3px",
+                      }}
                     >
                       {link.name}
                     </Link>
@@ -168,8 +205,17 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h5 className="text-md font-semibold uppercase mb-4">Subscribe</h5>
-            <p className="text-sm mb-3">
+            <h5
+              className="text-xs font-semibold uppercase tracking-widest mb-4 pb-2 border-b"
+              style={{
+                color: "#c9a84c",
+                borderColor: "#3d3022",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
+            >
+              Subscribe
+            </h5>
+            <p className="text-sm mb-3" style={{ color: "#a08c74" }}>
               Stay updated with the latest from ndustudenthub.
             </p>
             <div className="flex flex-col">
@@ -180,7 +226,14 @@ const Footer = () => {
                 <input
                   type="email"
                   required
-                  className="w-full px-4 py-2 text-sm border rounded-md focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2 text-sm border focus:outline-none focus:ring-2"
+                  style={{
+                    background: "#241c12",
+                    border: "1px solid #3d3022",
+                    color: "#e8dcc8",
+                    fontFamily: "var(--font-special-elite), monospace",
+                    borderRadius: "0",
+                  }}
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -188,25 +241,29 @@ const Footer = () => {
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-md hover:bg-primary/90 transition-colors"
+                  className="px-4 py-2 text-sm font-bold uppercase tracking-widest transition-opacity hover:opacity-80"
+                  style={{
+                    background: "#8b2500",
+                    color: "#faf6ee",
+                    fontFamily: "var(--font-special-elite), monospace",
+                    borderRadius: "0",
+                    boxShadow: "2px 2px 0 #c9a84c",
+                  }}
                 >
                   Subscribe
                 </button>
               </form>
               {message && (
                 <div
-                  className={`mt-4 lg:mt-4 sm:ml-4 sm:mt-0 px-4 py-3 rounded-lg shadow-md flex items-center space-x-3 transition-all duration-300 ${
+                  className={`mt-4 px-4 py-3 flex items-center space-x-3 transition-all duration-300 border ${
                     message.includes("Thank you")
-                      ? "bg-green-100 text-green-800 border border-green-300"
-                      : "bg-red-100 text-red-800 border border-red-300"
+                      ? "border-green-700 text-green-300"
+                      : "border-red-800 text-red-300"
                   }`}
+                  style={{ background: "rgba(0,0,0,0.3)", borderRadius: "0" }}
                 >
                   <svg
-                    className={`w-5 h-5 flex-shrink-0 ${
-                      message.includes("Thank you")
-                        ? "text-green-600"
-                        : "text-red-600"
-                    }`}
+                    className={`w-5 h-5 flex-shrink-0 ${message.includes("Thank you") ? "text-green-400" : "text-red-400"}`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -232,18 +289,21 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-300 pt-6 flex flex-col md:flex-row justify-between items-center text-sm">
-          <p className="mb-4 md:mb-0">&copy; {currentYear} ndustudenthub.</p>
-          <p className="text-center text-base text-indigo-400 font-semibold tracking-wide mt-6 mb-4 animate-pulse">
-            🚀 Built by the Students, Powered by the Students
+        <div
+          className="border-t pt-6 flex flex-col md:flex-row justify-between items-center text-sm gap-4"
+          style={{ borderColor: "#3d3022", color: "#7a6652" }}
+        >
+          <p>&copy; {currentYear} NDU Student Hub. All rights reserved.</p>
+          <p
+            className="text-center italic tracking-wide"
+            style={{
+              color: "#c9a84c",
+              fontFamily: "var(--font-playfair), Georgia, serif",
+            }}
+          >
+            — Built by the Students, Powered by the Students —
           </p>
           <div className="flex items-center space-x-4">
-            {/* <Link href="/terms" className="hover:text-blue-500">
-              Terms
-            </Link>
-            <Link href="/privacy" className="hover:text-blue-500">
-              Privacy
-            </Link> */}
             {socialLinks.map(({ href, icon, label }, i) => (
               <Link
                 key={i}
@@ -251,7 +311,12 @@ const Footer = () => {
                 aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-primary"
+                className="w-8 h-8 flex items-center justify-center border transition-colors hover:opacity-70"
+                style={{
+                  borderColor: "#3d3022",
+                  color: "#c9a84c",
+                  borderRadius: "0",
+                }}
               >
                 {icon}
               </Link>

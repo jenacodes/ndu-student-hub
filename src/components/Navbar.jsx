@@ -25,17 +25,30 @@ const Navbar = () => {
   const activePath = usePathname();
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header
+      className="sticky top-0 z-50 border-b-2 border-accent/60"
+      style={{ background: "var(--background)" }}
+    >
+      {/* Top ornamental rule */}
+      <div className="h-1 w-full" style={{ background: "var(--primary)" }} />
+
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
           <Link
             href="/"
-            className={`text-xl font-bold text-primary items-center flex `}
+            className="flex items-center gap-2 text-xl font-bold text-primary"
+            style={{
+              fontFamily: "var(--font-playfair), Georgia, serif",
+              letterSpacing: "0.02em",
+            }}
           >
-            <span className="mr-2 text-2xl">🎅</span>
-            ndustudenthub
+            <span className="text-accent text-lg">✦</span>
+            NDU Student Hub
           </Link>
-          <div className="hidden md:ml-6 md:flex md:space-x-8">
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex md:items-center md:space-x-6">
             {navLinks.map((link) =>
               link.dropdown ? (
                 <div
@@ -43,11 +56,14 @@ const Navbar = () => {
                   className="relative group inline-flex items-center"
                 >
                   <button
-                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                    className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium tracking-wide transition-colors ${
                       activePath.startsWith(link.href) && link.href !== "#"
-                        ? "border-primary text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        ? "border-primary text-foreground"
+                        : "border-transparent text-foreground/70 hover:border-accent hover:text-foreground"
                     }`}
+                    style={{
+                      fontFamily: "var(--font-special-elite), monospace",
+                    }}
                   >
                     {link.name}
                     <svg
@@ -64,13 +80,19 @@ const Navbar = () => {
                       ></path>
                     </svg>
                   </button>
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                    <div className="py-0.5">
+                  <div
+                    className="absolute top-full left-0 mt-2 w-56 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 border border-border rounded-none"
+                    style={{ background: "var(--card)" }}
+                  >
+                    <div className="py-1">
                       {link.dropdown.map((item) => (
                         <Link
                           key={item.name}
                           href={item.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="block px-4 py-2.5 text-sm text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
+                          style={{
+                            fontFamily: "var(--font-special-elite), monospace",
+                          }}
                         >
                           {item.name}
                         </Link>
@@ -82,34 +104,38 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                  className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium tracking-wide transition-colors ${
                     activePath === link.href
-                      ? "border-primary text-gray-900"
-                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                      ? "border-primary text-foreground"
+                      : "border-transparent text-foreground/70 hover:border-accent hover:text-foreground"
                   }`}
+                  style={{ fontFamily: "var(--font-special-elite), monospace" }}
                 >
                   {link.name}
                 </Link>
-              )
+              ),
             )}
           </div>
 
+          {/* CTA Button */}
           <div className="hidden md:flex items-center">
             <Link
               href="/auth/signup"
-              className="ml-8 hidden md:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="ml-6 inline-flex items-center justify-center px-5 py-2 border-2 border-primary text-sm font-bold tracking-widest text-primary-foreground bg-primary hover:bg-primary/85 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors uppercase rounded-none shadow-[3px_3px_0_var(--accent)]"
+              style={{ fontFamily: "var(--font-special-elite), monospace" }}
             >
               Get Started
             </Link>
           </div>
 
+          {/* Mobile hamburger */}
           <div className="-mr-2 flex items-center md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               type="button"
-              className="bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="inline-flex items-center justify-center p-2 text-foreground/60 hover:text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
               aria-controls="mobile-menu"
-              aria-expanded="false"
+              aria-expanded={isMobileMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
               {isMobileMenuOpen ? (
@@ -151,20 +177,24 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden px-4 sm:px-6 py-4 bg-white border-t border-gray-200">
+          <div
+            className="md:hidden px-4 sm:px-6 py-5 border-t-2 border-accent/40"
+            style={{ background: "var(--card)" }}
+          >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) =>
                 link.dropdown ? (
                   <div key={link.name} className="flex flex-col">
                     <button
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="font-medium text-gray-700 hover:text-primary flex justify-between items-center"
+                      className="font-medium text-foreground/80 hover:text-primary flex justify-between items-center tracking-wide"
+                      style={{
+                        fontFamily: "var(--font-special-elite), monospace",
+                      }}
                     >
                       {link.name}
                       <svg
-                        className={`w-4 h-4 ml-1 transition-transform ${
-                          isDropdownOpen ? "rotate-180" : "rotate-0"
-                        }`}
+                        className={`w-4 h-4 ml-1 transition-transform ${isDropdownOpen ? "rotate-180" : "rotate-0"}`}
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -179,7 +209,7 @@ const Navbar = () => {
                     </button>
 
                     {isDropdownOpen && (
-                      <div className="ml-4 mt-2 flex flex-col space-y-2">
+                      <div className="ml-4 mt-2 flex flex-col space-y-2 border-l-2 border-accent/40 pl-3">
                         {link.dropdown.map((item) => (
                           <Link
                             key={item.name}
@@ -188,7 +218,11 @@ const Navbar = () => {
                               setIsDropdownOpen(false);
                               setIsMobileMenuOpen(false);
                             }}
-                            className="text-gray-600 hover:text-primary"
+                            className="text-sm text-foreground/70 hover:text-primary transition-colors"
+                            style={{
+                              fontFamily:
+                                "var(--font-special-elite), monospace",
+                            }}
                           >
                             {item.name}
                           </Link>
@@ -204,19 +238,25 @@ const Navbar = () => {
                       setIsDropdownOpen(false);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`font-medium text-gray-700 hover:text-primary ${
-                      activePath === link.href ? "text-primary" : ""
+                    className={`font-medium tracking-wide transition-colors ${
+                      activePath === link.href
+                        ? "text-primary"
+                        : "text-foreground/70 hover:text-primary"
                     }`}
+                    style={{
+                      fontFamily: "var(--font-special-elite), monospace",
+                    }}
                   >
                     {link.name}
                   </Link>
-                )
+                ),
               )}
 
               <Link
                 href="/auth/signup"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full text-center px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-lg shadow-md hover:bg-primary/90"
+                className="w-full text-center px-5 py-2.5 text-sm font-bold tracking-widest text-primary-foreground bg-primary border-2 border-primary hover:bg-primary/85 transition-colors uppercase shadow-[3px_3px_0_var(--accent)] rounded-none"
+                style={{ fontFamily: "var(--font-special-elite), monospace" }}
               >
                 Get Started
               </Link>

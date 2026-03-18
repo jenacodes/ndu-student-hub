@@ -12,7 +12,7 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
   const slugs = await client.fetch(
-    `*[_type == "sports"]{ "slug": slug.current }`
+    `*[_type == "sports"]{ "slug": slug.current }`,
   );
   return slugs.map((slug) => ({ slug: slug.slug }));
 }
@@ -23,7 +23,6 @@ function urlFor(source) {
 }
 
 const SportsItemDetailPage = async ({ params }) => {
-
   const { slug } = await params;
 
   const query = groq`*[_type == "sports" && slug.current == $slug][0]`;
@@ -42,45 +41,44 @@ const SportsItemDetailPage = async ({ params }) => {
     );
   }
 
-   const components = {
-      types: {
-        image: ({ value }) => (
-          <div className="my-6 flex justify-center">
-            <div className="w-full sm:w-[90%] md:w-[80%] lg:w-[70%]">
-              <Image
-                src={urlFor(value).width(1000).url()}
-                alt={value.alt || "Article image"}
-                width={1000}
-                height={400}
-                className="rounded-xl object-cover shadow w-full h-auto"
-              />
-              {value.alt && (
-                <p className="text-sm text-gray-500 text-center mt-2">
-                  {value.alt}
-                </p>
-              )}
-            </div>
+  const components = {
+    types: {
+      image: ({ value }) => (
+        <div className="my-6 flex justify-center">
+          <div className="w-full sm:w-[90%] md:w-[80%] lg:w-[70%]">
+            <Image
+              src={urlFor(value).width(1000).url()}
+              alt={value.alt || "Article image"}
+              width={1000}
+              height={400}
+              className="rounded-xl object-cover shadow w-full h-auto"
+            />
+            {value.alt && (
+              <p className="text-sm text-gray-500 text-center mt-2">
+                {value.alt}
+              </p>
+            )}
           </div>
-        ),
-      },
-      block: {
-        h1: ({ children }) => (
-          <h1 className="text-4xl font-bold text-gray-900 my-6">{children}</h1>
-        ),
-        h2: ({ children }) => (
-          <h2 className="text-3xl font-semibold text-gray-800 my-5">
-            {children}
-          </h2>
-        ),
-        normal: ({ children }) => (
-          <p className="text-lg leading-relaxed my-3">{children}</p>
-        ),
-      },
-    };
-  
+        </div>
+      ),
+    },
+    block: {
+      h1: ({ children }) => (
+        <h1 className="text-4xl font-bold text-gray-900 my-6">{children}</h1>
+      ),
+      h2: ({ children }) => (
+        <h2 className="text-3xl font-semibold text-gray-800 my-5">
+          {children}
+        </h2>
+      ),
+      normal: ({ children }) => (
+        <p className="text-lg leading-relaxed my-3">{children}</p>
+      ),
+    },
+  };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen" style={{ background: "var(--background)" }}>
       <article>
         {/* Header Image */}
         {urlFor(item.image) && (
@@ -97,21 +95,49 @@ const SportsItemDetailPage = async ({ params }) => {
         )}
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-          <div className="max-w-3xl mx-auto bg-white p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl -mt-16 sm:-mt-24 md:-mt-32 relative z-10">
+          <div
+            className="max-w-3xl mx-auto p-6 sm:p-8 md:p-10 border-2 -mt-16 sm:-mt-24 md:-mt-32 relative z-10"
+            style={{
+              background: "var(--card)",
+              borderColor: "var(--border)",
+              borderRadius: "0",
+              boxShadow: "4px 4px 0 var(--accent)",
+            }}
+          >
             {/* Category */}
             <div className="mb-4">
-              <span className="inline-block bg-red-100 text-red-700 text-xs font-semibold px-3 py-1 rounded-full uppercase">
+              <span
+                className="inline-block text-xs font-bold px-3 py-1 uppercase tracking-widest"
+                style={{
+                  background: "var(--accent)",
+                  color: "var(--accent-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                  borderRadius: "0",
+                }}
+              >
                 {item.category}
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+            <h1
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight"
+              style={{
+                color: "var(--foreground)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               {item.title}
             </h1>
 
             {/* Meta Information (Date & Specific Details) */}
-            <div className="flex flex-wrap items-center text-sm text-gray-500 mb-6 space-x-4">
+            <div
+              className="flex flex-wrap items-center text-sm mb-6 space-x-4"
+              style={{
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
+            >
               <div className="flex items-center">
                 <FaRegCalendarAlt />
                 <span>
@@ -133,22 +159,39 @@ const SportsItemDetailPage = async ({ params }) => {
             </div>
 
             {/* Body Content */}
-            <div className="prose prose-lg prose-red max-w-none text-gray-700 leading-relaxed">
+            <div
+              className="prose prose-lg custom-prose max-w-none leading-relaxed"
+              style={{ color: "var(--foreground)" }}
+            >
               <PortableText value={item.body} components={components} />
             </div>
 
             {/* Tags */}
             {item.tags && item.tags.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-600 mb-2 flex items-center">
-                  <FaTags />
-                  Related Tags:
+              <div
+                className="mt-8 pt-6 border-t"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <h3
+                  className="text-sm font-bold mb-2 flex items-center uppercase tracking-wide"
+                  style={{
+                    color: "var(--muted-foreground)",
+                    fontFamily: "var(--font-special-elite), monospace",
+                  }}
+                >
+                  <FaTags /> Related Tags:
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
+                      className="text-xs px-2 py-1"
+                      style={{
+                        background: "var(--muted)",
+                        color: "var(--muted-foreground)",
+                        borderRadius: "0",
+                        fontFamily: "var(--font-special-elite), monospace",
+                      }}
                     >
                       {tag}
                     </span>
@@ -158,10 +201,17 @@ const SportsItemDetailPage = async ({ params }) => {
             )}
 
             {/* Back to Sports Link */}
-            <div className="mt-10 pt-8 border-t border-gray-200 text-center">
+            <div
+              className="mt-10 pt-8 border-t text-center"
+              style={{ borderColor: "var(--border)" }}
+            >
               <Link
                 href="/sports"
-                className="text-red-600 hover:text-red-800 font-semibold transition-colors"
+                className="font-bold uppercase tracking-widest transition-opacity hover:opacity-70"
+                style={{
+                  color: "var(--primary)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
               >
                 &larr; Back to All Sports
               </Link>

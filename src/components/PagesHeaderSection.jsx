@@ -1,18 +1,39 @@
+// PagesHeaderSection — themed page header used across all pages
 const PagesHeaderSection = ({
-  bgColor = "bg-blue-600",
   title = "Default Title",
   subtitle = "This is a default subtitle.",
   accentText = "Niger Delta University",
-  paragrpahColor = "text-blue-100",
 }) => {
   return (
-    <section className={`${bgColor} text-white py-12 sm:py-16`}>
+    <section
+      className="py-12 sm:py-16 retro-texture"
+      style={{
+        background: "var(--primary)",
+        color: "var(--primary-foreground)",
+      }}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+        {/* Ornamental accent */}
+        <p
+          className="text-xs uppercase tracking-widest mb-3 opacity-80"
+          style={{
+            fontFamily: "var(--font-special-elite), monospace",
+            color: "var(--accent)",
+          }}
+        >
+          ✦ NDU Student Hub ✦
+        </p>
+
+        <h1
+          className="text-4xl sm:text-5xl font-extrabold tracking-tight"
+          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+        >
           {title}
         </h1>
+
         <p
-          className={`${paragrpahColor} mt-4 text-lg sm:text-xl max-w-3xl mx-auto`}
+          className="mt-4 text-lg sm:text-xl max-w-3xl mx-auto opacity-90"
+          style={{ fontFamily: "var(--font-special-elite), monospace" }}
         >
           {subtitle}
           <span className="font-bold">{accentText}</span>

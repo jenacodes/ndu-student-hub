@@ -61,15 +61,11 @@ const sponsorsData = {
 
 export default function OurSponsorsPage() {
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen" style={{ background: "var(--background)" }}>
       {/* Page Header */}
       <PagesHeaderSection
         title="Our Partners & Sponsors"
-        subtitle=" We are incredibly grateful for the support of these organizations.
-            Their partnership helps us empower and connect the student community
-            at "
-        bgColor="bg-lime-600"
-        textColor=""
+        subtitle=" We are incredibly grateful for the support of these organizations. Their partnership helps us empower and connect the student community at "
       />
 
       {/* Main Content Section */}
@@ -77,7 +73,13 @@ export default function OurSponsorsPage() {
         <div className="container mx-auto">
           {/* Gold Sponsors */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-yellow-500 mb-8 text-center">
+            <h2
+              className="text-3xl font-bold mb-8 text-center uppercase tracking-widest"
+              style={{
+                color: "var(--accent)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               Gold Partners
             </h2>
             <div className="space-y-8 max-w-4xl mx-auto">
@@ -89,7 +91,13 @@ export default function OurSponsorsPage() {
 
           {/* Silver Sponsors */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-700 mb-8 text-center">
+            <h2
+              className="text-3xl font-bold mb-8 text-center uppercase tracking-widest"
+              style={{
+                color: "var(--muted-foreground)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               Silver Partners
             </h2>
             <div className="space-y-8 max-w-4xl mx-auto">
@@ -101,7 +109,13 @@ export default function OurSponsorsPage() {
 
           {/* Bronze Sponsors */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-600 mb-8 text-center">
+            <h2
+              className="text-3xl font-bold mb-8 text-center uppercase tracking-widest"
+              style={{
+                color: "var(--foreground)",
+                fontFamily: "var(--font-playfair), Georgia, serif",
+              }}
+            >
               Bronze Partners
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -114,12 +128,27 @@ export default function OurSponsorsPage() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-16 bg-blue-50">
+      <section
+        className="py-16 retro-texture"
+        style={{ background: "var(--muted)" }}
+      >
         <div className="container mx-auto text-center max-w-3xl px-4">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2
+            className="text-3xl font-bold tracking-tight sm:text-4xl"
+            style={{
+              color: "var(--foreground)",
+              fontFamily: "var(--font-playfair), Georgia, serif",
+            }}
+          >
             Interested in Becoming a Partner?
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p
+            className="mt-4 text-lg"
+            style={{
+              color: "var(--muted-foreground)",
+              fontFamily: "var(--font-special-elite), monospace",
+            }}
+          >
             Join our mission to support students and gain valuable exposure to
             the campus community. We offer a range of partnership opportunities
             to fit your goals.
@@ -127,7 +156,14 @@ export default function OurSponsorsPage() {
           <div className="mt-10">
             <Link
               href="/sponsor-us"
-              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold uppercase tracking-widest transition-opacity hover:opacity-80"
+              style={{
+                background: "var(--primary)",
+                color: "var(--primary-foreground)",
+                borderRadius: "0",
+                boxShadow: "3px 3px 0 var(--accent)",
+                fontFamily: "var(--font-special-elite), monospace",
+              }}
             >
               View Sponsorship Packages
             </Link>

@@ -89,7 +89,17 @@ export default function SubmitContentForm() {
       <h1 className="text-2xl font-bold mb-4">
         Submit Content to NDUSTUDENTHUB
       </h1>
-      {status && <p className="mb-4 text-green-600">{status}</p>}
+      {status && (
+        <p
+          className="mb-4 text-sm"
+          style={{
+            color: "var(--primary)",
+            fontFamily: "var(--font-special-elite), monospace",
+          }}
+        >
+          {status}
+        </p>
+      )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
@@ -198,7 +208,14 @@ export default function SubmitContentForm() {
 
         <button
           type="submit"
-          className="bg-green-600 text-white px-4 py-2 rounded"
+          className="font-bold uppercase tracking-widest px-6 py-2.5 transition-opacity hover:opacity-80"
+          style={{
+            background: "var(--primary)",
+            color: "var(--primary-foreground)",
+            borderRadius: "0",
+            boxShadow: "2px 2px 0 var(--accent)",
+            fontFamily: "var(--font-special-elite), monospace",
+          }}
         >
           Submit
         </button>

@@ -65,14 +65,35 @@ export default async function SpotlightsPage({}) {
   // TODO: Add filtering/sorting logic here in the future (e.g., by date, type)
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen" style={{ background: "var(--background)" }}>
       {/* Page Header */}
-      <section className="bg-purple-700 text-white py-12 sm:py-16">
+      <section
+        className="py-12 sm:py-16 retro-texture"
+        style={{
+          background: "var(--primary)",
+          color: "var(--primary-foreground)",
+        }}
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          <p
+            className="text-xs uppercase tracking-widest mb-3 opacity-80"
+            style={{
+              color: "var(--accent)",
+              fontFamily: "var(--font-special-elite), monospace",
+            }}
+          >
+            ✦ NDU Student Hub ✦
+          </p>
+          <h1
+            className="text-4xl sm:text-5xl font-extrabold tracking-tight"
+            style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+          >
             Weekly Spotlights
           </h1>
-          <p className="mt-4 text-lg sm:text-xl text-purple-100 max-w-3xl mx-auto">
+          <p
+            className="mt-4 text-lg sm:text-xl max-w-3xl mx-auto opacity-90"
+            style={{ fontFamily: "var(--font-special-elite), monospace" }}
+          >
             Catch up on our featured students, clubs, campus tips, and
             highlighted events from ndustudenthub.
           </p>
@@ -94,7 +115,7 @@ export default async function SpotlightsPage({}) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {allSpotlightSummaries.map((item) => (
                 <SpotlightListCard
-                  key={item.type}
+                  key={item._id}
                   type={item.type}
                   title={item.title}
                   shortIntro={item.shortIntro}
@@ -112,10 +133,21 @@ export default async function SpotlightsPage({}) {
                 height={200}
                 className="mx-auto mb-4"
               />
-              <h2 className="text-2xl font-semibold text-gray-700 mb-2">
+              <h2
+                className="text-2xl font-semibold mb-2"
+                style={{
+                  color: "var(--foreground)",
+                  fontFamily: "var(--font-playfair), Georgia, serif",
+                }}
+              >
                 No Spotlights Yet
               </h2>
-              <p className="text-gray-500">
+              <p
+                style={{
+                  color: "var(--muted-foreground)",
+                  fontFamily: "var(--font-special-elite), monospace",
+                }}
+              >
                 Check back soon for our weekly features and highlights!
               </p>
             </div>
